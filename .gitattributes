@@ -1,0 +1,2 @@
+# Normalize line endings: LF in the repo and in rendered projects (Windows + Linux checkouts).
+* text=auto eol=lf

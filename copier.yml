@@ -1,0 +1,20 @@
+# Copier settings — https://copier.readthedocs.io/en/stable/configuring/
+_min_copier_version: "9.18"
+_subdirectory: template
+
+# ---- Questions ----
+# Renaming a question breaks `copier update` for existing projects (their answers file
+# stores the old name). Add a _migrations entry if you ever must.
+
+project_name:
+  type: str
+  help: Project name (kebab-case, e.g. my-api)
+  default: "{{ _folder_name }}"
+
+stack:
+  type: str
+  help: Which stack is this project?
+  choices:
+    Express 5 backend (TypeScript + Zod): express
+    Next.js frontend: next
+    React Native mobile (bare, Hermes): rn
