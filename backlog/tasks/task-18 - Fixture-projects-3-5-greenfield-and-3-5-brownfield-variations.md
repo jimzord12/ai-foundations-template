@@ -4,6 +4,7 @@ title: 'Fixture projects: 3-5 greenfield and 3-5 brownfield variations'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
+updated_date: '2026-09-29 19:57'
 labels:
   - testing
   - fixtures
@@ -24,4 +25,5 @@ The template must be tried on realistic projects. Greenfield: freshly scaffolded
 - [ ] #1 Decision on repo home for fixtures and evals recorded in docs/decisions.md
 - [ ] #2 3-5 greenfield and 3-5 brownfield fixtures defined, each documenting the situation it represents
 - [ ] #3 Each fixture can be rebuilt from scratch with one command and pinned tool versions
+- [ ] #4 Adoption guide for brownfield projects written from what the fixtures reveal (dry run first, clean branch, never blind overwrite, how to handle an existing AGENTS.md); tested on the brownfield fixtures
 <!-- AC:END -->
