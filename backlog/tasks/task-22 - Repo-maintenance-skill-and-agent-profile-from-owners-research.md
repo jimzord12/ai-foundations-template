@@ -4,7 +4,7 @@ title: Repo maintenance skill and agent profile (from owner's research)
 status: To Do
 assignee: []
 created_date: '2026-09-29 22:09'
-updated_date: '2026-09-29 22:39'
+updated_date: '2026-09-29 22:47'
 labels:
   - maintenance
   - skill
@@ -25,7 +25,13 @@ Source (outside the repo, owner's research for another repo): C:\Users\jimzord12
 <!-- AC:BEGIN -->
 - [ ] #1 Extraction filter (keep / adapt / drop) recorded in docs/decisions.md; a grep of everything imported finds no trace of the source repo's names, paths, terms or roles
 - [ ] #2 Generic skill, checklist, audit script and lite auditor adapted and working on this repo, with a template-specific adapter (smoke test as declared check, decision-log and backlog hygiene, stale preferred libraries)
-- [ ] #3 Decisions made and recorded: where it ships (this repo only vs generated projects, full or lighter), Python dependency for TypeScript projects, how the dogfooded copy in this repo stays in sync with template/
+- [x] #3 Decisions made and recorded: where it ships (this repo only vs generated projects, full or lighter), Python dependency for TypeScript projects, how the dogfooded copy in this repo stays in sync with template/
 - [ ] #4 Verified in a live Claude Code session on a throwaway branch (skill discovery, auditor spawn, apply protocol), plus the script self-test on this machine; noise from the first run triaged
 - [ ] #5 Independent review rounds pass; overlap with TASK-11 (context-maintainer) and TASK-3 (library review) resolved
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-09-30 owner decisions (recorded in docs/decisions.md): ships in both this repo and generated projects with the same generic core; Python accepted as a dependency; template/ is the source of truth and CI checks this repo's copy is identical.
+<!-- SECTION:NOTES:END -->
