@@ -1,0 +1,3 @@
+# Keeps personal preferences out of git; this file itself stays tracked.
+*
+!.gitignore

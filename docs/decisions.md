@@ -45,3 +45,51 @@ Decisions about the template itself. Newest at the bottom. To change a decision,
 - **Decision:** Public GitHub repository; MIT license.
 - **Alternatives considered:** Private repo — safer default but nothing here is secret and public makes `copier copy gh:...` work without auth. Other licenses (Apache-2.0) — MIT is the most common permissive default for small tooling.
 - **Consequences:** Never commit secrets or client-specific details to the template.
+
+### 2026-09-29: Agent instructions live per project, as a thin AGENTS.md router
+- **Context:** TASK-1. The baseline was written for a global CLAUDE.md, but cloud sessions, CI agents, other tools and collaborators only see files in the repo. Prior projects showed a 17K AGENTS.md becomes a text wall.
+- **Decision:** `template/AGENTS.md.jinja` (short; target under about 100 lines) carries roles, owner profile, philosophy, authority tiers, decision rules and stack blocks, plus a "when to read what" router to files under `docs/`. `CLAUDE.md` contains only `@AGENTS.md`. Stack rules are inline `{% if stack %}` blocks so every agent sees them. The global `~/.claude/CLAUDE.md` keeps only the owner's personal style. Supersedes the "placement open" note in the agent-instruction baseline entry, and narrows "One template, shared files + conditional per-stack files": stack rules are inline blocks, no longer separate `.claude/rules/stack-*.md` files. Global scope: personal style only (tone, language, push-back preference); nothing about libraries, decisions or conventions.
+- **Alternatives considered:** Everything global — invisible to anything but the owner's local Claude Code. Stack rules in `.claude/rules/` with `paths:` — Claude-only, so CI and cloud agents would miss them; reserve that mechanism for long path-scoped rules later.
+- **Consequences:** Baseline changes reach projects via a template tag plus `copier update` (not instantly). Keep AGENTS.md under about 100 lines; new detail goes in linked files.
+
+### 2026-09-29: Agents decide within repo rules; owner decides the hard-to-reverse list
+- **Context:** The owner does not want to babysit. The baseline said "ask before choosing new libraries" by default, which creates friction.
+- **Decision:** Changes the default in the agent-instruction baseline: the agent decides libraries, patterns, structure and tooling itself, bounded by the repo's instruction files and decision log, and logs non-trivial decisions. The owner decides the hard-to-reverse list (database, auth, hosting, paid services, core framework, anything contradicting the instructions). Evolution: start simple, fix friction, then patterns and abstractions, then heavier structure; rule of three (2nd occurrence noted, 3rd extracted); restructuring is the agent's call, surfaced to the owner as a proposal (until the proposal pipeline of TASK-9 exists, the interim rule in AGENTS.md is: log it and tell the owner in the end-of-task summary).
+- **Alternatives considered:** Ask-first by default with an opt-in autonomous mode — more friction than the owner wants.
+- **Consequences:** Quality depends on the instruction files being good; details are tracked in TASK-7.
+
+### 2026-09-29: Owner-facing items are JSON; history log stays markdown
+- **Context:** Anything the owner must know, approve or decide has to be renderable in a viewer.
+- **Decision:** Questions (2-6 options plus a recommendation), decisions needing approval, findings and proposals are JSON validated by versioned JSON Schemas shipped under a `.foundations` folder (TASK-8). The historical decision log stays readable markdown. Schemas are viewer-agnostic; Night Shift's `ask` and `feedback` commands cover the gap until the viewer is generic.
+- **Alternatives considered:** Everything markdown — not machine-renderable. Everything JSON — poor for humans reading history.
+- **Consequences:** TASK-5 (one log vs Backlog.md decisions) stays open.
+
+### 2026-09-29: Evolve Night Shift into the shared generic viewer
+- **Context:** The owner works on many projects at once; one viewer across projects beats a copy in each.
+- **Decision:** Night Shift becomes a generic mini-framework where agents describe UIs in JSON and tooling validates the schema. Not built in this template. Tracked as TASK-6, blocked until Night Shift's viewer stabilizes; needs a dedicated design discussion first. Start with fixed item kinds (question, finding, proposal, report) and generalize only on a third real need.
+- **Alternatives considered:** New viewer inside the template (about 2 days, a copy per project); vendored copy of Night Shift (stale quickly).
+- **Consequences:** The template depends on a separate repo maturing.
+
+### 2026-09-29: Findings are ephemeral; proposals are GitHub issues with occurrence counts
+- **Context:** Subagents must report pains, frictions, ideas and risks, and several agents may report the same problem.
+- **Decision:** Every subagent report ends with a `findings` block. The lead triages and dedupes, then creates or updates a GitHub issue (a proposal) that counts how many times the problem was reported. The owner approves proposals in the viewer; the lead then creates the Backlog task. Findings themselves are not stored long term. Issue text must contain no secrets (repos may be public). Tracked in TASK-9.
+- **Alternatives considered:** A persistent findings file — duplicates pile up and nobody reads it.
+- **Consequences:** Needs a reliable dedupe step by the lead.
+
+### 2026-09-29: Review loop caps raised to 8 attended and 15 unattended
+- **Context:** The owner's experience is that fresh-context review loops are very valuable; the cap only guards against a stuck agent. Earlier projects used 5 and 10.
+- **Decision:** Caps of 8 rounds attended and 15 unattended, interpreted as maximums (a PASS verdict stops the loop). Unresolved after the cap goes to the owner. Tracked in TASK-11.
+- **Alternatives considered:** Fewer rounds scaled to change size — rejected by the owner.
+- **Consequences:** More time per non-trivial change.
+
+### 2026-09-29: Neutral default profile plus optional personalization skill
+- **Context:** The owner's personal style is in the global CLAUDE.md, but cloud agents and collaborators need sensible defaults.
+- **Decision:** The template's AGENTS.md carries a neutral technical-product-owner profile. An optional skill run on new installations interviews the user for 10-15 minutes and writes preferences to the git-ignored `.local/preferences/`. Tracked in TASK-12.
+- **Alternatives considered:** Copying the owner's personal rules into every project — leaks personal style to collaborators.
+- **Consequences:** Preferences live outside version control.
+
+### 2026-09-29: Generated projects use Backlog.md and ignore `.local/`
+- **Context:** Review of TASK-1 found the generated AGENTS.md told agents to use Backlog.md although the template ships no `backlog/` folder, and referred to a git-ignored `.local/` although no `.gitignore` existed. The earlier Backlog.md decision covered only this template repo.
+- **Decision:** Generated projects track work with Backlog.md; AGENTS.md tells the agent to run `npx backlog.md init "<name>" --defaults --agent-instructions none` if `backlog/` is missing (the bare command is interactive and appends a duplicate guidelines block to AGENTS.md; no custom init task in Copier). The template ships `.local/.gitignore` (`*` plus `!.gitignore`) instead of a root `.gitignore`, so personal preferences are never committed.
+- **Alternatives considered:** Shipping a pre-made `backlog/config.yml` — couples the template to one CLI version's config format. A root `template/.gitignore` — Next/RN projects are scaffolded first and already have one, so Copier would prompt to overwrite it (losing framework ignores) or conflict on `copier update`. Similarly `create-next-app` writes its own `AGENTS.md`: the README tells users to accept the overwrite, and the Next stack block keeps its managed `nextjs-agent-rules` block at the end of the file. RN's CLI ships no AGENTS.md.
+- **Consequences:** Revisit if projects should start with a pre-initialized backlog.

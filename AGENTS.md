@@ -3,7 +3,7 @@
 This repo is a **Copier template**, not an app. Files under `template/` are rendered into other projects; everything else is about maintaining the template.
 
 ## Where things go
-- `template/` — only content that belongs in generated projects. Files ending in `.jinja` are rendered with Jinja; other files are copied as-is. Stack-specific files use conditional names, e.g. `{% if stack == 'express' %}stack-express.md{% endif %}` (an empty rendered name means "skip").
+- `template/` — only content that belongs in generated projects. Files ending in `.jinja` are rendered with Jinja; other files are copied as-is. Stack-specific content lives in inline `{% if stack %}` blocks; whole stack-specific files can use conditional names, e.g. `{% if stack == 'express' %}stack-express.md{% endif %}` (an empty rendered name means "skip").
 - `copier.yml` — questions and settings. Changing a question's name breaks `copier update` for existing projects; add a `_migrations` entry if you must.
 - `docs/decisions.md` — decision log for this template. Record every non-trivial decision (format at the top of that file). Check it before deciding anything.
 - `backlog/` — open work, managed with Backlog.md (see section below). Don't track open work anywhere else.

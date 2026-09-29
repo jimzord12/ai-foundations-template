@@ -1,6 +1,6 @@
 # Agreed agent-instruction baseline
 
-Status: **agreed content, placement not decided.** Originally written for a global `CLAUDE.md`; whether it moves into each project (via `template/AGENTS.md.jinja`) or stays global is open — see the backlog.
+Status: **superseded as source of truth by `template/AGENTS.md.jinja` and `template/docs/protocols/typescript.md` (see the 2026-09-29 placement decision). Kept for history.**
 
 ---
 
