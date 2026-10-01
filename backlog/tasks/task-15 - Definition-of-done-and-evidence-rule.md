@@ -4,15 +4,16 @@ title: Definition of done and evidence rule
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 19:51'
 labels:
   - instructions
   - verification
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-7
 priority: high
 type: feature
-ordinal: 15000
+ordinal: 700
 ---
 
 ## Description
@@ -27,3 +28,18 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 - [ ] #2 Covers: real-run evidence over claims, separate git and test facts, tests must exercise real code, mocks only at true external boundaries
 - [ ] #3 Overlap with TASK-2 resolved (merged or clearly split) and decision recorded
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01: owns the done rule text; TASK-2 subtasks own the tooling it refers to.
+<!-- SECTION:NOTES:END -->

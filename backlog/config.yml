@@ -14,3 +14,4 @@ bypass_git_hooks: false
 check_active_branches: true
 active_branch_days: 30
 task_prefix: "task"
+definition_of_done: ["Every acceptance criterion verified with evidence (command and result, render output, or screenshot)", "Smoke test passes for all three stacks when template/ or copier.yml changed", "Independent review loop reached PASS for non-trivial changes", "Non-trivial decisions recorded in docs/decisions.md", "Committed and pushed"]

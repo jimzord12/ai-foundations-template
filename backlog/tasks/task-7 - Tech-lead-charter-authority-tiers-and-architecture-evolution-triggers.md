@@ -4,15 +4,16 @@ title: 'Tech-lead charter: authority tiers and architecture-evolution triggers'
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 19:29'
+updated_date: '2026-10-01 19:51'
 labels:
   - instructions
   - charter
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-25
 priority: high
 type: feature
-ordinal: 7000
+ordinal: 200
 ---
 
 ## Description
@@ -28,3 +29,18 @@ The main agent acts as tech lead and senior engineer and owns the codebase; the 
 - [ ] #3 Decision recorded in docs/decisions.md
 - [ ] #4 Design evolution protocol written as a linked file: measurable signals (third duplication, second business area, second external service of one kind, folder past about 25 files or circular imports, repeated findings), the procedure (architecture decision record, owner approval for big changes, safe-move protocol from TASK-22, update architecture.md and glossary in the same change, tests and review pass), and the step-down rule (propose removing patterns that never paid off)
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01 owner of authority tiers (who decides what). TASK-25 references these tiers for who decides each decision kind instead of restating them.
+<!-- SECTION:NOTES:END -->

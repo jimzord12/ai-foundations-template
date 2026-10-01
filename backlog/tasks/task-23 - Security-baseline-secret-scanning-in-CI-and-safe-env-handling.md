@@ -4,14 +4,16 @@ title: 'Security baseline: secret scanning in CI and safe env handling'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 19:51'
 labels:
   - security
   - ci
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-13
 priority: high
 type: feature
-ordinal: 23000
+ordinal: 1500
 ---
 
 ## Description
@@ -26,3 +28,18 @@ Repos are public and agents commit often, so a leaked secret is a real risk. The
 - [ ] #2 Generated projects ship .env.example and ignore real .env files; AGENTS.md says secrets never go in code, logs or commits
 - [ ] #3 Verified by a planted fake secret failing CI on a scratch branch; decision recorded
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01: adds a step to the CI workflow owned by TASK-13.
+<!-- SECTION:NOTES:END -->

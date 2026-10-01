@@ -4,13 +4,14 @@ title: Repo maintenance skill and agent profile (from owner's research)
 status: To Do
 assignee: []
 created_date: '2026-09-29 22:09'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 19:51'
 labels:
   - maintenance
   - skill
   - agents
 milestone: m-1
-dependencies: []
+dependencies:
+  - TASK-24
 priority: medium
 type: feature
 ordinal: 22000

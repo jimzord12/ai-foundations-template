@@ -4,6 +4,7 @@ title: 'Project knowledge system: decision records, architecture.md, domain glos
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:29'
+updated_date: '2026-10-01 19:51'
 labels:
   - knowledge
   - decisions
@@ -12,7 +13,7 @@ milestone: m-0
 dependencies: []
 priority: high
 type: feature
-ordinal: 25000
+ordinal: 100
 ---
 
 ## Description
@@ -29,3 +30,12 @@ Owner-approved design (2026-10-01, see docs/decisions.md). Generated projects ge
 - [ ] #4 Decide and record whether this template repo migrates its own docs/decisions.md to the same format
 - [ ] #5 Smoke test passes for all stacks; independent review rounds pass
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->

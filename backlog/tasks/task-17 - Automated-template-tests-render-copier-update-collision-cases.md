@@ -4,14 +4,14 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 19:51'
 labels:
   - testing
 milestone: m-0
 dependencies: []
 priority: high
 type: feature
-ordinal: 17000
+ordinal: 1300
 ---
 
 ## Description
@@ -27,3 +27,12 @@ Cheap, deterministic layer of the testing strategy, no agents involved. Today on
 - [ ] #3 Collision tests: copy onto a project with its own AGENTS.md, CLAUDE.md and .gitignore (create-next-app case) behaves as documented
 - [ ] #4 Each test verified to FAIL when the behavior it covers is broken (no tests that pass with the implementation deleted)
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
