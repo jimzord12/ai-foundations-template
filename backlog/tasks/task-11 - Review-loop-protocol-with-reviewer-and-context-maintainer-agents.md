@@ -4,7 +4,7 @@ title: 'Review loop: code-reviewer profile and review-core / review-lenses skill
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 20:26'
+updated_date: '2026-10-01 20:52'
 labels:
   - review
   - agents
@@ -28,6 +28,7 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 - [ ] #1 review-core and review-lenses skills plus the code-reviewer profile ship in template/ and in this repo (pairs added to the dogfood manifest)
 - [ ] #2 docs/protocols/review.md states the loop, caps, and the attended rule: a run is attended only while the owner is replying in the session, otherwise unattended; router line in AGENTS.md (at most 4 lines)
 - [ ] #3 Proof in a new session or headless claude -p: the code-reviewer profile is found, quotes a marker line from review-core (proving its own skills were preloaded, not the built-in /code-review), and runs one real review round on a diff in this repo, report saved in the task notes
+- [ ] #4 docs/protocols/review.md states that changes to instruction files (AGENTS.md, protocols, agent profiles, skills) and decision records are non-trivial and always reviewed, and names which reviewer profile handles which kind of change (code, agent context, project docs)
 <!-- AC:END -->
 
 ## Definition of Done
@@ -43,4 +44,6 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01: moved to Phase 1 because the Ready gate (TASK-26) and every Phase 1 task rely on the reviewer agent. Agent files go in the layout owned by TASK-24.
+
+2026-10-01 (decision 'Two documentation reviewer families with shared skills'): review-core is the shared base for every reviewer, including context-reviewer and docs-reviewer (TASK-29, TASK-30); it holds one severity scale repos may remap. review.md must state that changes to instruction files and decision logs count as non-trivial.
 <!-- SECTION:NOTES:END -->

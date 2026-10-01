@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:26'
+updated_date: '2026-10-01 20:52'
 labels:
   - release
   - ready
@@ -23,6 +23,8 @@ dependencies:
   - TASK-26
   - TASK-27
   - TASK-28
+  - TASK-29
+  - TASK-30
 priority: medium
 type: chore
 ordinal: 1900

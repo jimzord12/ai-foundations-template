@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 20:27'
+updated_date: '2026-10-01 20:52'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -17,6 +17,8 @@ updated_date: '2026-10-01 20:27'
 - **AGENTS.md line budget.** Each task adds at most 4 lines to `AGENTS.md`; detail goes in `docs/protocols/<topic>.md`. The rendered file stays at or under 100 lines (asserted by TASK-17).
 - **Dogfood.** Agent profiles, skills and protocols built for the template are also used in this repo; a manifest lists every copied file and CI (TASK-13) fails on drift.
 - **Ready gate.** A task runs unattended only with the `ready` label, given after an independent readiness challenge returns READY.
+- **Docs are non-trivial.** Changes to instruction files and decision records always go through the review loop (context or docs reviewer).
+- **Git.** Every task runs on a feature branch and merges into `main` after review PASS and a passing smoke test, then the branch is deleted (root AGENTS.md, Git).
 - **Tag push.** The agent prepares `v0.1.0`; the owner approves the push in session.
 
 ## Order
@@ -29,6 +31,8 @@ updated_date: '2026-10-01 20:27'
 | 4 | TASK-15 done rule | `docs/protocols/done.md`, Backlog DoD defaults for generated projects | 14 |
 | 5 | TASK-24 agent tool layout | `.claude/settings.json` allowlist, agents and skills layout, dogfood manifest | 15 |
 | 6 | TASK-11 review loop | `review-core` and `review-lenses` skills, `code-reviewer` profile, `review.md` | 24 |
+| 6a | TASK-29 agent-context review pair | `context-lenses` skill, `context-reviewer` and `context-maintainer` profiles | 11 |
+| 6b | TASK-30 project-docs review | `docs-lenses` skill, `docs-reviewer`, optional `scannability-reviewer` | 11, 25 |
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
 | 9 | TASK-2.5 integration mechanism | Copier post-copy tasks, Express skeleton | none |
