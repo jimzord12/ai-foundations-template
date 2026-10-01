@@ -4,11 +4,12 @@ title: 'Agent tool baseline: .claude/ layout, permission allowlist, dogfood mani
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 20:26'
+updated_date: '2026-10-01 20:29'
 labels:
   - agents
   - claude
   - codex
+  - ready
 milestone: m-0
 dependencies:
   - TASK-15
@@ -27,8 +28,8 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 <!-- AC:BEGIN -->
 - [ ] #1 template/.claude/settings.json ships with an allowlist of: read-only tools, package scripts, backlog, git add/commit/push; nothing broader. This repo gets its own root .claude/settings.json with the same allowlist minus package scripts
 - [ ] #2 .claude/agents/ and .claude/skills/ layout documented in the router of both the root and the template AGENTS.md (at most 4 lines each) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write, dogfooded files must not be .jinja or link to template-only files)
-- [ ] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. Initial scope: .claude/agents/*, .claude/skills/*, docs/protocols/review.md, ready.md, agents.md. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are not copied. Later tasks add their pairs to it
-- [ ] #4 Proof via headless claude -p in a generated project run with --setting-sources project (or a clean CLAUDE_CONFIG_DIR) so user-level settings can neither satisfy nor block the result: an allowlisted command runs without a permission prompt and a non-listed command does not
+- [ ] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. TASK-24 adds only docs/protocols/agents.md and the .claude/agents/* and .claude/skills/* globs; TASK-11 adds review.md and TASK-26 adds ready.md when they create them. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are never copied
+- [ ] #4 Proof via headless claude -p --output-format json in a generated project, run with --setting-sources project (or a clean CLAUDE_CONFIG_DIR) and without --allowedTools, --permission-mode or any permission-skipping flag: an allowlisted command runs without a permission prompt, and a non-listed command appears in permission_denials
 <!-- AC:END -->
 
 ## Definition of Done
