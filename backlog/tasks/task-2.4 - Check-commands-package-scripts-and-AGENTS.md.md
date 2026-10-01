@@ -4,19 +4,17 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - stack
   - instructions
 milestone: m-0
 dependencies:
-  - TASK-2.1
-  - TASK-2.2
-  - TASK-2.3
+  - TASK-2.5
 parent_task_id: TASK-2
 priority: high
 type: feature
-ordinal: 1200
+ordinal: 1400
 ---
 
 ## Description
@@ -27,8 +25,9 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Scripts typecheck, lint, test and check exist per stack and pass on a freshly scaffolded project
-- [ ] #2 AGENTS.md stack blocks name the exact commands
+- [ ] #1 Post-copy task adds typecheck, lint, format:check, test and check (runs all four) scripts per stack
+- [ ] #2 npm run check passes on a freshly scaffolded project per stack
+- [ ] #3 AGENTS.md stack blocks name the exact commands, within the line budget of the phase plan
 <!-- AC:END -->
 
 ## Definition of Done

@@ -4,15 +4,17 @@ title: Lint and format per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - stack
   - lint
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-2.5
 parent_task_id: TASK-2
 priority: high
 type: feature
-ordinal: 1000
+ordinal: 1200
 ---
 
 ## Description
@@ -23,8 +25,8 @@ One standard linter and formatter per stack so agents get fast, consistent feedb
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Linter and formatter chosen per stack with the reason recorded in docs/decisions.md
-- [ ] #2 Config ships in the template and passes on a freshly scaffolded project for each stack
+- [ ] #1 Linter and formatter chosen per stack, extending the framework shipped config where one exists (Next.js ESLint, RN ESLint and Prettier); reason recorded in docs/decisions.md
+- [ ] #2 lint and format:check scripts exit 0 on a freshly scaffolded project for each stack, and lint exits non-zero on a planted violation
 <!-- AC:END -->
 
 ## Definition of Done

@@ -4,7 +4,7 @@ title: Repo maintenance skill and agent profile (from owner's research)
 status: To Do
 assignee: []
 created_date: '2026-09-29 22:09'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - maintenance
   - skill
@@ -30,6 +30,7 @@ Source (outside the repo, owner's research for another repo): C:\Users\jimzord12
 - [x] #3 Decisions made and recorded: where it ships (this repo only vs generated projects, full or lighter), Python dependency for TypeScript projects, how the dogfooded copy in this repo stays in sync with template/
 - [ ] #4 Verified in a live Claude Code session on a throwaway branch (skill discovery, auditor spawn, apply protocol), plus the script self-test on this machine; noise from the first run triaged
 - [ ] #5 Independent review rounds pass; overlap with TASK-11 (context-maintainer) and TASK-3 (library review) resolved
+- [ ] #6 Repo-maintenance files are listed in the dogfood manifest and covered by the CI identical-check of TASK-13
 <!-- AC:END -->
 
 ## Implementation Notes

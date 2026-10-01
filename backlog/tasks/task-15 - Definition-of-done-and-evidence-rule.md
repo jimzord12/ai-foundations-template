@@ -4,16 +4,16 @@ title: Definition of done and evidence rule
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - instructions
   - verification
 milestone: m-0
 dependencies:
-  - TASK-7
+  - TASK-14
 priority: high
 type: feature
-ordinal: 700
+ordinal: 400
 ---
 
 ## Description
@@ -24,9 +24,10 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Definition of done written for generated projects (linked protocol plus a short rule in AGENTS.md)
+- [ ] #1 Definition of done written for generated projects (docs/protocols/done.md plus at most 4 lines in AGENTS.md), referencing npm run check by name
 - [ ] #2 Covers: real-run evidence over claims, separate git and test facts, tests must exercise real code, mocks only at true external boundaries
-- [ ] #3 Overlap with TASK-2 resolved (merged or clearly split) and decision recorded
+- [ ] #3 Generated projects get the same Definition of Done defaults in their Backlog config (applied after backlog init, as documented in AGENTS.md)
+- [ ] #4 Decision recorded; smoke test passes
 <!-- AC:END -->
 
 ## Definition of Done

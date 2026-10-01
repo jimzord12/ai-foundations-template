@@ -4,29 +4,31 @@ title: 'Agent tool baseline: .claude/ and Codex counterparts'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - agents
   - claude
   - codex
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-15
 priority: high
 type: feature
-ordinal: 300
+ordinal: 500
 ---
 
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Claude Code is the owner's main coding agent, but Codex is also used at times. Permissions, hooks, subagent definitions and skills are currently scattered across TASK-9, TASK-11, TASK-12 and TASK-22 with no owner. This task owns the baseline layout for both tools: Claude Code (.claude/settings.json, agents, skills) and the Codex equivalents. AGENTS.md is already shared by both. Verify current Claude Code and Codex docs for config, skills and agent file locations before building.
+Owner of the agent-tool layout for this repo and generated projects. Layout rule (decision 2026-10-01, specific thin agent profiles plus shared skills): .claude/agents/ holds one-job profiles that preload skills; .claude/skills/ holds the shared knowledge. Codex native support is TASK-28. Permission allowlist per owner answer 2026-10-01. Verify current Claude Code settings and agent docs before building.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Baseline .claude/ layout shipped (settings with a sensible permission allowlist, folders for agents and skills) and documented in the AGENTS.md router
-- [ ] #2 Codex counterparts shipped where Codex supports them (config, skills or agents), with one source of truth so the two do not drift
-- [ ] #3 Other tasks that add agents, skills or hooks reference this layout; decision recorded
+- [ ] #1 .claude/settings.json ships with an allowlist of: read-only tools, package scripts, backlog, git add/commit/push; nothing broader
+- [ ] #2 .claude/agents/ and .claude/skills/ layout documented in the AGENTS.md router (at most 4 lines) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write)
+- [ ] #3 Dogfood: this repo uses the same layout; a manifest lists every file copied from template/ into this repo, for the CI identical-check of TASK-13
+- [ ] #4 Verified in a live Claude Code session in a generated project: settings load and /agents lists the shipped agents
 <!-- AC:END -->
 
 ## Definition of Done

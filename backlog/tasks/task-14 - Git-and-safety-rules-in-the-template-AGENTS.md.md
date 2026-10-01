@@ -4,7 +4,7 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - instructions
   - git
@@ -13,7 +13,7 @@ dependencies:
   - TASK-7
 priority: high
 type: feature
-ordinal: 600
+ordinal: 300
 ---
 
 ## Description
@@ -24,9 +24,9 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Neutral git and safety section added to template/AGENTS.md.jinja (or a linked protocol) and kept short
-- [ ] #2 Rule is impact-based, not a command blocklist, and states what to show when asking (exact action, targets, consequence)
-- [ ] #3 Decision recorded in docs/decisions.md; smoke test passes for all stacks
+- [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it
+- [ ] #2 Rule is impact-based, not a command blocklist, consistent with the permission allowlist of TASK-24, and states what to show when asking (exact action, targets, consequence)
+- [ ] #3 Decision recorded; smoke test passes
 <!-- AC:END -->
 
 ## Definition of Done

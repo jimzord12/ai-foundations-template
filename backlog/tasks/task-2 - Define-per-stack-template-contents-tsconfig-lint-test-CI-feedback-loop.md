@@ -6,24 +6,32 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - template
   - tooling
 milestone: m-0
 dependencies: []
 priority: high
-ordinal: 800
+ordinal: 900
 ---
 
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Parent for the technical baseline every generated project gets, split into subtasks so each is one reviewable change. Stacks: Express 5 + Zod, Next.js 16.3, bare React Native (owner's brief says 0.81 on Hermes, no Expo; a 2026-09-29 review saw @react-native-community/template 0.87.2 as latest, so the RN version is an open question for the owner before 2.1 starts). Verify current versions of every tool before choosing. Owner of CI is TASK-13 (not this task). Owner of the done rule is TASK-15; this task owns the tooling the rule refers to.
+Parent for the technical baseline every generated project gets, split into one-change subtasks. Stacks: Express 5 + Zod, Next.js 16.3, bare React Native at the current stable of @react-native-community/template (owner answer 2026-10-01; verify the version when 2.5 starts). Start with TASK-2.5 (integration mechanism and Express skeleton); 2.1-2.3 build on it; 2.4 wires the check commands. CI is owned by TASK-13 (template repo) and TASK-27 (generated projects); the done rule by TASK-15.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 All subtasks done
-- [ ] #2 copier copy renders a project for express, next and rn whose check commands pass on a fresh install
+- [ ] #1 All subtasks Done
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->

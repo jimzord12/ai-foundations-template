@@ -4,15 +4,17 @@ title: 'Strict TypeScript per stack: tsconfig and ts-reset'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - stack
   - typescript
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-2.5
 parent_task_id: TASK-2
 priority: high
 type: feature
-ordinal: 900
+ordinal: 1100
 ---
 
 ## Description
@@ -23,9 +25,10 @@ Agents write more consistent code under a strict compiler. Ship a strict tsconfi
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Each stack renders a tsconfig that is strict and compatible with the framework (verified by typecheck on a freshly scaffolded project)
-- [ ] #2 ts-reset installed and wired per stack
-- [ ] #3 Choices and versions recorded in docs/decisions.md
+- [ ] #1 Each stack ships a strict tsconfig that extends the framework base (Next.js, RN) or a standard strict base (Express), overwriting the scaffolded file on purpose as documented
+- [ ] #2 ts-reset installed (via the post-copy task) and wired per stack
+- [ ] #3 npx tsc --noEmit passes on a freshly scaffolded Next.js and RN project and on the Express skeleton
+- [ ] #4 Choices and versions recorded in docs/decisions.md
 <!-- AC:END -->
 
 ## Definition of Done

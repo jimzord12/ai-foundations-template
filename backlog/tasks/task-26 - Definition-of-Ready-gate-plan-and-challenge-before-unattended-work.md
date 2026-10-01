@@ -4,7 +4,7 @@ title: 'Definition of Ready gate: plan and challenge before unattended work'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:50'
-updated_date: '2026-10-01 19:51'
+updated_date: '2026-10-01 20:14'
 labels:
   - process
   - ready
@@ -13,19 +13,27 @@ dependencies:
   - TASK-11
 priority: high
 type: feature
-ordinal: 500
+ordinal: 700
 ---
 
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Owner-approved 2026-10-01 (docs/decisions.md). Before unattended work a task must pass: ready checklist, a written plan with real seams traced, an independent fresh-context challenge (READY / NOT READY), and batched owner questions with recommended answers. Two levels: per task and per phase. Ready tasks carry the ready label (Backlog drafts were tested and rejected). Ships in the template and is used in this repo. The readiness lens lives in the reviewer agent from TASK-11, not a new agent.
+Owner-approved 2026-10-01. Gate before unattended work: ready checklist, plan written into the task with real seams traced, independent challenge (READY / NOT READY), batched owner questions with recommended answers; per task and per phase; ready tasks carry the ready label (drafts tested and rejected). Built as a ready skill plus a readiness-challenger profile (read-only tools, Opus, preloads review-core and ready), per the agents+skills decision.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 docs/protocols/ready.md ships in the template and in this repo, with the checklist, plan contents, challenge step, question batching and phase-level rule; linked from the AGENTS.md router
-- [ ] #2 Reviewer agent from TASK-11 has a readiness lens returning READY / NOT READY with findings
-- [ ] #3 Rule in AGENTS.md: unattended work starts only on tasks labelled ready; owner may waive when present; depth scales with size
-- [ ] #4 Used once end to end on a real task in this repo with the evidence recorded; smoke test and review loop pass
+- [ ] #1 ready skill and readiness-challenger profile ship in template/ and in this repo (dogfood manifest); docs/protocols/ready.md linked from the router in both the root and the template AGENTS.md
+- [ ] #2 Rule in both AGENTS.md files: unattended work starts only on tasks labelled ready; owner may waive when attended; depth scales with size
+- [ ] #3 Proof: the shipped challenger is run on one real task in this repo and its verdict recorded
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
