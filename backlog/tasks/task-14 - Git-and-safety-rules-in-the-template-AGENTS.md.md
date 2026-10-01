@@ -4,7 +4,7 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:55'
+updated_date: '2026-10-01 20:58'
 labels:
   - instructions
   - git
@@ -27,7 +27,7 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 <!-- AC:BEGIN -->
 - [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it; includes the rule that secrets never go in code, logs or commits
 - [ ] #2 Branch model per the decision 'Branch model refinements after the first instruction review': no pull requests; branch levels main, feature/x, feature/x-part, feature/x-part-step; every change on a feature branch; merge without asking once applicable checks pass and, for non-trivial changes, review PASS; delete merged branches; delete only temporary files the agent created
-- [ ] #3 Approval only for: deleting main, deleting an unmerged branch whose commits exist nowhere else (except the agent's own level-3 branches), any force push, reset --hard, git clean, pushing release tags; each request shows the exact action, targets and consequence; consistent with the amended permission allowlist
+- [ ] #3 Approval only for: deleting main, deleting an unmerged branch whose commits exist nowhere else (except the agent's own level-3 branches), any force push, reset --hard, git clean; each request shows the exact action, targets and consequence; consistent with the amended permission allowlist (release-tag approval is a rule of this template repo only, not shipped)
 - [ ] #4 Decision recorded; smoke test passes
 <!-- AC:END -->
 

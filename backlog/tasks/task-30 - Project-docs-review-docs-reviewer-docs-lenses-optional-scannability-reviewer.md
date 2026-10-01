@@ -6,6 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:52'
+updated_date: '2026-10-01 20:58'
 labels:
   - review
   - docs
@@ -28,7 +29,7 @@ No project-docs reviewer exists in any of the owner's repos; doc correctness was
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 docs-lenses skill ships with: code outranks docs, symbol anchors, decision-record completeness and supersede chain, accepted architecture decisions reflected in architecture.md, folder map matches the real tree, glossary terms used in code and UI, README quickstart actually runs, numbers recomputed, unverified claims reported as unverified, cold-reader completeness
-- [ ] #2 docs-reviewer profile (Read, Grep, Glob, plus Bash limited to read-only checks such as running the quickstart in a scratch copy; Opus, high) preloads review-core and docs-lenses
+- [ ] #2 docs-reviewer profile (Read, Grep, Glob, plus Bash used only for checks in a scratch copy outside the working tree, such as running the quickstart; no Edit or Write; Opus, high) preloads review-core and docs-lenses
 - [ ] #3 Optional scannability-reviewer (Read, Grep, Glob; Sonnet, high effort) with a scan-lenses skill ships disabled by default and is documented in review.md as an add-on for human-facing docs
 - [ ] #4 Proof: docs-reviewer catches a planted stale claim (a path in architecture.md that no longer exists) in a generated project, report saved in the task notes; shipped files carry no source-repo names
 <!-- AC:END -->
