@@ -6,10 +6,12 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:52'
+updated_date: '2026-10-01 21:26'
 labels:
   - review
   - agents
   - docs
+  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -26,10 +28,11 @@ Most of this template is agent context (AGENTS.md, protocols, agent profiles, sk
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 context-lenses skill ships with: principle written before reading the diff, placement and owning file, integrate not append, principle vs example (overfit and over-general), terminology against glossary and code, timeless files carry no dates, literal-reader safety, frontmatter checks, router reachability, line budgets, Claude/Codex parity, anti-overcorrection guards, and a lead-lens rotation table
-- [ ] #2 context-reviewer profile (Read, Grep, Glob only; no Agent; Opus, high) preloads review-core and context-lenses; context-maintainer profile (adds Edit and Write, documentation files only, never deletes or renames, never edits dated records) preloads context-lenses
-- [ ] #3 Both ship in template/ and in this repo (pairs in dogfood.json); a grep over the shipped files finds none of the source repos' names, paths or product terms
-- [ ] #4 Proof: the shipped context-reviewer reviews one real instruction change in this repo, quotes a marker line from context-lenses, and its report is saved in the task notes
+- [ ] #1 context-lenses skill ships with: principle written before reading the diff, placement and owning file, integrate not append, principle vs example (overfit and over-general), terminology against glossary and code, timeless files carry no dates, literal-reader safety (an agent following the text exactly must not cause harm or stall), frontmatter checks, router reachability, line budgets, Claude/Codex parity, anti-overcorrection guards, and a lead-lens rotation table
+- [ ] #2 context-reviewer profile (Read, Grep, Glob only; no Agent; Opus, high; the caller passes the diff text because the profile has no shell) preloads review-core and context-lenses; context-maintainer profile (adds Edit and Write, documentation files only, never deletes or renames, never edits dated records; Opus, high) preloads context-lenses
+- [ ] #3 Both ship in template/ and in this repo (pairs in dogfood.json); grep -riE 'ICS|VCR|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number' over the shipped files returns nothing
+- [ ] #4 docs/protocols/review.md names context-maintainer as the writer for feedback-driven instruction changes and context-reviewer as the reviewer of instruction changes
+- [ ] #5 Proof via headless claude -p (same method as TASK-11): context-reviewer reviews one real instruction change in this repo and quotes a marker line from context-lenses; context-maintainer applies one small instruction edit and quotes the same marker; both reports saved in the task notes
 <!-- AC:END -->
 
 ## Definition of Done
@@ -37,6 +40,6 @@ Most of this template is agent context (AGENTS.md, protocols, agent profiles, sk
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->

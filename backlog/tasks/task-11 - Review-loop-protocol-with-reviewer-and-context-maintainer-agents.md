@@ -4,7 +4,7 @@ title: 'Review loop: code-reviewer profile and review-core / review-lenses skill
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 20:52'
+updated_date: '2026-10-01 21:26'
 labels:
   - review
   - agents
@@ -20,7 +20,7 @@ ordinal: 600
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Fresh-context review loop for this repo and generated projects. Specific thin profiles plus shared skills (decision 2026-10-01): a code-reviewer agent (read-only tools, Opus) that preloads a review-core skill (fresh-context rules, evidence, PASS / FINDINGS / INCOMPLETE, Blocking / Material / Minor / Note) and a review-lenses skill. The name code-review is avoided because Claude Code ships a built-in /code-review skill. Caps: 8 rounds attended, 15 unattended; unresolved after the cap goes to the owner. The context-maintainer idea is dropped: docs coherence is covered by the repo-auditor of TASK-22.
+Fresh-context review loop for this repo and generated projects. Specific thin profiles plus shared skills (decision 2026-10-01): a code-reviewer agent (read-only tools, Opus) that preloads a review-core skill (fresh-context rules, evidence, PASS / FINDINGS / INCOMPLETE, Blocking / Material / Minor / Note) and a review-lenses skill. The name code-review is avoided because Claude Code ships a built-in /code-review skill. Caps: 8 rounds attended, 15 unattended; unresolved after the cap goes to the owner. Documentation reviewers (context-reviewer, context-maintainer, docs-reviewer) are built in TASK-29 and TASK-30 on the same review-core skill.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
@@ -36,7 +36,7 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
 
