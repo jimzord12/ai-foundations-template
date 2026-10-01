@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:26'
+updated_date: '2026-10-01 21:26'
 labels:
   - stack
   - instructions
@@ -39,6 +39,6 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->

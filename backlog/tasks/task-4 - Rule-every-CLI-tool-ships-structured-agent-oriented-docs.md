@@ -4,7 +4,7 @@ title: 'Rule: every CLI tool ships structured, agent-oriented docs'
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:28'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 21:26'
 labels:
   - instructions
   - cli
@@ -22,7 +22,7 @@ Agents build and use many CLI tools; they should learn why/how/what a command do
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Design points resolved and recorded in docs/decisions.md
+- [ ] #1 Design points resolved and recorded in docs/decisions/
 - [ ] #2 Rule text added to agent instructions
 - [ ] #3 Shared helper or reference implementation + test available
 <!-- AC:END -->

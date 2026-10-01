@@ -20,16 +20,19 @@ Prefer widely adopted conventions and libraries over inventing our own, even whe
 - Verify current versions and docs before relying on a tool or API; don't trust memory.
 
 ## Who decides what
-- **You decide** libraries, patterns, folder structure and tooling on your own, but only within this file, the linked protocols and the decision log. Log every non-trivial decision.
+- **You decide** libraries, patterns, folder structure and tooling on your own, but only within this file, the linked protocols and the decision records. Record every non-trivial decision.
+- By decision kind: **product** (what users see and do) the owner decides; **architecture** (how the code is shaped) you propose and the owner approves big changes; **technical** (tools, libraries, conventions) you decide and record, except the hard-to-reverse list below.
 - **The owner decides** anything hard to reverse: database, auth provider, hosting/infrastructure, paid services, core framework changes, and anything that contradicts these instructions. Present options with tradeoffs and a recommendation; don't pick for them.
-- Don't re-argue a logged decision without new facts. To change one, add a new entry that references it.
+- Don't re-argue a recorded decision without new facts. To replace one, add a new record that lists it under `supersedes`; to refine or narrow one, link it under More Information.
 - End every task with a one-line-per-decision summary of what you decided.
 
 ## Evolve the codebase as it grows
-Start simple. When friction shows up, fix that friction, then move to patterns, abstractions and interfaces, and only later to a heavier folder structure. Second occurrence of the same code: note it. Third: extract it. Record structural changes in the decision log and tell the owner in the end-of-task summary (interim, until the proposal pipeline exists).
+Start simple. When friction shows up, fix that friction, then move to patterns, abstractions and interfaces, and only later to a heavier folder structure. Second occurrence of the same code: note it. Third: extract it. Record structural changes as an architecture decision record (and update `docs/architecture.md`) and tell the owner in the end-of-task summary (interim, until the proposal pipeline exists).
 
-## Decision log
-`docs/decisions.md`, newest at the bottom. If the project already has another decision log (ADRs, `docs/adr/`), use it and match its format instead. (Backlog.md's `backlog/decisions/` is not the decision log; use `docs/decisions.md`.) A decision is non-trivial if a teammate would ask "why this?" (new dependency, new pattern, structural change, deviation from a convention). Format is at the top of the file. Check it before deciding anything.
+## Decisions, architecture and domain words
+- One file per decision in `docs/decisions/` (format and index: `docs/decisions/README.md`). Check them before deciding anything. A decision is non-trivial if a teammate would ask "why this?" (new dependency, new pattern, structural change, deviation from a convention). If the project already keeps decisions elsewhere (an ADR folder such as `docs/adr/`, or a single decision-log file), use that and match its format; Backlog.md's `backlog/decisions/` is not it.
+- `docs/architecture.md` describes the code as it is now; update it in the same change as every accepted architecture decision.
+- Use the words in `docs/domain/glossary.md` in code, UI and replies; add new terms and flag synonyms there.
 
 ## Work tracking
 Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backlog.md <command>` if it is not installed), never edit task files by hand. If `backlog/` is missing, run `npx backlog.md init "{{ project_name }}" --defaults --agent-instructions none` first. At the start of a session run `backlog instructions overview` (or `npx backlog.md instructions overview`).
@@ -38,7 +41,8 @@ Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backl
 | Situation | Read |
 |---|---|
 | Writing TypeScript, adding a helper or dependency | `docs/protocols/typescript.md` |
-| Making a decision | `docs/decisions.md` |
+| Making a decision | `docs/decisions/README.md` |
+| Changing structure or naming a concept | `docs/architecture.md`, `docs/domain/glossary.md` |
 | Picking up or changing work | `backlog instructions overview` |
 {% if stack == 'express' %}
 ## Stack: Express 5 + Zod (backend)

@@ -4,7 +4,7 @@ title: 'CI workflow for generated projects: check'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-01 20:26'
+updated_date: '2026-10-01 21:26'
 labels:
   - ci
   - stack
@@ -35,7 +35,7 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
 

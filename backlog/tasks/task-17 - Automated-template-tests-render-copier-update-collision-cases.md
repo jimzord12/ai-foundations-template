@@ -4,7 +4,7 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 20:21'
+updated_date: '2026-10-01 21:26'
 labels:
   - testing
   - ready
@@ -35,6 +35,6 @@ Cheap, deterministic layer of the testing strategy, no agents involved. Today on
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->

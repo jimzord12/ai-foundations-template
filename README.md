@@ -2,7 +2,7 @@
 
 A [Copier](https://copier.readthedocs.io/) template for personal TypeScript projects (Express backend, Next.js frontend, bare React Native mobile). Its job is to give every project the same "AI foundations" so coding agents produce consistent, standard, maintainable code: agent instructions, a decision log, preferred libraries and conventions, and the tooling that supports them.
 
-> Status: early skeleton. See `backlog/` for open work and `docs/decisions.md` for what's decided.
+> Status: early skeleton. See `backlog/` for open work and `docs/decisions/` for what's decided.
 
 ## Use it
 
@@ -24,11 +24,11 @@ Next.js and React Native projects are scaffolded first (`create-next-app` and th
 |---|---|
 | `copier.yml` | Template questions and Copier settings |
 | `template/` | Files rendered into new projects. Shared by all stacks; stack-specific content uses inline `{% if stack %}` blocks; whole files can use conditional names (e.g. `{% if stack == 'rn' %}stack-rn.md{% endif %}`) |
-| `docs/decisions.md` | Decision log for the template itself |
+| `docs/decisions/` | Decision records for the template itself (one MADR file per decision, index in its `README.md`) |
 | `docs/agent-instructions.md` | Superseded baseline, kept for history; see `template/AGENTS.md.jinja` |
 | `backlog/` | Open work, managed with [Backlog.md](https://github.com/MrLesk/Backlog.md) |
 | `AGENTS.md` / `CLAUDE.md` | Instructions for agents working on *this* repo |
 
 ## Releasing a template version
 
-Projects update to git tags. Releases are tagged by an agent and pushed only with the owner's approval (decision "Phase 1 readiness answers", answer 6, in `docs/decisions.md`).
+Projects update to git tags. Releases are tagged by an agent and pushed only with the owner's approval (answer 6 in `docs/decisions/0021-phase-1-readiness-answers-owner.md`).

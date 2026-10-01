@@ -5,12 +5,12 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 ## Where things go
 - `template/` — only content that belongs in generated projects. Files ending in `.jinja` are rendered with Jinja; other files are copied as-is. Stack-specific content lives in inline `{% if stack %}` blocks; whole stack-specific files can use conditional names, e.g. `{% if stack == 'express' %}stack-express.md{% endif %}` (an empty rendered name means "skip").
 - `copier.yml` — questions and settings. Changing a question's name breaks `copier update` for existing projects; add a `_migrations` entry if you must.
-- `docs/decisions.md` — decision log for this template. Record every non-trivial decision (format at the top of that file). Check it before deciding anything.
+- `docs/decisions/` — decision records for this template, one MADR file per decision; format, rules and index in `docs/decisions/README.md`. Record every non-trivial decision. Check them before deciding anything.
 - `backlog/` — open work, managed with Backlog.md (see section below). Don't track open work anywhere else.
   The CLI is `backlog` (install once: `npm i -g backlog.md`) or `npx backlog.md <command>` without installing.
 
 ## Rules
-- Standard over custom: use established conventions and widely adopted tools; justify custom work in the decision log.
+- Standard over custom: use established conventions and widely adopted tools; justify custom work in a decision record.
 - Verify current versions and docs of tools before relying on them.
 - Ask before major or hard-to-reverse choices; say clearly what is decided vs. suggested.
 

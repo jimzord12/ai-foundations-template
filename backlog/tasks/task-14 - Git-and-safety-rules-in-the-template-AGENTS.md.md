@@ -4,7 +4,7 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:58'
+updated_date: '2026-10-01 21:26'
 labels:
   - instructions
   - git
@@ -36,7 +36,7 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
 

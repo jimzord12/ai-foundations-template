@@ -1,6 +1,6 @@
 # Agreed agent-instruction baseline
 
-Status: **superseded as source of truth by `template/AGENTS.md.jinja` and `template/docs/protocols/typescript.md` (see the 2026-09-29 placement decision). Kept for history.**
+Status: **superseded as source of truth by `template/AGENTS.md.jinja` and `template/docs/protocols/typescript.md` (see `docs/decisions/0007-agent-instructions-live-per-project-as-a-thin-agents-md-router.md`). Kept for history; older paths below, such as `docs/decisions.md`, are as they were then.**
 
 ---
 

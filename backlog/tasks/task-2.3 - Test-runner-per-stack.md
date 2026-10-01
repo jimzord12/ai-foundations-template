@@ -4,7 +4,7 @@ title: Test runner per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:21'
+updated_date: '2026-10-01 21:26'
 labels:
   - stack
   - tests
@@ -26,7 +26,7 @@ Each stack needs a test runner agents can call in seconds, matching the owner's 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Runner chosen and configured per stack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), recorded in docs/decisions.md
+- [ ] #1 Runner chosen and configured per stack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), recorded in docs/decisions/
 - [ ] #2 Example test per stack exercises named real code: Express GET /health via the app, a Next.js utility function (async Server Components are out of scope for unit tests and stated as such), the RN App component render
 - [ ] #3 Each example test is shown red after deliberately breaking the code under test, then green again (evidence recorded)
 - [ ] #4 2.3 adds the test script through the post-copy task
@@ -37,6 +37,6 @@ Each stack needs a test runner agents can call in seconds, matching the owner's 
 - [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
 - [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions.md
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->

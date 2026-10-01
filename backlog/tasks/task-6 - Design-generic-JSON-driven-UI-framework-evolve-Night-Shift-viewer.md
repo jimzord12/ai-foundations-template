@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:17'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 21:26'
 labels:
   - night-shift
   - viewer
@@ -29,7 +29,7 @@ Owner decision (2026-09-29): the shared owner-facing viewer is Night Shift evolv
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Design discussion held with owner; decisions recorded in docs/decisions.md
+- [ ] #1 Design discussion held with owner; decisions recorded in docs/decisions/
 - [ ] #2 Repo home decided (Night Shift evolved in place vs new repo) and the repo created on GitHub, with its own backlog and instructions
 - [ ] #3 Generic JSON UI schema and validation tooling specified in that repo (question, finding, proposal, report as first item kinds)
 - [ ] #4 Migration path from Night Shift's night-specific types to the generic model agreed
