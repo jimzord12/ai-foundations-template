@@ -1,7 +1,8 @@
 """Simulate permission-rule matching against must-allow / must-deny / must-ask commands.
 
 Usage: python scripts/permissions/check_settings.py .claude/settings.json [Bash|PowerShell]
-Exits with the mismatch count printed; 0 mismatches is the bar.
+Prints the mismatch count and exits 1 when there is any; 0 mismatches is the bar.
+Does not split compound commands; the real matcher checks each subcommand.
 """
 import json, re, sys
 p = json.load(open(sys.argv[1]))["permissions"]
