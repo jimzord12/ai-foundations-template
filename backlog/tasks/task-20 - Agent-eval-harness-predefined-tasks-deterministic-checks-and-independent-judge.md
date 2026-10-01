@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 19:29'
 labels:
   - testing
   - evals
@@ -31,4 +31,5 @@ Check that the instructions are loaded and followed and do more good than harm. 
 - [ ] #2 Harness runs a task on a fixture in Docker and stores transcript, diff, token cost and grades
 - [ ] #3 Independent judge agent grades instruction loading and adherence; router hit rate measured
 - [ ] #4 Each eval verified to fail on a baseline without the instructions (an eval that passes without the rule tests nothing)
+- [ ] #5 DDD effect measured: with and without the glossary, do agents use glossary terms in names and flag synonyms
 <!-- AC:END -->
