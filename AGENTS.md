@@ -14,6 +14,11 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 - Verify current versions and docs of tools before relying on them.
 - Ask before major or hard-to-reverse choices; say clearly what is decided vs. suggested.
 
+## Git
+- No pull requests. Work on feature branches (up to three levels below `main`), merge into `main` without asking, then delete the merged branch locally and on the remote right away.
+- Delete temporary files and scratch output that no longer add value.
+- Ask first, with the exact command, only for destructive git: deleting `main`, deleting an unmerged level-1 branch with substantial work, force push to a shared branch, `reset --hard`, `git clean`, rewriting pushed history.
+
 ## Checks
 - Smoke-test rendering after changing `template/` or `copier.yml`:
   `uvx copier copy --trust --defaults --vcs-ref HEAD -d project_name=smoke -d stack=express . .tmp/smoke`
