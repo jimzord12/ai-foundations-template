@@ -4,6 +4,7 @@ title: 'Agents turn repeatable rules into lint and CI checks, reported under Fin
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:02'
+updated_date: '2026-10-01 23:24'
 labels:
   - agents
   - lint
@@ -12,8 +13,10 @@ labels:
 milestone: m-0
 dependencies:
   - TASK-15
+  - TASK-2.2
+  - TASK-27
 priority: medium
-ordinal: 24000
+ordinal: 1550
 ---
 
 ## Description
@@ -24,10 +27,11 @@ Owner request 2026-10-02. Instructions alone drift: a rule an agent must remembe
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Template rule (AGENTS.md at most 2 lines, detail in a linked protocol): when a convention, recurring review finding or past mistake can be checked mechanically, add, update or create a lint rule or CI check in the same change; prefer an existing rule or plugin over a custom one, and do not add speculative rules
-- [ ] #2 The end-of-task report defined by TASK-15 has a Findings section with a 'Lint and CI rules' subsection listing rules added, changed or created (file and one-line reason) and rules proposed but not added (with why); the subsection says 'none' when empty
-- [ ] #3 This repo's root AGENTS.md carries the same recommendation and report subsection for agents working on the template
-- [ ] #4 Smoke test passes for all three stacks; rendered AGENTS.md stays within the line budget; decision recorded in docs/decisions/
+- [ ] #1 Template rule (AGENTS.md at most 2 lines, detail in docs/protocols/checks.md): when a convention, recurring review finding or past mistake can be checked mechanically, add or update a lint rule or CI check in the same change when it is cheap, otherwise propose it in the report; prefer an existing rule or plugin over a custom one; no speculative rules
+- [ ] #2 done.md's Findings section (defined by TASK-15) gains a 'Lint and CI rules' subsection listing rules added or changed (file and one-line reason) and rules proposed but not added (with why); when empty it folds into one line such as 'Lint/CI: none'; one line says an accepted proposal becomes a Backlog task (or a GitHub issue once the findings pipeline exists)
+- [ ] #3 This repo's root AGENTS.md gets at most 3 lines carrying the same recommendation and naming where this repo's end-of-task report lists the subsection
+- [ ] #4 TASK-9 carries a note that the subagent findings block reuses this subsection
+- [ ] #5 Smoke test passes for all three stacks; rendered AGENTS.md stays within the line budget; decision recorded in docs/decisions/
 <!-- AC:END -->
 
 ## Definition of Done

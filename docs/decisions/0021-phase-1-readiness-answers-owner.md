@@ -23,3 +23,7 @@ The challenger's recommendations were accepted as given.
 ### Consequences
 
 Post-copy tasks run commands on the user's machine (hence `--trust`); CI for generated projects is a new Phase 1 task.
+
+## More Information
+
+- Answer 5 (the allowlist) is replaced for this repo by [0027](0027-this-repo-allows-everything-except-deleting-main.md); generated projects are decided in TASK-24.

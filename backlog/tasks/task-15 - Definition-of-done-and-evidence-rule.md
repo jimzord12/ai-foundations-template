@@ -4,7 +4,7 @@ title: Definition of done and evidence rule
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-01 23:18'
 labels:
   - instructions
   - verification
@@ -29,6 +29,7 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 - [ ] #2 Covers: real-run evidence over claims, separate git and test facts, tests must exercise real code, mocks only at true external boundaries
 - [ ] #3 Generated projects get Backlog Definition of Done defaults derived from done.md (not this repo's template-only items such as the smoke test), applied with backlog config set definitionOfDone after backlog init, as documented in AGENTS.md
 - [ ] #4 Decision recorded; smoke test passes
+- [ ] #5 docs/protocols/done.md defines the end-of-task report the lead agent gives the owner: decisions taken (one line each), evidence, and a Findings section for the lead's own observations, distinct from subagent findings (decision 0011), which other protocols extend with subsections; empty subsections collapse into one line
 <!-- AC:END -->
 
 ## Definition of Done

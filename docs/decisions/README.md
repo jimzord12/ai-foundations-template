@@ -32,3 +32,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0024](0024-branch-model-refinements-after-the-first-instruction-review.md) | product | accepted | Branch model refinements after the first instruction review |
 | [0025](0025-two-documentation-reviewer-families-with-shared-skills.md) | architecture | accepted | Two documentation reviewer families with shared skills |
 | [0026](0026-one-madr-record-per-decision.md) | architecture | accepted | One MADR record per decision, with kind and supersedes |
+| [0027](0027-this-repo-allows-everything-except-deleting-main.md) | product | accepted | This repo allows everything except deleting main |

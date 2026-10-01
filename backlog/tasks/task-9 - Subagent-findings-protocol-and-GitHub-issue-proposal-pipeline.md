@@ -4,7 +4,7 @@ title: Subagent findings protocol and GitHub-issue proposal pipeline
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-01 23:18'
 labels:
   - protocol
   - findings
@@ -34,4 +34,6 @@ Subagents must report pains, frictions, ideas and risks. Findings are ephemeral 
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01: the owner is designing the feedback loop (self-improvement system) with another agent and will bring back a markdown with the design and decisions. Re-check this task against that design before starting.
+
+2026-10-02: the subagent findings block should reuse the 'Lint and CI rules' and 'TypeScript settings' subsections that TASK-32 and TASK-33 add to done.md's Findings section.
 <!-- SECTION:NOTES:END -->

@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 21:27'
+updated_date: '2026-10-01 23:45'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -25,6 +25,7 @@ updated_date: '2026-10-01 21:27'
 
 | Step | Task | Produces | Depends on |
 |---|---|---|---|
+| 0 | TASK-31 repo permissions | `.claude/settings.json` for this repo (everything allowed except deleting main), `scripts/permissions/` | none |
 | 1 | TASK-25 knowledge system | `docs/decisions/` (MADR, kind field), `architecture.md`, `domain/glossary.md`; this repo migrates its own log | none |
 | 2 | TASK-7 charter | `docs/protocols/charter.md` (tiers per decision kind), `evolution.md` | 25 |
 | 3 | TASK-14 git and safety | `docs/protocols/git.md` | 7 |
@@ -39,6 +40,8 @@ updated_date: '2026-10-01 21:27'
 | 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
 | 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |
+| 12a | TASK-32 lint and CI rules | Agents add or propose lint and CI checks; Findings subsection in `done.md` | 15, 2.2, 27 |
+| 12b | TASK-33 TypeScript settings | Triggered guidance for stricter flags in `typescript.md`; Findings subsection | 15, 2.1, 32 |
 | 13 | TASK-17 automated tests | Render, update and collision tests that fail when broken | 2.4 |
 | 14 | TASK-13 template CI | Workflow running 17, `check` per stack, identical-check | 17 |
 | 15 | TASK-23 secret scanning | gitleaks in both workflows, `.env.example`, planted-secret proof | 27 (and 13) |
@@ -50,4 +53,4 @@ The project Definition of Done applies to every task. Template content is proven
 
 ## Owner answers (2026-10-01)
 
-RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions/`.
+RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended; for this repo replaced on 2026-10-02 by record 0027: everything allowed except deleting main); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions/`.

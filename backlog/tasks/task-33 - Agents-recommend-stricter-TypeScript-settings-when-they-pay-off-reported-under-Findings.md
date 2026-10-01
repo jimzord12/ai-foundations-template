@@ -6,6 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:05'
+updated_date: '2026-10-01 23:18'
 labels:
   - agents
   - typescript
@@ -16,7 +17,7 @@ dependencies:
   - TASK-2.1
   - TASK-32
 priority: medium
-ordinal: 25000
+ordinal: 1560
 ---
 
 ## Description
@@ -27,10 +28,11 @@ Owner request 2026-10-02. Every generated project is TypeScript. TASK-2.1 ships 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Template guidance (AGENTS.md at most 2 lines, detail in docs/protocols/typescript.md): before proposing a stricter flag, run the type check with it and count the new errors; apply it in the same change only when the errors are few and mostly real; otherwise propose it with the error count; never loosen the TASK-2.1 baseline without a decision record
-- [ ] #2 The guidance names a short list of candidate flags beyond the baseline, verified against the current TypeScript release notes, each with the bug class it catches and its typical friction
-- [ ] #3 The end-of-task report defined by TASK-15 has a 'TypeScript settings' subsection under Findings listing flags applied (with error count fixed) and flags proposed (with error count and why not applied); it says 'none' when empty
-- [ ] #4 Smoke test passes for all three stacks; rendered AGENTS.md stays within the line budget; decision recorded in docs/decisions/
+- [ ] #1 Guidance extends the existing docs/protocols/typescript.md (and its row in the AGENTS.md router; AGENTS.md grows at most 1 line): look for stricter settings only when triggered (a bug or review finding in a class a flag catches, a tsconfig or TypeScript version change, or the owner asks), never on every task
+- [ ] #2 Before applying a flag, run the type check with it and count new errors; apply it in its own commit only when the count is small (about 10 or fewer) and the fixes are mechanical; otherwise propose it with the count. Relaxing a baseline flag that is mostly noise is also proposed, and needs a decision record. Shipped text says 'the shipped baseline', never a task ID
+- [ ] #3 The candidate list is measured against the baseline TASK-2.1 actually ships and may be short; type-aware lint rules (for example no-floating-promises, switch-exhaustiveness-check) are routed to the 'Lint and CI rules' subsection instead
+- [ ] #4 done.md's Findings section gains a 'TypeScript settings' subsection listing flags applied (with error count fixed) and proposed (with count and why), folding into one line when empty
+- [ ] #5 Smoke test passes for all three stacks; rendered AGENTS.md stays within the line budget; decision recorded in docs/decisions/
 <!-- AC:END -->
 
 ## Definition of Done
