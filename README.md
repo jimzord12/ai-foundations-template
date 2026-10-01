@@ -31,4 +31,4 @@ Next.js and React Native projects are scaffolded first (`create-next-app` and th
 
 ## Releasing a template version
 
-Projects update to git tags. Releases are tagged by an agent and pushed only with the owner's approval (see `docs/decisions.md`).
+Projects update to git tags. Releases are tagged by an agent and pushed only with the owner's approval (decision "Phase 1 readiness answers", answer 6, in `docs/decisions.md`).
