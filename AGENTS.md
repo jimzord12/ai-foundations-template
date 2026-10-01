@@ -16,7 +16,7 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 
 ## Git
 - Branch levels: `main` → `feature/x` (level 1) → `feature/x-part` (2) → `feature/x-part-step` (3); never deeper. No pull requests.
-- Every change goes on a feature branch. Merge into `main` (or the parent branch) without asking once the review loop reached PASS and the smoke test passes; then delete the branch locally and on the remote. Work is finished only when merged.
+- Every change goes on a feature branch. Merge into `main` without asking once the checks that apply pass (smoke test when `template/` or `copier.yml` changed) and, for a non-trivial change, the review loop reached PASS; merges between feature levels need only the checks. Then delete the branch locally and on the remote. Work is finished only when merged.
 - Delete temporary files and scratch output you created; never delete untracked or ignored files you did not create.
 - Ask first, with the exact command, only for: deleting `main`; deleting an unmerged branch whose commits exist nowhere else (except level-3 branches you created); any force push; `reset --hard`; `git clean`. Release tags are pushed only with the owner's approval.
 

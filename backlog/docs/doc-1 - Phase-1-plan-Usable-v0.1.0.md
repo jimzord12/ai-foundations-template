@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 20:52'
+updated_date: '2026-10-01 20:55'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -18,7 +18,7 @@ updated_date: '2026-10-01 20:52'
 - **Dogfood.** Agent profiles, skills and protocols built for the template are also used in this repo; a manifest lists every copied file and CI (TASK-13) fails on drift.
 - **Ready gate.** A task runs unattended only with the `ready` label, given after an independent readiness challenge returns READY.
 - **Docs are non-trivial.** Changes to instruction files and decision records always go through the review loop (context or docs reviewer).
-- **Git.** Every task runs on a feature branch and merges into `main` after review PASS and a passing smoke test, then the branch is deleted (root AGENTS.md, Git).
+- **Git.** Every task runs on a feature branch and merges into `main` once the applicable checks pass and, for non-trivial changes, review PASS, then the branch is deleted (root AGENTS.md, Git).
 - **Tag push.** The agent prepares `v0.1.0`; the owner approves the push in session.
 
 ## Order
@@ -50,4 +50,4 @@ The project Definition of Done applies to every task. Template content is proven
 
 ## Owner answers (2026-10-01)
 
-RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push; tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions.md`.
+RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions.md`.

@@ -4,7 +4,7 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:42'
+updated_date: '2026-10-01 20:55'
 labels:
   - instructions
   - git
@@ -26,8 +26,8 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it; includes the rule that secrets never go in code, logs or commits
-- [ ] #2 Branch model per the 2026-10-01 decision: no pull requests, feature branches up to three levels below main, merge without asking, delete merged branches and valueless temporary files right away
-- [ ] #3 Rule is impact-based, not a command blocklist, consistent with the permission allowlist in owner answer (5) of the 2026-10-01 Phase 1 readiness decision; approval only for the destructive operations listed in the branch-model decision, showing the exact action, targets and consequence
+- [ ] #2 Branch model per the decision 'Branch model refinements after the first instruction review': no pull requests; branch levels main, feature/x, feature/x-part, feature/x-part-step; every change on a feature branch; merge without asking once applicable checks pass and, for non-trivial changes, review PASS; delete merged branches; delete only temporary files the agent created
+- [ ] #3 Approval only for: deleting main, deleting an unmerged branch whose commits exist nowhere else (except the agent's own level-3 branches), any force push, reset --hard, git clean, pushing release tags; each request shows the exact action, targets and consequence; consistent with the amended permission allowlist
 - [ ] #4 Decision recorded; smoke test passes
 <!-- AC:END -->
 
@@ -44,4 +44,6 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01: acceptance criteria extended with the owner's branch model (owner decision, not a readiness gap); ready label kept.
+
+2026-10-01: ACs pointed at the refinements decision after review round 2 (old wording lacked the merge gate and the created-files limit).
 <!-- SECTION:NOTES:END -->
