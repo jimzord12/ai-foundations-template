@@ -1,10 +1,10 @@
 ---
 id: TASK-11
-title: Review-loop protocol with reviewer and context-maintainer agents
+title: 'Review loop: code-reviewer profile and review-core / review-lenses skills'
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:20'
 labels:
   - review
   - agents
@@ -19,14 +19,14 @@ ordinal: 600
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Fresh-context review loop for this repo and generated projects. Specific thin profiles plus shared skills (decision 2026-10-01): a code-reviewer agent (read-only tools, Opus) that preloads a review-core skill (fresh-context rules, evidence, PASS / FINDINGS / INCOMPLETE, Blocking / Material / Minor / Note) and a code-review skill (lenses). Caps: 8 rounds attended, 15 unattended; unresolved after the cap goes to the owner. The context-maintainer idea is dropped: docs coherence is covered by the repo-auditor of TASK-22.
+Fresh-context review loop for this repo and generated projects. Specific thin profiles plus shared skills (decision 2026-10-01): a code-reviewer agent (read-only tools, Opus) that preloads a review-core skill (fresh-context rules, evidence, PASS / FINDINGS / INCOMPLETE, Blocking / Material / Minor / Note) and a review-lenses skill. The name code-review is avoided because Claude Code ships a built-in /code-review skill. Caps: 8 rounds attended, 15 unattended; unresolved after the cap goes to the owner. The context-maintainer idea is dropped: docs coherence is covered by the repo-auditor of TASK-22.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 review-core and code-review skills plus the code-reviewer profile ship in template/ and in this repo (listed in the dogfood manifest)
+- [ ] #1 review-core and review-lenses skills plus the code-reviewer profile ship in template/ and in this repo (pairs added to the dogfood manifest)
 - [ ] #2 docs/protocols/review.md states the loop, caps, and the attended rule: a run is attended only while the owner is replying in the session, otherwise unattended; router line in AGENTS.md (at most 4 lines)
-- [ ] #3 Proof: one real review round run with the shipped profile on a diff in this repo, report saved in the task notes
+- [ ] #3 Proof in a new session or headless claude -p: /agents lists code-reviewer, it preloads its skills (not the built-in /code-review), and one real review round runs on a diff in this repo with the report saved in the task notes
 <!-- AC:END -->
 
 ## Definition of Done

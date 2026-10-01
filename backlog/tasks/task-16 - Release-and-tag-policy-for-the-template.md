@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:20'
 labels:
   - release
 milestone: m-0
@@ -35,10 +35,11 @@ Copier update only delivers template changes to projects when a git tag exists, 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Versioning rule documented (patch, minor, major; migrations for renamed questions)
+- [ ] #1 Versioning rule documented in a Releases section of the README (patch, minor, major; migrations for renamed questions)
 - [ ] #2 README fixed: gh:jimzord12/ai-foundations-template, per-stack scaffold-then-copy steps including the Express skeleton
 - [ ] #3 Agent prepares tag v0.1.0 locally and asks; the owner approves the push in session (never pushed unattended)
 - [ ] #4 copier update proven from v0.1.0 to a scratch tag v0.1.1-test in a scratch clone, never pushed
+- [ ] #5 Phase exit criterion, in the same attended session after the push: a project generated per stack from gh:jimzord12/ai-foundations-template@v0.1.0 passes npm run check and its CI workflow in the scratch repository
 <!-- AC:END -->
 
 ## Definition of Done

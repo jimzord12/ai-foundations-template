@@ -4,10 +4,11 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:21'
 labels:
   - instructions
   - git
+  - ready
 milestone: m-0
 dependencies:
   - TASK-7
@@ -24,8 +25,8 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it
-- [ ] #2 Rule is impact-based, not a command blocklist, consistent with the permission allowlist of TASK-24, and states what to show when asking (exact action, targets, consequence)
+- [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it; includes the rule that secrets never go in code, logs or commits
+- [ ] #2 Rule is impact-based, not a command blocklist, consistent with the permission allowlist in owner answer (5) of the 2026-10-01 Phase 1 readiness decision, and states what to show when asking (exact action, targets, consequence)
 - [ ] #3 Decision recorded; smoke test passes
 <!-- AC:END -->
 

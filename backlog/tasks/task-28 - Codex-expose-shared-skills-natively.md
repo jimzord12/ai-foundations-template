@@ -4,6 +4,7 @@ title: 'Codex: expose shared skills natively'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
+updated_date: '2026-10-01 20:20'
 labels:
   - codex
   - skills
@@ -24,7 +25,7 @@ Owner decision 2026-10-01: in v0.1.0 Codex gets only what it supports natively: 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Codex's current skill discovery location and format verified from its docs and recorded
-- [ ] #2 Shared skills are available to Codex from one source of truth (no hand-maintained copies; any copy is checked identical by CI)
+- [ ] #2 Shared skills are available to Codex from one source of truth; any copy is recorded as a source-to-copy pair in the dogfood manifest (checked later by TASK-13)
 - [ ] #3 Verified in a live Codex session that lists or uses one shared skill
 <!-- AC:END -->
 

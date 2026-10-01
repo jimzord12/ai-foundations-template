@@ -4,13 +4,15 @@ title: 'CI for the template: smoke-test all three stacks on every push'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:21'
 labels:
   - ci
   - quality
+  - ready
 milestone: m-0
 dependencies:
   - TASK-17
+  - TASK-24
 priority: high
 type: chore
 ordinal: 1700
@@ -26,7 +28,7 @@ The smoke test (copier copy for express, next, rn) is manual today and easy to f
 <!-- AC:BEGIN -->
 - [ ] #1 GitHub Actions workflow on push and pull request runs the TASK-17 test suite
 - [ ] #2 Workflow runs npm run check on a freshly scaffolded project per stack
-- [ ] #3 Identical-check: every file in the dogfood manifest (TASK-24) matches its template/ source, and the job fails on drift
+- [ ] #3 Identical-check: every source-to-copy pair in the dogfood manifest matches byte for byte, and the job fails on drift
 - [ ] #4 Action and uv versions verified; workflow green on main
 <!-- AC:END -->
 

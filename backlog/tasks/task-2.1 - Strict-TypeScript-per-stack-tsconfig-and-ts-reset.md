@@ -4,10 +4,11 @@ title: 'Strict TypeScript per stack: tsconfig and ts-reset'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:21'
 labels:
   - stack
   - typescript
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.5
@@ -29,6 +30,7 @@ Agents write more consistent code under a strict compiler. Ship a strict tsconfi
 - [ ] #2 ts-reset installed (via the post-copy task) and wired per stack
 - [ ] #3 npx tsc --noEmit passes on a freshly scaffolded Next.js and RN project and on the Express skeleton
 - [ ] #4 Choices and versions recorded in docs/decisions.md
+- [ ] #5 2.1 adds the typecheck script through the post-copy task
 <!-- AC:END -->
 
 ## Definition of Done

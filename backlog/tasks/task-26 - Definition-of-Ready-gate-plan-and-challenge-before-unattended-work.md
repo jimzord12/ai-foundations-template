@@ -4,7 +4,7 @@ title: 'Definition of Ready gate: plan and challenge before unattended work'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:50'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:20'
 labels:
   - process
   - ready
@@ -27,6 +27,7 @@ Owner-approved 2026-10-01. Gate before unattended work: ready checklist, plan wr
 - [ ] #1 ready skill and readiness-challenger profile ship in template/ and in this repo (dogfood manifest); docs/protocols/ready.md linked from the router in both the root and the template AGENTS.md
 - [ ] #2 Rule in both AGENTS.md files: unattended work starts only on tasks labelled ready; owner may waive when attended; depth scales with size
 - [ ] #3 Proof: the shipped challenger is run on one real task in this repo and its verdict recorded
+- [ ] #4 docs/protocols/ready.md contains: the ready checklist, what the plan written into the task must hold, the READY / NOT READY verdict, batched owner questions with recommended answers, and both the task level and the phase level
 <!-- AC:END -->
 
 ## Definition of Done

@@ -1,10 +1,10 @@
 ---
 id: TASK-24
-title: 'Agent tool baseline: .claude/ and Codex counterparts'
+title: 'Agent tool baseline: .claude/ layout, permission allowlist, dogfood manifest'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:20'
 labels:
   - agents
   - claude
@@ -27,8 +27,8 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 <!-- AC:BEGIN -->
 - [ ] #1 .claude/settings.json ships with an allowlist of: read-only tools, package scripts, backlog, git add/commit/push; nothing broader
 - [ ] #2 .claude/agents/ and .claude/skills/ layout documented in the AGENTS.md router (at most 4 lines) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write)
-- [ ] #3 Dogfood: this repo uses the same layout; a manifest lists every file copied from template/ into this repo, for the CI identical-check of TASK-13
-- [ ] #4 Verified in a live Claude Code session in a generated project: settings load and /agents lists the shipped agents
+- [ ] #3 Dogfood manifest (one JSON file in this repo) lists source-to-copy pairs. Initial scope: .claude/agents/*, .claude/skills/*, docs/protocols/review.md, ready.md, agents.md. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are not copied. Later tasks add their pairs to it
+- [ ] #4 Proof via headless claude -p in a generated project: an allowlisted command runs without a permission prompt and a non-listed command does not
 <!-- AC:END -->
 
 ## Definition of Done

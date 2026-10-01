@@ -4,10 +4,11 @@ title: Test runner per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:21'
 labels:
   - stack
   - tests
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.5
@@ -28,6 +29,7 @@ Each stack needs a test runner agents can call in seconds, matching the owner's 
 - [ ] #1 Runner chosen and configured per stack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), recorded in docs/decisions.md
 - [ ] #2 Example test per stack exercises named real code: Express GET /health via the app, a Next.js utility function (async Server Components are out of scope for unit tests and stated as such), the RN App component render
 - [ ] #3 Each example test is shown red after deliberately breaking the code under test, then green again (evidence recorded)
+- [ ] #4 2.3 adds the test script through the post-copy task
 <!-- AC:END -->
 
 ## Definition of Done

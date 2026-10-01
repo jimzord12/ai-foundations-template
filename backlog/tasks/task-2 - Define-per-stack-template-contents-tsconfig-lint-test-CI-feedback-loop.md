@@ -6,14 +6,19 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:20'
 labels:
   - template
   - tooling
 milestone: m-0
-dependencies: []
+dependencies:
+  - TASK-2.1
+  - TASK-2.2
+  - TASK-2.3
+  - TASK-2.4
+  - TASK-2.5
 priority: high
-ordinal: 900
+ordinal: 1450
 ---
 
 ## Description

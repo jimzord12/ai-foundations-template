@@ -4,10 +4,11 @@ title: Lint and format per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:14'
+updated_date: '2026-10-01 20:21'
 labels:
   - stack
   - lint
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.5
@@ -27,6 +28,7 @@ One standard linter and formatter per stack so agents get fast, consistent feedb
 <!-- AC:BEGIN -->
 - [ ] #1 Linter and formatter chosen per stack, extending the framework shipped config where one exists (Next.js ESLint, RN ESLint and Prettier); reason recorded in docs/decisions.md
 - [ ] #2 lint and format:check scripts exit 0 on a freshly scaffolded project for each stack, and lint exits non-zero on a planted violation
+- [ ] #3 2.2 adds the lint and format:check scripts through the post-copy task
 <!-- AC:END -->
 
 ## Definition of Done

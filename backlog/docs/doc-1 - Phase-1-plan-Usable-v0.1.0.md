@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 20:15'
+updated_date: '2026-10-01 20:21'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -32,13 +32,17 @@ updated_date: '2026-10-01 20:15'
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
 | 9 | TASK-2.5 integration mechanism | Copier post-copy tasks, Express skeleton | none |
-| 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset; lint and format; test runner with proven red-green examples | 2.5 |
-| 11 | TASK-2.4 check commands | `typecheck`, `lint`, `format:check`, `test`, `check` scripts | 2.5 |
+| 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
+| 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |
 | 13 | TASK-17 automated tests | Render, update and collision tests that fail when broken | 2.4 |
 | 14 | TASK-13 template CI | Workflow running 17, `check` per stack, identical-check | 17 |
 | 15 | TASK-23 secret scanning | gitleaks in both workflows, `.env.example`, planted-secret proof | 27 (and 13) |
 | 16 | TASK-16 release | Versioning rule, README fixes, tag `v0.1.0` (owner approves push) | all above |
+
+## Open owner question
+
+**Q1. Scratch GitHub repository for CI proofs** (TASK-27, TASK-23, and the exit check in TASK-16). Recommended: the owner creates one private repo once (for example `jimzord12/ai-foundations-scratch`); agents push one branch per stack and proof and delete only branches they created; no repository creation or deletion, no force push.
 
 ## Verification
 
