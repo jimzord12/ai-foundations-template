@@ -4,10 +4,11 @@ title: 'Docker environment for reproducible, isolated test runs'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-09-29 19:57'
+updated_date: '2026-10-01 16:40'
 labels:
   - testing
   - docker
+milestone: m-2
 dependencies:
   - TASK-17
 priority: high

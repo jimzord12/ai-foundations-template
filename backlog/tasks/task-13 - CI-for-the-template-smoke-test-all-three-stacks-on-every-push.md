@@ -4,10 +4,11 @@ title: 'CI for the template: smoke-test all three stacks on every push'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-09-29 22:47'
+updated_date: '2026-10-01 16:40'
 labels:
   - ci
   - quality
+milestone: m-0
 dependencies: []
 priority: high
 type: chore

@@ -4,9 +4,11 @@ title: Optional personalization skill for new installations (.local preferences)
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
+updated_date: '2026-10-01 16:40'
 labels:
   - skill
   - onboarding
+milestone: m-1
 dependencies: []
 priority: medium
 type: feature

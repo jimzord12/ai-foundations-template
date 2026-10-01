@@ -4,9 +4,11 @@ title: Preferred-library review protocol + check script
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
+updated_date: '2026-10-01 16:40'
 labels:
   - libraries
   - tooling
+milestone: m-1
 dependencies: []
 priority: medium
 ordinal: 3000

@@ -4,9 +4,11 @@ title: 'Owner-inbox JSON schemas, .foundations folder and validator'
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
+updated_date: '2026-10-01 16:40'
 labels:
   - schemas
   - inbox
+milestone: m-1
 dependencies: []
 priority: high
 type: feature
@@ -25,3 +27,9 @@ Everything the owner must know, approve or decide has to be structured data so a
 - [ ] #2 Template ships them under a .foundations folder plus a validate command agents can run
 - [ ] #3 Interim use with Night Shift ask/feedback documented
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01: the owner is designing the feedback loop (self-improvement system) with another agent and will bring back a markdown with the design and decisions. Re-check this task against that design before starting.
+<!-- SECTION:NOTES:END -->

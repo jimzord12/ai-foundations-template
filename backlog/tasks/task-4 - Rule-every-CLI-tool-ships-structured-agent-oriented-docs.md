@@ -4,9 +4,11 @@ title: 'Rule: every CLI tool ships structured, agent-oriented docs'
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:28'
+updated_date: '2026-10-01 16:40'
 labels:
   - instructions
   - cli
+milestone: m-1
 dependencies: []
 priority: medium
 ordinal: 4000

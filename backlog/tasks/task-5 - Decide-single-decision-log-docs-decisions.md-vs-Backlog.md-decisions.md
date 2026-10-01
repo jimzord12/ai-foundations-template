@@ -4,8 +4,10 @@ title: 'Decide single decision log: docs/decisions.md vs Backlog.md decisions'
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:28'
+updated_date: '2026-10-01 16:40'
 labels:
   - decision
+milestone: m-1
 dependencies: []
 priority: low
 ordinal: 5000

@@ -4,9 +4,11 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
+updated_date: '2026-10-01 16:40'
 labels:
   - instructions
   - git
+milestone: m-0
 dependencies: []
 priority: high
 type: feature

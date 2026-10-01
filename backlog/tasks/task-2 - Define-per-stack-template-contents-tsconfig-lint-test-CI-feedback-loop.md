@@ -4,9 +4,11 @@ title: 'Define per-stack template contents (tsconfig, lint, test, CI, feedback l
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
+updated_date: '2026-10-01 16:40'
 labels:
   - template
   - tooling
+milestone: m-0
 dependencies: []
 priority: high
 ordinal: 2000

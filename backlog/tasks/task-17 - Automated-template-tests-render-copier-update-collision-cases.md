@@ -4,8 +4,10 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
+updated_date: '2026-10-01 16:40'
 labels:
   - testing
+milestone: m-0
 dependencies: []
 priority: high
 type: feature

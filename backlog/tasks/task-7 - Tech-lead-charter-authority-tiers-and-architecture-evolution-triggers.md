@@ -4,9 +4,11 @@ title: 'Tech-lead charter: authority tiers and architecture-evolution triggers'
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
+updated_date: '2026-10-01 16:40'
 labels:
   - instructions
   - charter
+milestone: m-0
 dependencies: []
 priority: high
 type: feature
