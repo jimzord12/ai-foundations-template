@@ -141,3 +141,9 @@ Decisions about the template itself. Newest at the bottom. To change a decision,
 - **Decision:** One private repository, `jimzord12/ai-foundations-scratch` (created 2026-10-01 with the owner's approval). Agents push one branch per stack and proof, may delete only branches they created, and never create or delete repositories or force push.
 - **Alternatives considered:** A new repository per proof — needs repository deletion unattended. Proving CI only locally (for example with `act`) — does not prove GitHub's real runners.
 - **Consequences:** The scratch repository accumulates nothing if agents clean their branches; stale branches are safe to delete by the owner.
+
+### 2026-10-01: Branch model: feature branches, no pull requests, delete when merged
+- **Context:** The owner no longer reviews code before merge and wants clean repositories. Earlier rules allowed pull requests and asked before merging into `main`.
+- **Decision:** No pull requests. Work happens on feature branches up to three levels below `main`; agents merge into `main` and between levels without asking, and delete merged branches (local and remote) and valueless temporary files right away. Approval is needed only for destructive git: deleting `main`, deleting an unmerged level-1 branch with substantial work, force push to a shared branch, `reset --hard`, `git clean`, rewriting pushed history. Applies to this repo (root AGENTS.md) and becomes the default git rule shipped to generated projects (TASK-14). The owner's global rules were updated the same day; the ICS VCR repositories keep their stricter approval rule.
+- **Alternatives considered:** One pull request per task or per phase — review the owner no longer needs, and unattended runs stall at merges. Committing directly to `main` — no undo point and no grouping of a feature's commits.
+- **Consequences:** `main` moves without a human gate, so CI (TASK-13) and the review loop are the safety net.

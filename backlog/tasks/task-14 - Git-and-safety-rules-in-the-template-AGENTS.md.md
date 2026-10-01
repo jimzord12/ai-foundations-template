@@ -4,7 +4,7 @@ title: Git and safety rules in the template AGENTS.md
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:21'
+updated_date: '2026-10-01 20:42'
 labels:
   - instructions
   - git
@@ -26,8 +26,9 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Git and safety rules in docs/protocols/git.md, with at most 4 lines in AGENTS.md pointing to it; includes the rule that secrets never go in code, logs or commits
-- [ ] #2 Rule is impact-based, not a command blocklist, consistent with the permission allowlist in owner answer (5) of the 2026-10-01 Phase 1 readiness decision, and states what to show when asking (exact action, targets, consequence)
-- [ ] #3 Decision recorded; smoke test passes
+- [ ] #2 Branch model per the 2026-10-01 decision: no pull requests, feature branches up to three levels below main, merge without asking, delete merged branches and valueless temporary files right away
+- [ ] #3 Rule is impact-based, not a command blocklist, consistent with the permission allowlist in owner answer (5) of the 2026-10-01 Phase 1 readiness decision; approval only for the destructive operations listed in the branch-model decision, showing the exact action, targets and consequence
+- [ ] #4 Decision recorded; smoke test passes
 <!-- AC:END -->
 
 ## Definition of Done
@@ -38,3 +39,9 @@ The generated AGENTS.md has no git or safety rules. Earlier projects (agentic-wa
 - [ ] #4 Non-trivial decisions recorded in docs/decisions.md
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01: acceptance criteria extended with the owner's branch model (owner decision, not a readiness gap); ready label kept.
+<!-- SECTION:NOTES:END -->
