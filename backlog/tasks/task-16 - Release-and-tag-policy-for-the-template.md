@@ -4,9 +4,10 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:22'
+updated_date: '2026-10-01 20:26'
 labels:
   - release
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2

@@ -4,10 +4,11 @@ title: 'Integration mechanism: Copier post-copy tasks and Express skeleton'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-01 20:20'
+updated_date: '2026-10-01 20:26'
 labels:
   - stack
   - copier
+  - ready
 milestone: m-0
 dependencies: []
 parent_task_id: TASK-2
@@ -29,6 +30,7 @@ Next.js and React Native projects are scaffolded first, and their scaffolders al
 - [ ] #3 Verified on a freshly scaffolded Next.js project, a freshly scaffolded RN project (current stable template) and the Express skeleton: copy finishes non-interactively with --defaults
 - [ ] #4 Post-copy tasks run only on copy (guarded with _copier_operation or equivalent, verified in the installed Copier version) or are idempotent, so copier update never overwrites the user's scripts; decision recorded
 - [ ] #5 Root AGENTS.md smoke-test command and the backlog Definition of Done updated so the smoke test still renders into an empty folder (for example with --skip-tasks), plus a separate documented check that runs the tasks on a scaffolded project
+- [ ] #6 Scripts and dependencies 2.5 itself adds are named: Express skeleton start and dev scripts plus a TypeScript runner; Next.js and RN get none from 2.5 (their scripts come from 2.1-2.4). The decision for the copy-only guard states the consequence: later script or dependency changes reach existing projects only through a documented manual step
 <!-- AC:END -->
 
 ## Definition of Done

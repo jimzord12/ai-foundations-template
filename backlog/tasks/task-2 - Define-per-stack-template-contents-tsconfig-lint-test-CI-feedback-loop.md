@@ -6,10 +6,11 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-01 20:20'
+updated_date: '2026-10-01 20:26'
 labels:
   - template
   - tooling
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.1

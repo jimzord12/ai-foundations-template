@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 20:21'
+updated_date: '2026-10-01 20:27'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -28,7 +28,7 @@ updated_date: '2026-10-01 20:21'
 | 3 | TASK-14 git and safety | `docs/protocols/git.md` | 7 |
 | 4 | TASK-15 done rule | `docs/protocols/done.md`, Backlog DoD defaults for generated projects | 14 |
 | 5 | TASK-24 agent tool layout | `.claude/settings.json` allowlist, agents and skills layout, dogfood manifest | 15 |
-| 6 | TASK-11 review loop | `review-core` and `code-review` skills, `code-reviewer` profile, `review.md` | 24 |
+| 6 | TASK-11 review loop | `review-core` and `review-lenses` skills, `code-reviewer` profile, `review.md` | 24 |
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
 | 9 | TASK-2.5 integration mechanism | Copier post-copy tasks, Express skeleton | none |
@@ -40,14 +40,10 @@ updated_date: '2026-10-01 20:21'
 | 15 | TASK-23 secret scanning | gitleaks in both workflows, `.env.example`, planted-secret proof | 27 (and 13) |
 | 16 | TASK-16 release | Versioning rule, README fixes, tag `v0.1.0` (owner approves push) | all above |
 
-## Open owner question
-
-**Q1. Scratch GitHub repository for CI proofs** (TASK-27, TASK-23, and the exit check in TASK-16). Recommended: the owner creates one private repo once (for example `jimzord12/ai-foundations-scratch`); agents push one branch per stack and proof and delete only branches they created; no repository creation or deletion, no force push.
-
 ## Verification
 
 The project Definition of Done applies to every task. Template content is proven on freshly scaffolded projects (create-next-app, the current RN community template, the Express skeleton), not only on renders.
 
 ## Owner answers (2026-10-01)
 
-RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push; tag push approved by the owner; generated projects get CI. Recorded in `docs/decisions.md`.
+RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push; tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions.md`.

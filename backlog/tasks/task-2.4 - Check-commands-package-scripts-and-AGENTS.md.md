@@ -4,10 +4,11 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 20:20'
+updated_date: '2026-10-01 20:26'
 labels:
   - stack
   - instructions
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.1

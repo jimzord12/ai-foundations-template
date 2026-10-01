@@ -4,7 +4,7 @@ title: 'Security baseline: secret scanning in CI and safe env handling'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 20:23'
+updated_date: '2026-10-01 20:26'
 labels:
   - security
   - ci
@@ -26,8 +26,8 @@ Repos are public and agents commit often, so a leaked secret is a real risk. The
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Secret scanning (gitleaks with version and Action licence verified, or the verified standard alternative) runs in this repo CI (TASK-13) and in the generated-project workflow (TASK-27)
-- [ ] #2 Generated projects ship .env.example; real .env files are ignored per stack (Next.js and the Express skeleton via their .gitignore, RN verified); the secrets rule itself lives in docs/protocols/git.md (TASK-14)
-- [ ] #3 Proof in this repo and in one generated project: a planted fake secret fails CI. Generated-project proof uses a branch in jimzord12/ai-foundations-scratch; only branches the agent created are deleted
+- [ ] #2 Generated projects ship .env.example and git check-ignore shows it NOT ignored on every scaffolded stack (Next.js needs a !.env.example exception added by the post-copy task); real .env files are ignored on every stack (RN .gitignore gets .env added if missing); the secrets rule itself lives in docs/protocols/git.md (TASK-14)
+- [ ] #3 Proof for both workflows runs on branches of jimzord12/ai-foundations-scratch, never in this public repo: a fake secret that gitleaks detects but GitHub push protection does not block (for example the generic API key rule) fails CI; push protection is never bypassed; only branches the agent created are deleted
 <!-- AC:END -->
 
 ## Definition of Done

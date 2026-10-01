@@ -1,13 +1,14 @@
 ---
 id: TASK-27
-title: 'CI workflow for generated projects: check and secret scanning'
+title: 'CI workflow for generated projects: check'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-01 20:23'
+updated_date: '2026-10-01 20:26'
 labels:
   - ci
   - stack
+  - ready
 milestone: m-0
 dependencies:
   - TASK-2.4
@@ -24,7 +25,7 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Template ships .github/workflows/check.yml for every stack that runs npm ci and npm run check
+- [ ] #1 Template ships .github/workflows/check.yml for every stack that runs npm ci and npm run check, triggered on push to any branch and on pull requests
 - [ ] #2 Workflow is green on a freshly generated project per stack pushed as a branch to jimzord12/ai-foundations-scratch, and red when a check fails; the agent deletes only branches it created, never repositories
 - [ ] #3 Action versions verified against current docs and recorded
 <!-- AC:END -->
