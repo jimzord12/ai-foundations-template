@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 20:20'
+updated_date: '2026-10-01 20:22'
 labels:
   - release
 milestone: m-0
@@ -50,3 +50,9 @@ Copier update only delivers template changes to projects when a git tag exists, 
 - [ ] #4 Non-trivial decisions recorded in docs/decisions.md
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
+<!-- SECTION:NOTES:END -->
