@@ -1,11 +1,11 @@
 ---
 id: TASK-25
 title: 'Project knowledge system: decision records, architecture.md, domain glossary'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 19:29'
-updated_date: '2026-10-01 21:38'
+updated_date: '2026-10-01 22:59'
 labels:
   - knowledge
   - decisions
@@ -39,7 +39,7 @@ Owner-approved design (2026-10-01, see docs/decisions.md). Generated projects ge
 - [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
 - [x] #3 Independent review loop reached PASS for non-trivial changes
 - [x] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -64,3 +64,9 @@ Owner-approved design (2026-10-01, see docs/decisions.md). Generated projects ge
 
 2026-10-02 review round 2 PASS (0 Blocking/Material). Evidence: 25/25 records match the old log verbatim (title, date, every field); 42 links into docs/decisions/ resolve; grep for docs/decisions.md hits only allowed history spots; copier update from a pre-change render deletes docs/decisions.md, as 0026 now warns; render express/next/rn 55/56/55 lines, no Jinja leftovers, router paths exist. Round-2 Minors applied after PASS: 'replace' vs 'refine or narrow' wording (template AGENTS.md + repo index), back-links 0004<-0007 and 0023<-0024, template README defers to an existing decision location. Smoke re-run green. Plan step 5's '0007 -> 0002' is superseded by the round-1 note. Open: DoD #5 (commit, merge) waits for branch creation, denied by the auto-mode classifier.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Generated projects now keep one MADR 4 record per decision in docs/decisions/ (kinds product/architecture/technical mapped to who decides; the hard-to-reverse list stays with the owner), plus docs/architecture.md and a levelled-DDD glossary. This repo's 25 decisions migrated verbatim into records 0001-0025 plus 0026, with every reference updated. Verified: smoke test express/next/rn (55/56/55 lines, no Jinja leftovers, old log absent), 25/25 verbatim record check, 42/42 links resolve. Review: round 1 FINDINGS (1 Material, 6 Minor) fixed, round 2 PASS.
+<!-- SECTION:FINAL_SUMMARY:END -->
