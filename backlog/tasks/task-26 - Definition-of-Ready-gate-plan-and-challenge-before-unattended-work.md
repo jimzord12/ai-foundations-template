@@ -1,10 +1,11 @@
 ---
 id: TASK-26
 title: 'Definition of Ready gate: plan and challenge before unattended work'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@claude'
 created_date: '2026-10-01 19:50'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 02:48'
 labels:
   - process
   - ready
@@ -38,3 +39,52 @@ Owner-approved 2026-10-01. Gate before unattended work: ready checklist, plan wr
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+# TASK-26 implementation plan
+
+Ready gate: `docs/protocols/ready.md`, `ready` skill, `readiness-challenger` profile, AGENTS.md rule and router rows. Decisions 0019 (gate), 0020 (thin profiles plus skills), 0032 (review-core rename clause) set the shape. `R` = repo root, `D` = this `draft26/` folder.
+
+## Start
+
+1. `backlog instructions task-execution`; `backlog task edit 26 -s "In Progress"`; add this plan (`--plan`). `git switch -c feature/task-26-ready-gate` from an up-to-date `main`.
+
+## Files
+
+2. Copy drafts (no `.jinja`: verbatim, no template syntax inside):
+   - `D/template/docs/protocols/ready.md` -> `R/template/docs/protocols/ready.md`
+   - `D/template/.claude/skills/ready/SKILL.md` -> `R/template/.claude/skills/ready/SKILL.md`
+   - `D/template/.claude/agents/readiness-challenger.md` -> `R/template/.claude/agents/readiness-challenger.md`
+3. Apply `D/agents-md-changes.md`: template `AGENTS.md.jinja` (+3 lines), root `AGENTS.md` (+1 line, one bullet amended), `README.md` repo-layout row, `dogfood.json` new pair for `ready.md`.
+4. Dogfood: `python scripts/dogfood_check.py --sync`, then `python scripts/dogfood_check.py` -> `0 problem(s)`. If the write under `.claude/` is refused, the owner runs `--sync` (root AGENTS.md says so).
+5. Record: `D/docs/decisions/0035-...md` -> `R/docs/decisions/` (kind `technical`, decision-makers `agent`; kinds in this repo are product, architecture, technical, no "process"), plus its index row in `R/docs/decisions/README.md`: `| [0035](0035-ready-gate-protocol-readiness-challenger-and-ready-skill.md) | technical | accepted | Ready gate protocol, readiness-challenger and ready skill |`. Take the next free number at write time if 0035 is gone.
+
+## Focused checks
+
+6. Smoke test, three stacks: `uvx copier copy --trust --defaults --vcs-ref HEAD -d project_name=smoke -d stack=<s> . .tmp/smoke-<s>` for express, next, rn (commit first: `--vcs-ref HEAD` renders committed work). Each: exit 0; `diff -r --strip-trailing-cr template/.claude <render>/.claude` empty; `docs/protocols/ready.md` present; rendered `AGENTS.md` line count about 71 (was 68/69/68) and contains the ready rule and router row.
+7. Source-name grep, case-insensitive, over the new and changed shipped files and their copies: `grep -rniE '\bICS\b|\bVCR\b|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number' template/docs/protocols/ready.md template/.claude/agents/readiness-challenger.md template/.claude/skills/ready docs/protocols/ready.md .claude/agents/readiness-challenger.md .claude/skills/ready` -> no output.
+8. Frontmatter sanity: profile tools have no Edit, Write or Agent; `skills: [review-core, ready]` both resolve to folders; skill has `user-invocable: false` and no `disable-model-invocation`; no `{{` or `{%` in the three new files.
+
+## Proof (AC #3), headless `claude -p`, same method as TASK-29
+
+9. In this repo on the feature branch, after commit and sync (`--output-format stream-json --verbose --debug`, transcript to the session scratchpad). The prompt tells the main session to spawn `readiness-challenger` exactly once at level task on the chosen real To Do task (TASK-28, after the orchestrator writes its plan per `ready.md`; decided), round 1, lead lenses Seams and Owner decisions, and to ask the subagent to open its report, before any tool call, with (a) the names of the skills injected into its context at startup and (b) the names of the phase lenses in its ready skill, in order, and (c) the title of the closing section its report rules require. The brief must not contain (b)'s or (c)'s answers (grep the prompt for each phase-lens name and for "Pains") and must not paste the skill.
+10. Pass: init lists `readiness-challenger`; one Agent call with that `subagent_type`, no Skill call; the brief does not contain the phase-lens names; the subagent's first message comes before any tool call, names `review-core` and `ready`, lists the five phase lenses correctly and names "Pains and ideas"; it ran no Edit, Write or writing `backlog` command; its report ends in READY, NOT READY or INCOMPLETE with an owner-question section when it has any; no skipped-skill warning in the debug log.
+11. AC #3 is met by recording the verdict, whatever it is; TASK-28 is not looped to READY inside TASK-26 (that happens when TASK-28 starts). Save the verdict (and report excerpt, transcript path) in the challenged task's notes with `backlog task edit <id> --append-notes`; on READY keep or add the `ready` label, on NOT READY remove it. Record "the phase-lens list", never the list itself, in TASK-26's notes.
+
+## Review loop (`docs/protocols/review.md`)
+
+12. Mixed change, one reviewer per profile per round: `context-reviewer` (diff text of ready.md, the skill, the profile, both AGENTS.md files, dogfood.json; the TASK-26 description and ACs as the task behind it; it has no shell) and `docs-reviewer` (record 0035, decisions README row, README.md row). Lead lenses: context-lenses rotation table; docs-reviewer round 1 leads with decision records and one home per fact. Fix Blocking and Material, re-sync, re-run steps 6 to 8, next round with fresh reviewers until PASS (caps 8 attended, 15 unattended).
+
+## Finish
+
+13. `backlog instructions task-finalization`; check ACs and DoD with evidence; final summary; status Done. Merge into `main`, push, delete the branch locally and on the remote; delete `.tmp/smoke-*` and scratch output.
+
+## Evidence per acceptance criterion
+
+- AC #1: `ls` of the three shipped files and their copies, dogfood check `0 problem(s)`, router row lines in both AGENTS.md files.
+- AC #2: the rule line in both AGENTS.md files and in each render.
+- AC #3: the saved verdict in the task notes plus the transcript checks of step 10.
+- AC #4: headings of `ready.md` (checklist, plan, challenge, owner questions, label, phase level).
+<!-- SECTION:PLAN:END -->

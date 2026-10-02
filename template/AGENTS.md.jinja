@@ -37,6 +37,8 @@ Start simple and climb only as far as friction demands: inline code, function, m
 ## Work tracking
 Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backlog.md <command>` if it is not installed), never edit task files by hand. If `backlog/` is missing, run `npx backlog.md init "{{ project_name }}" --defaults --agent-instructions none` first. If `backlog/config.yml` has no `definition_of_done`, add the line from `docs/protocols/done.md`. At the start of a session run `backlog instructions overview` (or `npx backlog.md instructions overview`).
 
+Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md` (plan, then an independent challenge); the owner may waive it when attended; depth scales with task size.
+
 ## Git and safety
 - Every change goes on a feature branch; no pull requests. Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS; then delete the branch. Detail: `docs/protocols/git.md`.
 - Ask first, with the exact command, targets and consequence, only for: deleting `main` or another core branch; merging into a core branch other than `main`, unless the project's rules allow it; deleting an unmerged branch whose commits exist nowhere else (except level-3 branches you created); any force push; `reset --hard`; `git clean`. A project may add to this list; removing an item needs an owner decision record.
@@ -57,6 +59,7 @@ Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backl
 | Reviewing a change or running the review loop | `docs/protocols/review.md` |
 | Changing agent instructions (including from owner feedback), a profile, skill or permission rule | `docs/protocols/agents.md`, `docs/protocols/review.md` (who writes and reviews) |
 | Picking up or changing work | `backlog instructions overview` |
+| Planning a task or a phase, or before unattended work | `docs/protocols/ready.md` |
 {% if stack == 'express' %}
 ## Stack: Express 5 + Zod (backend)
 - Validate every external input (body, params, query, env) with Zod at the boundary; derive types from the schemas.

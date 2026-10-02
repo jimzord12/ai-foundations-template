@@ -10,6 +10,10 @@
       "copy": "docs/protocols/review.md"
     },
     {
+      "source": "template/docs/protocols/ready.md",
+      "copy": "docs/protocols/ready.md"
+    },
+    {
       "source": "template/.claude/agents",
       "copy": ".claude/agents"
     },
