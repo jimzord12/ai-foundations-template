@@ -4,7 +4,7 @@ title: 'Codex: expose shared skills natively'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:07'
+updated_date: '2026-10-02 03:13'
 labels:
   - codex
   - skills
@@ -66,7 +66,7 @@ Both are **folder pairs**, so a new skill (or a `scripts/` file inside one) is c
 | Admin / system | `/etc/codex/skills` (admin), bundled system skills (`~/.codex/skills/.system`), plugin skill roots. | [1], [3] |
 | Configurable extra path? | **No.** `[skills]` in `config.toml` accepts only `bundled.enabled`, `include_instructions`, `max_context_tokens` and `[[skills.config]]` enable/disable rules (by `path` or `name`). Extra roots exist only through the app-server API (`set_extra_roots`) or an installed plugin. | `codex-rs/config/src/skills_config.rs` [4]; `host_service.rs` |
 | SKILL.md format | YAML frontmatter between `---` lines. Read: `name` (≤64 chars; defaults to the folder name), `description` (required, one line after whitespace collapse), `metadata.short-description` (optional). Optional folders `scripts/`, `references/`, `assets/`, and `agents/openai.yaml` (UI, `policy.allow_implicit_invocation`, MCP dependencies). | docs [1][2]; `codex-rs/skills/src/parser.rs` [5] |
-| Claude-only fields (`user-invocable: false`, `disable-model-invocation`, `allowed-tools`…) | **Ignored.** The serde struct has no `deny_unknown_fields`, so unknown keys are dropped silently. Proven: all six `user-invocable: false` skills are listed (section 3). | [5], live test |
+| Claude-only fields (`user-invocable: false`, `disable-model-invocation`, `allowed-tools`…) | **Ignored.** The serde struct has no `deny_unknown_fields`, so unknown keys are dropped silently. Proven by the live proof below. | [5], live test |
 | Symlinks | Directory symlinks are **followed** for Repo, User and Admin scopes; ignored for System. Hidden directories below a root are skipped. Scan depth 6. | `codex-rs/ext/skills/src/loader/host.rs` (`DirectorySymlinkPolicy::Follow`), `loader/mod.rs` [6]; docs [1] |
 | How a session uses skills | A `<skills_instructions>` block lists name + description + path for every skill (budget: 2% of context or 8,000 chars). Rule given to the model: use a skill when the user names it (`$name` or plain text) **or the task clearly matches its description**; then read the whole SKILL.md. `/skills` in the TUI lists them; `$name` invokes. `policy.allow_implicit_invocation: false` (in `agents/openai.yaml`) keeps a skill out of the model's list but still invocable with `$name`. | `catalog_prompt.rs` [7]; docs [1][2]; `skill-creator/references/openai_yaml.md` [8] |
 | Untrusted folder | Project skills load even in a folder Codex has never trusted (live test below ran in a fresh scratch folder). | live test |
@@ -83,7 +83,7 @@ Both are **folder pairs**, so a new skill (or a `scripts/` file inside one) is c
 
 ## Before starting
 
-- Depends on TASK-26 (declared; merged into `main` 2026-10-02), so the `ready` skill is in the copies: six shared skills (review-core, review-lenses, context-lenses, docs-lenses, scan-lenses, ready).
+- Run `git merge main` into the branch first (main moves while other work lands). Depends on TASK-26 (declared; merged into `main` 2026-10-02), so the `ready` skill is in the copies: six shared skills (review-core, review-lenses, context-lenses, docs-lenses, scan-lenses, ready).
 - Read `backlog instructions task-execution`; set TASK-28 In Progress. The reworded criteria are already in the task.
 
 ## Steps
@@ -101,8 +101,8 @@ Both are **folder pairs**, so a new skill (or a `scripts/` file inside one) is c
 4. `template/.claude/skills/context-lenses/SKILL.md`, Parity lens: add one clause, "Codex reads shared skills from `.agents/skills/`, a copy of `.claude/skills/`; a skill changed in one folder only is a Parity finding." Then `--sync` (updates `.claude/skills` and both Codex copies). If Claude Code refuses the write under `template/.claude/`, the owner makes it or runs `--sync`.
 5. This repo's `AGENTS.md` "Where things go" line 9: list `.agents/skills/` and `template/.agents/skills/` as copies; add "a new shared skill goes in `template/.claude/skills/`; `--sync` creates its Codex copies (the folder pairs cover every skill)".
 6. `README.md` layout table: add an `.agents/` row ("Codex's copies of the template's skills"), and make the `dogfood.json` row say it also lists Codex's copy inside `template/`.
-7. Decision record, written after the live proof below (in its own commit), number taken when written: **"Codex reads the shared skills from a checked copy in `.agents/skills`"**, kind `technical`, decision-makers `agent`. Context: owner answer 4 in 0021 (Codex gets AGENTS.md and skills natively). Options a, b1, b2, c, d with one line each (the Options table above). Outcome b1. Consequences: good — one source, no new code, new skills covered automatically, proven live; bad — two physical copies in every generated project with no drift check there (instruction plus Parity lens only); Codex lists the reviewer skills (~1,300 chars of its catalog). More information: refines 0031 (the manifest now also holds a copy inside `template/`); the live proof commands and output. Add the row to `docs/decisions/README.md`.
-8. Commit (render with `--vcs-ref HEAD` sees committed work only).
+6b. `template/docs/protocols/ready.md` phase step 3: "takes the next free number when it writes it" becomes "takes the next number free on the main branch when it writes it" (a parallel branch took 0036 during this task's planning). Then `--sync`.
+7. Commit (render with `--vcs-ref HEAD` sees committed work only).
 
 ## Checks
 
@@ -114,7 +114,7 @@ uvx copier copy --trust --defaults --vcs-ref HEAD -d project_name=smoke -d stack
 ```
 In each render, prove the two skill folders are identical:
 ```powershell
-python -c "import filecmp,os,sys;r=sys.argv[1];a,b=r+'/.claude/skills',r+'/.agents/skills';L=lambda p:sorted(os.path.relpath(os.path.join(d,f),p) for d,_,fs in os.walk(p) for f in fs);fa=L(a);ok=fa==L(b) and all(filecmp.cmp(os.path.join(a,f),os.path.join(b,f),shallow=False) for f in fa);print(len(fa),'files',('identical' if ok else 'DIFFER'));sys.exit(0 if ok else 1)" .tmp/smoke-express
+python -c "import filecmp,os,sys;r=sys.argv[1];a,b=r+'/.claude/skills',r+'/.agents/skills';L=lambda p:sorted(os.path.relpath(os.path.join(d,f),p) for d,_,fs in os.walk(p) for f in fs);fa=L(a);ok=fa==L(b) and all(filecmp.cmp(os.path.join(a,f),os.path.join(b,f),shallow=False) for f in fa);ok=ok and len(fa)>0;print(len(fa),'files',('identical' if ok else 'DIFFER'));sys.exit(0 if ok else 1)" .tmp/smoke-express
 ```
 (repeat for `smoke-next`, `smoke-rn`). Delete the `.tmp/smoke-*` folders afterwards.
 
@@ -128,7 +128,11 @@ git -C $p init -q
 codex exec --sandbox read-only --ephemeral --json -C $p -o "$p-list.txt" "Answer only from the skills list in your instructions, without running any command or reading any file: which listed skills have their SKILL.md in this project's .agents/skills folder? Give each name with the path shown in the list." > "$p-list.jsonl"
 codex exec --sandbox read-only --ephemeral --json -C $p -o "$p-use.txt" "Use `$review-core: open its SKILL.md and quote its first Markdown heading line exactly. Do not modify any file." > "$p-use.jsonl"
 ```
-Expected: the list names every shared skill (six once TASK-26's `ready` is in) with a `rN/<name>/SKILL.md` path, and its `--json` event stream (redirect stdout to `$p-list.jsonl`) has no command-execution events; the second answers `# Review core`. Cross-check without a model call: `codex debug prompt-input "x"` run in `$p` shows the `.agents/skills` root and the skills. Optional for this repo: `codex debug prompt-input "x"` at the repo root lists the root `.agents/skills`. Record commands and output in the task's final summary and the decision record.
+Expected: the list names every shared skill (six once TASK-26's `ready` is in) with a `rN/<name>/SKILL.md` path, and its `--json` event stream (redirect stdout to `$p-list.jsonl`) has no command-execution events; the second answers `# Review core`. Cross-check without a model call: `Push-Location $p; codex debug prompt-input "x"; Pop-Location` (the command has no `-C`) shows the `.agents/skills` root and the skills. Optional for this repo: `codex debug prompt-input "x"` at the repo root lists the root `.agents/skills`. Record commands and output in the task's final summary and the decision record.
+
+## Decision record (after the proof)
+
+Then write the decision record in its own commit. Number: the next one free on `main` (`git ls-tree --name-only main docs/decisions/`; 0037 today, since 0036 is taken), checked again just before merging: **"Codex reads the shared skills from a checked copy in `.agents/skills`"**, kind `technical`, decision-makers `agent`. Context: owner answer 4 in 0021 (Codex gets AGENTS.md and skills natively). Options a, b1, b2, c, d with one line each (the Options table above). Outcome b1. Consequences: good — one source, no new code, new skills covered automatically, proven live; bad — two physical copies in every generated project with no drift check there (instruction plus Parity lens only); Codex lists the reviewer skills (~1,300 chars of its catalog). More information: refines 0031 (the manifest now also holds a copy inside `template/`); the live proof commands and output. Add the row to `docs/decisions/README.md`. More Information also carries the key discovery facts (folders, no config path, the format, unknown keys ignored, symlink behaviour) and sources 1 to 8, so AC #1's evidence points to the record.
 
 ## Review loop (`docs/protocols/review.md`)
 
@@ -137,7 +141,7 @@ Mixed change, so each round runs three reviewers:
 - `docs-reviewer`: the decision record, decisions README row, `README.md`.
 - `code-reviewer`: `dogfood.json` and the copy mechanism (the smoke and dogfood checks).
 
-Tell every reviewer the `.agents/skills/` trees and `.claude/skills` copy are produced by `--sync` and verified by `dogfood_check.py`; review the sources only. Settled decisions for the brief: option b1; no `agents/openai.yaml`; no drift check shipped to generated projects; symlinks and Jinja includes rejected. Fix Blocking and Material, re-run the checks, next round; stop on PASS (caps in `review.md`).
+Tell every reviewer the `.agents/skills/` trees and `.claude/skills` copy are produced by `--sync` and verified by `dogfood_check.py`; review the sources only. Settled decisions for the brief: option b1; the six skill descriptions stay as they are (Codex lists them and uses them only when named, which is expected); no `agents/openai.yaml`; no drift check shipped to generated projects; symlinks and Jinja includes rejected. Fix Blocking and Material, re-run the checks, next round; stop on PASS (caps in `review.md`).
 
 ## Finish
 
@@ -176,4 +180,17 @@ Run by the shipped readiness-challenger (TASK-26 proof, headless claude -p from 
 - Minor 4: writes under template/.claude/ may need the owner. Note: in this repo Claude Code wrote template/.claude/ files without refusal during TASK-29/30/26; keep the fallback line.
 - Note: no drift check in generated projects (agent's call, reported in the end-of-task summary).
 - Pre-existing claim "decisions README has no rows for 0023-0030" was checked by the orchestrator and is false (all rows present).
+
+## Readiness challenge, task level, round 2 (2026-10-02): NOT READY
+
+Run through the gate's fallback (code-reviewer applying the ready skill), because this session cannot load the new readiness-challenger profile until it restarts.
+
+- Material: the decision-record number would collide. `main` gained 0036 during the round, from the owner's parallel config-extension work. Fixed: merge `main` into the branch first, and take the next number free on `main` (0037 today), re-checked before the merge.
+- Minor: AC #1 had no record location. Fixed: the record's More Information carries the discovery facts and sources.
+- Minor: the comparison one-liner passed with 0 files. Fixed: it now also requires `len(fa)>0`.
+- Minor: the step order was misleading. Fixed: the record moved to its own section after the proof.
+- Minor: a stale "section 3" pointer. Fixed.
+- Minor: reviewers could widen the scope to the six skill descriptions. Fixed: settled in the brief that the descriptions stay.
+- Minor: `codex debug prompt-input` has no `-C`. Fixed: it now uses Push-Location.
+- Adopted: ready.md says the record number is "free on the main branch" (plan step 6b).
 <!-- SECTION:NOTES:END -->
