@@ -44,6 +44,17 @@ related: [done]                             # other protocols it points to
 - Every profile and every shared skill is listed on at least one card. Every protocol that is not retired has a row in the AGENTS.md "When to read what" table, which is the index of protocols; a mention elsewhere in AGENTS.md does not count.
 - Leave decision records off the card; link them from the body.
 
+### Adding a protocol
+
+All in one change:
+
+1. Check the existing protocols and `docs/decisions/` first: if a protocol already covers the job, extend it; if a decision already settles it, follow it.
+2. Write `docs/protocols/<name>.md`: the card, then the body. Use `status: active`, or `draft` if it lands before it is in force.
+3. Add its row to the AGENTS.md "When to read what" table.
+4. Put a new profile in `.claude/agents/` and a new shared skill in `.claude/skills/` with its copy in `.agents/skills/` (see "Layout"); list them on the card.
+5. Record the decision in `docs/decisions/` (or reuse the one step 1 found) and link it from the body.
+6. Run the review loop in `docs/protocols/review.md`; it names the reviewers, one for each kind of file the change touches.
+
 ## Profile frontmatter
 
 `name` and `description` are required. Useful optional fields (checked against the Claude Code docs on 2026-10-02): `tools`, `disallowedTools`, `model`, `effort`, `maxTurns`, `skills`, `permissionMode`, `isolation`. Verify the current docs before relying on others.
