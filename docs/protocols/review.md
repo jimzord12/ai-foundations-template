@@ -26,7 +26,7 @@ A change is non-trivial when it alters behaviour, touches more than one file, or
 |---|---|
 | Code, tests, configuration | `code-reviewer` |
 | Instruction files: AGENTS.md, CLAUDE.md, protocols, agent profiles, skills | `context-reviewer` (no shell: give it the diff text and the feedback or task behind the change) |
-| Project docs: README, architecture, glossary, decision records | `docs-reviewer` |
+| Project docs: README, guides and runbooks, architecture, glossary, decision records | `docs-reviewer` |
 
 If a named profile is missing or your tool cannot run it, use `code-reviewer` (tell it to apply `.claude/skills/context-lenses/SKILL.md` for instruction files and `.claude/skills/docs-lenses/SKILL.md` for project docs). A mixed change runs one reviewer per distinct profile in the same round (a fallback `code-reviewer` covers every kind it stands in for, in one brief); the round passes only when all of them pass.
 
