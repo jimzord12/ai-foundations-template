@@ -27,9 +27,9 @@ YAML_WORDS = {"y", "n", "yes", "no", "on", "off", "true", "false", "null"}
 def read_card(path):
     """Return the card as a dict, or raise ValueError. Only `key: value` and `key: [a, b]` lines are allowed."""
     text = open(path, encoding="utf-8").read()
-    if text.startswith("﻿"):
+    if text.startswith("\ufeff"):
         raise ValueError("remove the byte-order mark (BOM) at the start of the file")
-    lines = text.splitlines()
+    lines = text.split("\n")
     if not lines or lines[0] != "---":
         raise ValueError("no card: the file must start with a --- line")
     try:
@@ -48,16 +48,16 @@ def read_card(path):
             raise ValueError(f"duplicate key: {key}")
         if value.startswith("["):
             # Lists hold names only, so every item must be a plain lowercase name.
-            if not re.fullmatch(r"\[\]|\[[a-z0-9-]+(, [a-z0-9-]+)*\]", value):
-                raise ValueError(f"{key}: a list is [] or [name, name] with lowercase names")
+            if not re.fullmatch(r"\[\]|\[[a-z][a-z0-9-]*(, [a-z][a-z0-9-]*)*\]", value):
+                raise ValueError(f"{key}: a list is [] or [name, name] with lowercase names that start with a letter")
             value = re.findall(r"[a-z0-9-]+", value)
-            if any(v in YAML_WORDS or v[0].isdigit() for v in value):
-                raise ValueError(f"{key}: a name YAML would read as a number, true/false or null")
+            if any(v in YAML_WORDS for v in value):
+                raise ValueError(f"{key}: a name YAML would read as true, false or null")
         elif key in PROSE:
             # Plain sentences only, so YAML reads exactly this text: starts with a letter, has a space, no tab.
-            if not re.fullmatch(r"[A-Za-z][^\t]* [^\t]*", value) or ": " in value or " #" in value or value.endswith(":"):
-                raise ValueError(f"{key}: use a plain sentence that starts with a letter (no ': ', no ' #', no tab)")
-        elif not re.fullmatch(r"[a-z][a-z0-9-]*", value) or value in YAML_WORDS:
+            if not value.isprintable() or not re.fullmatch(r"[A-Za-z][^\t]* [^\t]*", value) or ": " in value or " #" in value or value.endswith(":"):
+                raise ValueError(f"{key}: use a plain sentence of two or more words that starts with a letter (no ': ', no ' #', no tab)")
+        elif key in ("protocol", "kind", "status") and (not re.fullmatch(r"[a-z][a-z0-9-]*", value) or value in YAML_WORDS):
             raise ValueError(f"{key}: use a single lowercase word")
         card[key] = value
     return card
