@@ -1,0 +1,38 @@
+---
+id: TASK-35
+title: Drop the non-core git branch -D ask rule from the template permission profile
+status: To Do
+assignee: []
+created_date: '2026-10-02 16:01'
+labels:
+  - permissions agents
+dependencies: []
+references:
+  - docs/decisions/0039-delete-what-is-safely-deletable-without-asking.md
+  - scripts/permissions/gen_settings.py
+priority: low
+type: chore
+ordinal: 24000
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+Decision 0039 lets agents delete their own unmerged branches without asking, but Claude Code still prompts for git branch -D on any branch in Bash (template profile of decision 0031, and this repo profile of decision 0027; the owner user settings keep it on purpose per 0024). An unattended agent that follows 0039 stops at that prompt and has to leave the branch. Decide whether to drop the non-core rule so the rule and the harness agree.
+<!-- SECTION:DESCRIPTION:END -->
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [ ] #1 Decide, with the owner, which of the three sources keep the Bash branch -D ask rule (template profile, this repo profile, the owner user settings) and record the answer
+- [ ] #2 Template profile in scripts/permissions/gen_settings.py and template/.claude/settings.json no longer ask for git branch -D on non-core branches if the answer is to drop it; check_settings.py cases updated; core-branch asks unchanged
+- [ ] #3 template/docs/protocols/agents.md Permissions bullet matches the new behaviour
+<!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
