@@ -8,3 +8,4 @@ Thumbs.db
 /.tmp/
 # Claude Code worktrees (nested git checkouts; break `copier copy --vcs-ref HEAD` from a dirty tree)
 /.claude/worktrees/
+__pycache__/

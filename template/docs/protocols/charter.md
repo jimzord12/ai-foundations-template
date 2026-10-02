@@ -1,3 +1,13 @@
+---
+protocol: charter
+kind: rule
+status: active
+summary: Which product, architecture and technical decisions the agent makes alone and which go to the owner.
+applies-when: A decision has to be made and it is unclear who approves it.
+agents: []
+skills: []
+related: [done]
+---
 # Charter: who decides what
 
 The roles are in AGENTS.md "Roles": you are the tech lead and own the codebase; the owner is a technical product owner who should not have to babysit you. This file says which decisions you make alone and which go to the owner. AGENTS.md "Who decides what" holds the short version and the hard-to-reverse list; this file adds the detail.

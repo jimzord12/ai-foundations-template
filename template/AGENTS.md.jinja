@@ -58,9 +58,11 @@ Unattended work starts only on tasks labelled `ready` by the gate in `docs/proto
 | Copied code, a long file or function, a repeat bug, a change scattered across places, painful test setup | `docs/protocols/evolution.md` |
 | Changing structure or naming a concept | `docs/architecture.md`, `docs/domain/glossary.md`, `docs/protocols/evolution.md` |
 | Reviewing a change or running the review loop | `docs/protocols/review.md` |
-| Changing agent instructions (including from owner feedback), a profile, skill or permission rule | `docs/protocols/agents.md`, `docs/protocols/review.md` (who writes and reviews) |
+| Changing agent instructions (including from owner feedback), a profile, skill, protocol or permission rule | `docs/protocols/agents.md`, `docs/protocols/review.md` (who writes and reviews) |
 | Picking up or changing work | `backlog instructions overview`, `docs/protocols/ready.md` (pickup check) |
 | Planning a task or a phase | `docs/protocols/ready.md` |
+| Branching, committing, merging, deleting a branch or file, handling a secret | `docs/protocols/git.md` |
+| Finishing a task, writing tests, reporting evidence or the end-of-task summary | `docs/protocols/done.md` |
 {% if stack == 'express' %}
 ## Stack: Express 5 + Zod (backend)
 - Validate every external input (body, params, query, env) with Zod at the boundary; derive types from the schemas.

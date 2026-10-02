@@ -1,3 +1,13 @@
+---
+protocol: typescript
+kind: rule
+status: active
+summary: Before writing a helper, reuse project code, then native APIs, then preferred libraries, and only then custom code.
+applies-when: Writing TypeScript, adding a utility or helper, or choosing a library.
+agents: []
+skills: []
+related: []
+---
 # TypeScript: reuse before building
 
 Before writing any utility or helper, check in this order:

@@ -1,3 +1,15 @@
+---
+protocol: review
+kind: process
+status: active
+summary: Independent fresh-context review of every non-trivial change before it merges.
+applies-when: A non-trivial change is ready to merge, or feedback should change how agents behave.
+ends-when: A round returns PASS, or the round cap is reached and the change stays unmerged.
+produces: A findings report with a verdict per round.
+agents: [code-reviewer, context-reviewer, docs-reviewer, scannability-reviewer, context-maintainer]
+skills: [review-core, review-lenses, context-lenses, docs-lenses, scan-lenses]
+related: [done]
+---
 # Review loop
 
 Every non-trivial change gets an independent review before it is merged. Where this file exists, it is the project's rule for reviews.
