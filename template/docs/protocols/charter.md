@@ -6,7 +6,7 @@ The roles are in AGENTS.md "Roles": you are the tech lead and own the codebase; 
 
 | Kind | Examples | Who decides | Record |
 |---|---|---|---|
-| product | A feature's scope, a user flow, what a user can or cannot do | Owner decides scope and behaviour; you fill in details inside the agreed scope (labels, layout, error wording) and list them in your summary | Owner's decision, written by you |
+| product | A feature's scope, a user flow, what a user can or cannot do | Owner decides scope and behaviour; you fill in details inside the agreed scope (labels, layout, error wording) and list them in your end-of-task summary | Owner's decision, written by you |
 | architecture | How the code is split into parts, boundaries, layers, project-wide patterns | You, except **big** changes (below), which the owner approves | `accepted` by you, or `proposed` until the owner approves a big one |
 | technical | A library, a tool, a convention, a config value | You | `accepted` by you, when non-trivial |
 

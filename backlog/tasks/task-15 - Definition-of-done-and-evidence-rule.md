@@ -1,11 +1,11 @@
 ---
 id: TASK-15
 title: Definition of done and evidence rule
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-02 00:22'
+updated_date: '2026-10-02 00:25'
 labels:
   - instructions
   - verification
@@ -26,20 +26,20 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Definition of done written for generated projects (docs/protocols/done.md plus at most 4 non-blank lines in AGENTS.md), referencing npm run check by name, with git.md's checks definition as the fallback
-- [ ] #2 Covers: real-run evidence over claims (short, readable in under a minute), separate git and test facts, tests must exercise real code, mocks only at true external boundaries; done.md owns the evidence rule and AGENTS.md 'Talking to the owner' points to it
-- [ ] #3 Generated projects get Backlog Definition of Done defaults derived from done.md (not this repo's template-only items such as the smoke test): done.md holds the exact definition_of_done line and AGENTS.md says to add it to backlog/config.yml when the key is missing (Backlog 1.52 refuses config set definitionOfDone); proven by a throwaway project whose new task carries those items
-- [ ] #4 Decision recorded; smoke test passes
-- [ ] #5 docs/protocols/done.md defines the end-of-task summary (one name across the template) the lead agent gives the owner: decisions taken (one line each), evidence, what waits on the owner (items charter.md and git.md send there), and a Findings section for the agent's own observations (not a relay of subagent reports), which other protocols extend with subsections; an empty subsection folds into one line and an all-empty section is 'Findings: none'
+- [x] #1 Definition of done written for generated projects (docs/protocols/done.md plus at most 4 non-blank lines in AGENTS.md), referencing npm run check by name, with git.md's checks definition as the fallback
+- [x] #2 Covers: real-run evidence over claims (short, readable in under a minute), separate git and test facts, tests must exercise real code, mocks only at true external boundaries; done.md owns the evidence rule and AGENTS.md 'Talking to the owner' points to it
+- [x] #3 Generated projects get Backlog Definition of Done defaults derived from done.md (not this repo's template-only items such as the smoke test): done.md holds the exact definition_of_done line and AGENTS.md says to add it to backlog/config.yml when the key is missing (Backlog 1.52 refuses config set definitionOfDone); proven by a throwaway project whose new task carries those items
+- [x] #4 Decision recorded; smoke test passes
+- [x] #5 docs/protocols/done.md defines the end-of-task summary (one name across the template) the lead agent gives the owner: decisions taken (one line each), evidence, what waits on the owner (items charter.md and git.md send there), and a Findings section for the agent's own observations (not a relay of subagent reports), which other protocols extend with subsections; an empty subsection folds into one line and an all-empty section is 'Findings: none'
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -70,4 +70,12 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 2026-10-02 readiness round 1 NOT READY: 3 Material (two owners for the evidence rule, 'report' vs 'summary' naming, DoD line only for new backlogs) and 8 Minor, all explicit fixes folded into plan v2 and ACs; challenger proved the definition_of_done line works in a throwaway backlog (5 items on a new task). Proceeding without another round.
 
 Verification: smoke express/next/rn exit 0, AGENTS.md 66/67/66 lines (52/53/52 non-blank; +3 non-blank vs main), no Jinja leftovers, all pointers resolve except the docs/adr/ example. DoD proof: throwaway repo outside any repo via BACKLOG_CWD, backlog init (config had no definition_of_done), appended the line grepped from the rendered done.md, created a task: its DoD showed the five items #1-#5. Leak grep clean. 'end-of-task report' appears nowhere; 'end-of-task summary' is the single name.
+
+Review round 1 PASS (0 Blocking/Material); reviewer reproduced the DoD line in a throwaway backlog (survives a config rewrite). Minors applied after PASS: structural changes listed under Decisions; unmerged changes with unresolved review findings under Waiting on the owner; DoD item says merged, pushed and branch deleted; empty sections 1-3 left out, Findings always shown; checks item names the git.md fallback; mock wording split; charter.md says end-of-task summary. Smoke re-run 66/67/66; YAML line parses to 5 items.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Generated projects get docs/protocols/done.md: done means proven by running the real thing, checks green, merged and pushed; short evidence on the real local stack; separate facts; tests that exercise real code with mocks only at true external boundaries; one end-of-task summary (decisions, evidence, waiting on the owner, Findings that other protocols extend); and the exact Backlog definition_of_done line, added when the key is missing because Backlog 1.52 refuses config set. AGENTS.md gets a two-bullet Done section and points its evidence and summary lines there (66/67/66 lines). Record 0030. Verified by smoke test, a real throwaway backlog showing the five DoD items, and leak greps. Review: round 1 PASS.
+<!-- SECTION:FINAL_SUMMARY:END -->

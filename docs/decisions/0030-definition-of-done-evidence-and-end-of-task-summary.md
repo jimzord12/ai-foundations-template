@@ -24,7 +24,7 @@ Chosen option: "A `docs/protocols/done.md` …", because the summary needs one o
 - Done: proven by running the real thing; checks pass (`npm run check`, or git.md's fallback definition); merged and pushed; summary given.
 - Evidence: short, readable in under a minute, proving behaviour on the real local stack; the owner's final check is using the product.
 - Tests: exercise the real implementation; mocks only at true external boundaries; never the database or the project's own modules when they can run locally.
-- End-of-task summary: decisions (one line each), evidence, what waits on the owner, and a Findings section for the agent's own observations that other protocols extend with subsections; empty subsections fold into one line.
+- End-of-task summary: decisions (one line each, including structural changes), evidence, what waits on the owner, and a Findings section for the agent's own observations that other protocols extend with subsections; empty parts are left out or fold into one line, and Findings always appears.
 - Backlog Definition of Done defaults: Backlog.md 1.52 refuses `config set definitionOfDone`, and [0014](0014-generated-projects-use-backlog-md-and-ignore-local.md) rejected shipping a pre-made `backlog/config.yml`. So done.md holds the exact `definition_of_done` line, and AGENTS.md tells the agent to add it when the key is missing, which also covers projects whose backlog already exists.
 
 ### Consequences
