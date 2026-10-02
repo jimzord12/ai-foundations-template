@@ -4,8 +4,8 @@ kind: process
 status: active
 summary: A task or phase is planned and challenged by a fresh agent before any unattended work starts on it.
 applies-when: Planning a task or a phase, or picking up work for an unattended run.
-ends-when: The challenger returns READY and the task gets the ready label, or it stays unready on owner questions or the round cap.
-produces: A plan in the task, a verdict per round in the task notes, and the ready label.
+ends-when: The task is labelled ready by a READY verdict, the phase check, the trivial self-check or the owner's waiver, or stays unready.
+produces: A plan in the task, or a phase plan document, the final verdict in the notes, and the ready label.
 agents: [readiness-challenger, code-reviewer]
 skills: [ready]
 related: [review, done, charter]

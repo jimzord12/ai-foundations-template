@@ -25,7 +25,7 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 - Ask first, with the exact command, only for: deleting `main`; deleting an unmerged branch whose commits exist nowhere else (except level-3 branches you created); any force push; `reset --hard`; `git clean`. Release tags are pushed only with the owner's approval.
 
 ## Checks
-- After changing a protocol, an agent profile or a shared skill under `template/`: `python scripts/protocol_check.py` (every protocol file starts with a card; card format in `template/docs/protocols/agents.md` "Protocol cards").
+- After changing a protocol, an agent profile, a shared skill or `AGENTS.md.jinja` under `template/`: `python scripts/protocol_check.py` (every protocol file starts with a card; card format in `template/docs/protocols/agents.md` "Protocol cards").
 - Smoke-test rendering after changing `template/` or `copier.yml`:
   `uvx copier copy --trust --defaults --vcs-ref HEAD -d project_name=smoke -d stack=express . .tmp/smoke`
   (repeat with `stack=next` and `stack=rn`; `.tmp/` is git-ignored).

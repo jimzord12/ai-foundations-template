@@ -24,10 +24,10 @@ A protocol is spread across several folders: its rules in `docs/protocols/`, age
 Chosen option: "A short card at the top of each protocol file, checked by a script", because it gives every protocol the same shape and makes missing pieces fail a check, without moving files the tools need where they are.
 
 - The card is YAML frontmatter: `protocol`, `kind` (`process` or `rule`), `status` (`draft`, `active`, `retired`), `summary`, `applies-when`, and for processes `ends-when` and `produces`, then the lists `agents`, `skills` and `related`. Format and upkeep: `template/docs/protocols/agents.md` "Protocol cards".
-- `kind` exists because half the protocols are standing rules (git, charter, done, evolution, typescript, agents) with no end; only processes (review, ready) get `ends-when` and `produces`.
-- `scripts/protocol_check.py` fails on a missing or malformed card, a name that does not exist, an agent profile or shared skill no card lists, and a protocol that `template/AGENTS.md.jinja` does not route to. `template/AGENTS.md.jinja` stays the index: its "Where to look" table already routes agents to each protocol, so no separate index file is generated.
+- `kind` exists because six of the eight protocols are standing rules (git, charter, done, evolution, typescript, agents) with no end; only processes (review, ready) get `ends-when` and `produces`.
+- `scripts/protocol_check.py` fails on a missing or malformed card, a name that does not exist, an agent profile or shared skill no card lists, and a protocol that is not retired but has no row in the "When to read what" table of `template/AGENTS.md.jinja`. That table is the index of protocols, so no separate index file is generated; `git` and `done`, reached before only from rule lines, got rows. The parser accepts only plain one-line values that load as the same YAML, so a future reader of the cards gets what the check saw.
 - No per-protocol version: the template is versioned as a whole by its Copier tags, and one owner gains nothing from eight version numbers.
-- No UI now: eight short files and the router table are enough. The phase-4 viewer (0015) can read the cards later.
+- No UI now: eight short files and the router table are enough. The phase-4 viewer ([0015](0015-the-generic-viewer-gets-its-own-repo-not-this-template.md)) can read the cards later.
 - No decision links on the card: protocol files are copied into generated projects, whose `docs/decisions/` numbering differs, so a number from this repo would point at the wrong record there.
 
 ### Consequences
@@ -39,5 +39,5 @@ Chosen option: "A short card at the top of each protocol file, checked by a scri
 
 ## More Information
 
-- The check follows the stdlib-only style of `scripts/dogfood_check.py` (0031).
-- Follow-up candidates: ship the check in generated projects once they have a scripts convention, and a `draft` card for the lab protocol (DRAFT-2).
+- The check follows the stdlib-only style of `scripts/dogfood_check.py` ([0031](0031-agent-layout-template-permissions-and-dogfood-manifest.md)). The router that holds the index is the thin AGENTS.md of [0007](0007-agent-instructions-live-per-project-as-a-thin-agents-md-router.md).
+- Follow-up candidates: ship the check in generated projects once they have a scripts convention, and a `draft` card for the lab protocol (DRAFT-2), whose planned `lab-examples.md` would need its own card and row, or a home outside `docs/protocols/`.
