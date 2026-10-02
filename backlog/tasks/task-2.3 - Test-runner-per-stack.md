@@ -4,7 +4,7 @@ title: Test runner per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 03:01'
 labels:
   - stack
   - tests
@@ -40,3 +40,9 @@ Each stack needs a test runner agents can call in seconds, matching the owner's 
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: record 0036 applies: never overwrite the project's own config; ship a new file that extends or imports it, and verify that per tool before relying on it.
+<!-- SECTION:NOTES:END -->
