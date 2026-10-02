@@ -10,10 +10,10 @@ A default that keeps work moving without babysitting while protecting what canno
 
 ## Merging
 
-Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS. Merges between feature levels need only the checks. Work is finished only when it is merged.
+Commit and push feature branches without asking. Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS, then push `main`. Merges between feature levels need only the checks. Merges into other core branches follow the project's own rules; if it has none, ask. Work is finished only when it is merged and pushed.
 
 - **Checks:** the project's check script or CI, where they exist; otherwise the tests and the type check you can run.
-- **Review:** a reviewer with fresh context (a subagent that has not seen your work) finds no Blocking or Material issue. If the project has `docs/protocols/review.md`, follow it.
+- **Review:** a reviewer with fresh context (a subagent that has not seen your work) finds no Blocking or Material issue, meaning a bug, a broken rule or a gap you would fix before merging. Fix, review again, and stop after a few rounds, reporting what is unresolved. If the project has `docs/protocols/review.md`, follow it instead.
 - **Non-trivial:** the change alters behaviour, touches more than one file, or changes a test or an instruction file.
 
 ## Cleaning up
@@ -21,6 +21,7 @@ Merge into `main` without asking once the checks pass and, for a non-trivial cha
 - Delete a feature branch, locally and on the remote, as soon as it is merged. Core branches are never deleted after a merge.
 - Delete temporary files and scratch output you created.
 - Never delete untracked or ignored files you did not create: they may be the owner's work, `.env` files or local preferences.
+- Never discard uncommitted changes you did not make (for example with `git restore` or `git checkout -- <path>`).
 
 ## Asking first
 
@@ -29,6 +30,8 @@ The list of actions that need the owner's approval is in AGENTS.md "Git and safe
 - the exact command;
 - what it targets (branch, commits, files);
 - what is lost or changed if it runs.
+
+If the owner is away, do not run it: carry on with the rest of the work and list it in your end-of-task summary.
 
 ## Secrets
 
