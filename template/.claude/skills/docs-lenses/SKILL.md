@@ -1,6 +1,6 @@
 ---
 name: docs-lenses
-description: Lenses a docs reviewer applies to project docs (README, architecture, glossary, decision records). Preloaded by the docs-reviewer profile; do not invoke in the main session.
+description: Lenses a docs reviewer applies to project docs (README, guides and runbooks, architecture, glossary, decision records). Preloaded by the docs-reviewer profile; do not invoke in the main session.
 user-invocable: false
 ---
 
@@ -24,7 +24,7 @@ Project docs must stay true to the code. The orchestrator names the lead lenses 
 - **Architecture matches the decisions.** Every accepted record of kind `architecture` is reflected in `docs/architecture.md` and linked from it; nothing there still describes a superseded or rejected choice.
 - **Folder map matches the tree.** Every path in a folder map (the one in `docs/architecture.md`, a README layout table) exists (Glob). A top-level folder a reader needs to find code, but the map omits, is a finding.
 - **Glossary used.** Each glossary term appears in code or UI text (grep it); a term found nowhere is stale or not built yet. Code, UI or docs using a word the glossary lists under "Not this", or a new concept with no entry, is a finding.
-- **Quickstart runs.** Run the README quickstart exactly as written, in a scratch copy outside the working tree (your profile says how). Steps that need secrets, install anything globally or start shared services (containers, databases), and steps that depend on them, are NOT_CHECKED, not run. Every other step must succeed on a clean copy; a missing prerequisite, environment variable or step is a finding. A dev server counts as running once it answers its first request; stop it then.
+- **Quickstart runs.** Run the README quickstart exactly as written, in a scratch copy outside the working tree (for example a `git clone` of the branch into a temporary folder, deleted afterwards). A clone sees only committed work: if the change is not committed, the quickstart is NOT_CHECKED. If the clone or run is denied, do not retry it another way: it is NOT_CHECKED, with the exact commands. Steps that need secrets, install anything globally or start shared services (containers, databases), and steps that depend on them, are NOT_CHECKED, not run. Every other step must succeed on a clean copy; a missing prerequisite, environment variable or step is a finding. A dev server counts as running once it answers its first request; stop it then.
 - **Unverified claims reported.** A claim you could not check (a command you could not run, an external service, a value only production holds) is never assumed true or false; list it as NOT_CHECKED (below).
 - **One home per fact.** A fact lives in one file and others link to it. Two docs that state the same fact differently are a finding; when the change touched neither, it goes in review-core's Pre-existing list.
 - **Cold-reader completeness.** A newcomer, human or agent, with no context could act on the doc correctly. Missing the one detail that makes it executable (a prerequisite, an order, a value) is a finding.
