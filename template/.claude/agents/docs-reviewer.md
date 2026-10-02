@@ -14,7 +14,7 @@ Your brief names the change (a branch, a commit range or a diff) or the docs to 
 
 Bash has two uses only:
 
-- Read-only commands in the project, as review-core allows (`git diff`, `git log`, `git show`), to see the change; use Glob for the tree.
+- Read-only commands in the project, as review-core allows (`git status`, `git diff`, `git log`, `git show`), to see the change; use Glob for the tree.
 - Checks that run or write anything, such as the README quickstart: only in a scratch copy outside the working tree (for example `git clone --branch <branch> <project> <temporary folder>`), deleted when you finish. Never run them in the project itself. A clone sees only committed work: if the change is not committed, report the quickstart NOT_CHECKED.
 
 The project's permission allowlist is narrow, so the clone or the quickstart run may be denied. Do not retry it another way: report the item NOT_CHECKED with the exact commands, so the orchestrator can run them.

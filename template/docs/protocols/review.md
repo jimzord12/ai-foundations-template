@@ -8,17 +8,17 @@ A change is non-trivial when it alters behaviour, touches more than one file, or
 
 ## The loop
 
-1. Spawn a fresh reviewer (a subagent that has not seen your work). Give it the change, the round number, the settled decisions, the lead lenses you choose for this round (lens names: the reviewer's lens skill, for example `.claude/skills/review-lenses/SKILL.md`), and every earlier report with your disposition of each finding. Commit the change first when a reviewer must run it in a scratch copy (`docs-reviewer` clones committed work only).
+1. Spawn a fresh reviewer (a subagent that has not seen your work). Give it the change, the round number, whether the working tree is on the change, the settled decisions, the lead lenses you choose for this round (lens names: the reviewer's lens skill, for example `.claude/skills/review-lenses/SKILL.md`), and every earlier report with your disposition of each finding. Commit the change first when a reviewer must run it in a scratch copy (`docs-reviewer` clones committed work only).
 2. Fix every Blocking and Material finding and re-run the checks.
 3. Start the next round with a new reviewer.
 4. Stop when a round returns PASS. Minor findings and Notes alone do not continue the loop; fix the cheap ones. A PASS may list NOT_CHECKED items: run them yourself and report the result, or name the ones still open in your end-of-task summary.
-5. On INCOMPLETE, supply what was missing (or run it yourself) and start the next round; it counts as a round.
+5. On INCOMPLETE, supply what was missing (or run it yourself and put the commands and their full output in the next brief) and start the next round; it counts as a round.
 
 ## Caps
 
 - **Attended:** at most 8 rounds. A run is attended only while the owner is replying in the session.
 - **Unattended:** at most 15 rounds.
-- Still Blocking or Material after the cap: leave the change unmerged and tell the owner in your end-of-task summary. Never call it done.
+- Still Blocking, Material or INCOMPLETE after the cap: leave the change unmerged and tell the owner in your end-of-task summary. Never call it done.
 
 ## Who reviews what
 
