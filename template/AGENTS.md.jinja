@@ -41,7 +41,7 @@ Unattended work starts only on tasks labelled `ready` by the gate in `docs/proto
 
 ## Git and safety
 - Every change goes on a feature branch; no pull requests. Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS; then delete the branch. Detail: `docs/protocols/git.md`.
-- Keep the repository clean: whatever you can delete safely (landed branches, your own branches and worktrees, scratch files; the conditions are in `docs/protocols/git.md`), delete without asking. Leftovers go stale and mislead; lost work can be regenerated.
+- **Clean up after yourself.** Keep the repository clean: whatever you can delete safely (landed branches, your own branches and worktrees, scratch files; the conditions are in `docs/protocols/git.md` "Clean up after yourself"), delete without asking. Leftovers go stale and mislead; lost work can be regenerated.
 - Ask first, with the exact command, targets and consequence, only for: deleting `main` or another core branch; merging into a core branch other than `main`, unless the project's rules allow it; deleting an unmerged branch that is not yours (see `docs/protocols/git.md`) whose commits exist nowhere else; any force push; `reset --hard`; `git clean`. A project may add to this list; removing an item needs an owner decision record.
 - Never put secrets in code, logs, commits or task notes.
 

@@ -25,7 +25,7 @@ Commit and push feature branches without asking. Merge into `main` without askin
 - **Checks:** the project's check script or CI, where they exist; otherwise the tests and the type check you can run.
 - **Review and non-trivial:** as `docs/protocols/review.md` defines them.
 
-## Cleaning up
+## Clean up after yourself
 
 Keep the repository clean: when you can delete something safely, delete it, and do not ask. In the era of AI the cost of a leftover is higher than the cost of a loss: a stale branch, worktree or scratch file misleads the next agent and piles up, while lost work can almost always be regenerated or re-derived. If something is worth keeping, keep it properly (a decision record, a Backlog task, the code on `main`) and delete the scaffolding around it; do not keep things "just in case".
 
