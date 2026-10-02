@@ -4,7 +4,7 @@ title: 'Integration mechanism: Copier post-copy tasks and Express skeleton'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 18:33'
+updated_date: '2026-10-02 18:39'
 labels:
   - stack
   - copier
@@ -64,4 +64,6 @@ Next.js, React Native and other framework projects are scaffolded first with the
 2026-10-02 review round 7: the generic pack defines no scripts, so pack-less projects get none (criteria 1 and 3); per-pack config files are part of the open point in criterion 1 and of criterion 9; detection searches devDependencies (criterion 2); the skeleton does not overwrite existing files but post-copy tasks may still edit them (criterion 4).
 
 2026-10-02 review round 9: a task sets a contract script only when the project has no script of that name, because npm pkg set replaces an existing key (criterion 6); the verification adds an existing Express project that already has test and lint scripts (criterion 5).
+
+2026-10-02 review round 11: the generic pack also defines no dev dependencies (criterion 1; record 0041). When a task needs to know whether a script already exists (criterion 6), read it from the shell (npm pkg get scripts.<name>), not through _external_data: that reads package.json as YAML and aborts on a tab-indented file at task time, even with -d stack=<name>, and a test run with --skip-tasks would not show it, so run the criterion 2 test with tasks enabled.
 <!-- SECTION:NOTES:END -->

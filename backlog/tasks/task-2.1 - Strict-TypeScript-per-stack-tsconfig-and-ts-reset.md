@@ -4,7 +4,7 @@ title: 'Strict TypeScript per stack: tsconfig and ts-reset'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 18:26'
+updated_date: '2026-10-02 18:39'
 labels:
   - stack
   - typescript
@@ -51,4 +51,6 @@ Agents write more consistent code under a strict compiler. Ship one tsconfig.fou
 2026-10-02: ready label removed: criteria changed after the challenge (ready.md); plan and challenge again before unattended work, or the owner waives it. When trying tsconfigPath, check whether next build writes include or plugins into tsconfig.foundations.json.
 
 2026-10-02: record 0041: the foundations file worked on real Next.js, Astro and SvelteKit scaffolds in a spike (Expo and the other frameworks are not checked; see 0036 and 0041). What differs per framework is the prepare step before tsc and whether typescript is installed; both belong in the pack. Frameworks beyond Phase 1 are TASK-2.6.
+
+2026-10-02 review round 11: a project on the generic pack (an empty folder, or a framework with no pack yet) gets no scripts, no dev dependencies and no ts-reset wiring (record 0041); do not make the typescript and ts-reset installs unconditional, or npm creates a package.json in an empty folder.
 <!-- SECTION:NOTES:END -->
