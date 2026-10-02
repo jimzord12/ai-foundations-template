@@ -39,8 +39,8 @@ related: [done]                             # other protocols it points to
 ---
 ```
 
-- `status`: `draft` is written but not in force, so do not follow it yet; `active` is in force; `retired` is no longer followed, so remove its row from the router and keep the file only for history.
-- One plain sentence per value: no colons, no ` #`, and no leading quote, backtick, `[` or `-`. Lists use `[a, b]`, or `[]` when empty. The example is shortened from the real review card, and its comments are for this example only; real cards have none.
+- `status`: `draft` is written but not in force, so do not follow it yet; `active` is in force; `retired` is no longer followed, so remove its row from the router and the pointers and `related` entries that send readers to it, and keep the file only for history.
+- One plain sentence per value, starting with a letter: no `: `, no ` #`, no tab, no colon at the end. Lists use `[a, b]`, or `[]` when empty. The example is shortened from the real review card, and its comments are for this example only; real cards have none.
 - Every profile and every shared skill is listed on at least one card. Every protocol that is not retired has a row in the AGENTS.md "When to read what" table, which is the index of protocols; a mention elsewhere in AGENTS.md does not count.
 - Leave decision records off the card; link them from the body.
 

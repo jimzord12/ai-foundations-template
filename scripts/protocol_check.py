@@ -19,6 +19,9 @@ PROCESS_ONLY = ["ends-when", "produces"]
 LISTS = ["agents", "skills", "related"]
 KINDS = {"process", "rule"}
 STATUSES = {"draft", "active", "retired"}
+PROSE = {"summary", "applies-when", "ends-when", "produces"}
+# Words YAML 1.1 reads as true, false or null instead of text.
+YAML_WORDS = {"y", "n", "yes", "no", "on", "off", "true", "false", "null"}
 
 
 def read_card(path):
@@ -48,9 +51,14 @@ def read_card(path):
             if not re.fullmatch(r"\[\]|\[[a-z0-9-]+(, [a-z0-9-]+)*\]", value):
                 raise ValueError(f"{key}: a list is [] or [name, name] with lowercase names")
             value = re.findall(r"[a-z0-9-]+", value)
-        elif ": " in value or " #" in value or value.endswith(":") or value[0] in "`@&*!|>'\"%{-?,]":
-            # Plain sentences only: these would break the YAML or silently change the value.
-            raise ValueError(f"{key}: use a plain sentence (no ': ', no ' #', no leading quote or symbol)")
+            if any(v in YAML_WORDS or v[0].isdigit() for v in value):
+                raise ValueError(f"{key}: a name YAML would read as a number, true/false or null")
+        elif key in PROSE:
+            # Plain sentences only, so YAML reads exactly this text: starts with a letter, has a space, no tab.
+            if not re.fullmatch(r"[A-Za-z][^\t]* [^\t]*", value) or ": " in value or " #" in value or value.endswith(":"):
+                raise ValueError(f"{key}: use a plain sentence that starts with a letter (no ': ', no ' #', no tab)")
+        elif not re.fullmatch(r"[a-z][a-z0-9-]*", value) or value in YAML_WORDS:
+            raise ValueError(f"{key}: use a single lowercase word")
         card[key] = value
     return card
 
@@ -108,7 +116,7 @@ for f in files:
                 problems.append(f"{where}: {key} names {name!r}, which does not exist")
             elif key in claimed:
                 claimed[key].add(name)
-    if card.get("status") != "retired" and not any(f"`docs/protocols/{f}`" in row for row in router_rows):
+    if card.get("status") != "retired" and not any(f"`docs/protocols/{f}`" in row.rstrip().rstrip("|").rsplit("|", 1)[-1] for row in router_rows):
         problems.append(f"{where}: no row in the \"When to read what\" table of template/AGENTS.md.jinja")
 
 for key, known in (("agents", agents), ("skills", skills)):
