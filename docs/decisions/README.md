@@ -34,3 +34,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0026](0026-one-madr-record-per-decision.md) | architecture | accepted | One MADR record per decision, with kind and supersedes |
 | [0027](0027-this-repo-allows-everything-except-deleting-main.md) | product | accepted | This repo allows everything except deleting main |
 | [0028](0028-authority-tiers-and-design-evolution-protocol.md) | product | accepted | Authority tiers and design evolution protocol |
+| [0029](0029-git-and-safety-rules-for-generated-projects.md) | product | accepted | Git and safety rules for generated projects |

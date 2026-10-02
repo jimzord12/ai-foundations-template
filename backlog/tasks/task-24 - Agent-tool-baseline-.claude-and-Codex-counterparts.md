@@ -4,7 +4,7 @@ title: 'Agent tool baseline: .claude/ layout, permission allowlist, dogfood mani
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 23:45'
+updated_date: '2026-10-02 00:14'
 labels:
   - agents
   - claude
@@ -47,4 +47,6 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 2026-10-01 owner of the .claude/ and Codex layout. TASK-11 (reviewer agents) and TASK-22 (maintenance skill) put their files into this layout.
 
 2026-10-01: allowlist amended with branch commands (decision 'Branch model refinements after the first instruction review').
+
+2026-10-02 (TASK-14): the generated-project settings ask and deny entries must match the ask-first list in template AGENTS.md 'Git and safety' (deleting main or another core branch, deleting an unmerged unique branch, force push, reset --hard, git clean).
 <!-- SECTION:NOTES:END -->

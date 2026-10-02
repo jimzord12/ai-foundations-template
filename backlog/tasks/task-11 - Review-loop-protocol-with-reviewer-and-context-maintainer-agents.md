@@ -4,7 +4,7 @@ title: 'Review loop: code-reviewer profile and review-core / review-lenses skill
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 00:14'
 labels:
   - review
   - agents
@@ -46,4 +46,6 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 2026-10-01: moved to Phase 1 because the Ready gate (TASK-26) and every Phase 1 task rely on the reviewer agent. Agent files go in the layout owned by TASK-24.
 
 2026-10-01 (decision 'Two documentation reviewer families with shared skills'): review-core is the shared base for every reviewer, including context-reviewer and docs-reviewer (TASK-29, TASK-30); it holds one severity scale repos may remap. review.md must state that changes to instruction files and decision logs count as non-trivial.
+
+2026-10-02 (TASK-14): once review.md ships, tighten the fallback review definition in template docs/protocols/git.md ('Merging' section) to point at it.
 <!-- SECTION:NOTES:END -->
