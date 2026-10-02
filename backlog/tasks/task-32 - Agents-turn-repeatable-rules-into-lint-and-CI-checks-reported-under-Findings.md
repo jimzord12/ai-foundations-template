@@ -4,19 +4,19 @@ title: 'Agents turn repeatable rules into lint and CI checks, reported under Fin
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:02'
-updated_date: '2026-10-01 23:24'
+updated_date: '2026-10-02 18:29'
 labels:
   - agents
   - lint
   - ci
   - reporting
-milestone: m-0
+milestone: m-1
 dependencies:
   - TASK-15
   - TASK-2.2
   - TASK-27
 priority: medium
-ordinal: 1550
+ordinal: 11000
 ---
 
 ## Description
@@ -42,3 +42,9 @@ Owner request 2026-10-02. Instructions alone drift: a rule an agent must remembe
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Moved to phase 2 on 2026-10-02 by the owner: not needed for a usable v0.1.0, and it builds on the lint and TypeScript baseline (TASK-2.x) that phase 1 delivers.
+<!-- SECTION:NOTES:END -->

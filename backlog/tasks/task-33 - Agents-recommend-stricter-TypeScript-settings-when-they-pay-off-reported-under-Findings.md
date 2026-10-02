@@ -6,18 +6,18 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:05'
-updated_date: '2026-10-02 03:05'
+updated_date: '2026-10-02 18:29'
 labels:
   - agents
   - typescript
   - reporting
-milestone: m-0
+milestone: m-1
 dependencies:
   - TASK-15
   - TASK-2.1
   - TASK-32
 priority: medium
-ordinal: 1560
+ordinal: 11100
 ---
 
 ## Description
@@ -43,3 +43,9 @@ Owner request 2026-10-02. Every generated project is TypeScript. TASK-2.1 ships 
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Moved to phase 2 on 2026-10-02 by the owner, with TASK-32: not needed for a usable v0.1.0, and it builds on the strict TypeScript baseline (TASK-2.1).
+<!-- SECTION:NOTES:END -->
