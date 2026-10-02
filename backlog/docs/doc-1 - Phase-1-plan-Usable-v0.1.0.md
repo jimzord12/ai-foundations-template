@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-02 03:06'
+updated_date: '2026-10-02 18:27'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -36,12 +36,15 @@ updated_date: '2026-10-02 03:06'
 | 6b | TASK-30 project-docs review | `docs-lenses` skill, `docs-reviewer`, optional `scannability-reviewer` | 11, 25 |
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
+| 8a | TASK-37 decision numbering | Decision records from parallel branches merge without renumbering (added 2026-10-02) | none |
+| 8b | TASK-40 `.gitattributes` | LF line endings in generated projects (added 2026-10-02, was DRAFT-3) | none |
 | 9 | TASK-2.5 integration mechanism | Copier post-copy tasks, Express skeleton | none |
 | 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
 | 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |
-| 12a | TASK-32 lint and CI rules | Agents add or propose lint and CI checks; Findings subsection in `done.md` | 15, 2.2, 27 |
-| 12b | TASK-33 TypeScript settings | Triggered guidance for stricter flags in `typescript.md`; Findings subsection | 15, 2.1, 32 |
+| 12a | TASK-39 protocol check in projects | The protocol-card check runs in generated projects (added 2026-10-02) | 27 |
+| 12b | TASK-32 lint and CI rules | Agents add or propose lint and CI checks; Findings subsection in `done.md` | 15, 2.2, 27 |
+| 12c | TASK-33 TypeScript settings | Triggered guidance for stricter flags in `typescript.md`; Findings subsection | 15, 2.1, 32 |
 | 13 | TASK-17 automated tests | Render, update and collision tests that fail when broken | 2.4 |
 | 14 | TASK-13 template CI | Workflow running 17, `check` per stack, identical-check | 17 |
 | 15 | TASK-23 secret scanning | gitleaks in both workflows, `.env.example`, planted-secret proof | 27 (and 13) |

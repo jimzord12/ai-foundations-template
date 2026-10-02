@@ -4,11 +4,13 @@ title: Decision record numbers collide when agents or sessions work in parallel
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
+updated_date: '2026-10-02 18:27'
 labels:
   - feature
+milestone: m-0
 dependencies: []
-priority: medium
-ordinal: 26000
+priority: high
+ordinal: 950
 ---
 
 ## Description
@@ -32,3 +34,9 @@ Decision records take the next free number. On 2026-10-02 a parallel session lan
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Sequenced 2026-10-02 (owner asked to fix priorities): first in phase 1 before the stack work, because parallel sessions and agents hit the collision four times on 2026-10-02 (0039/0040, 0041 x3 in TASK-36, and the stack-packs record). Not part of the phase check; needs its own ready challenge at pickup.
+<!-- SECTION:NOTES:END -->
