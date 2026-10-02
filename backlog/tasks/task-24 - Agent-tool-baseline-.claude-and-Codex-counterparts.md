@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 00:41'
+updated_date: '2026-10-02 00:49'
 labels:
   - agents
   - claude
@@ -81,4 +81,6 @@ Verification: generator repo profile byte-identical to .claude/settings.json; te
 Review round 1 FINDINGS (1 Material, 5 Minor, 4 Notes), fixed: M1 quoted ':core' pushes and 'branch * -m/-M core' now ask in the template profile (checker probes added); m1 HEAD:main allowed, HEAD: asks only for production, stage, dev; m2 checker f-string fixed and more ask probes (62 template checks, 0 mismatches both shells); m3 agents.md says the template ships the narrow list, 'ask-first list in AGENTS.md', '.claude/settings.json' instead of 'this file' (dogfood copy resynced); m4 mapped folders hold only template copies (dogfood.json, 0031); m5 debug-log excerpt kept in evidence and 0031 wording softened. Notes: AC3 text now says folders copied recursively; template allowlist is slightly wider than answer 5 (fetch, pull, npm ci, bare npm install, git -C forms) — included in the owner question; --dry-run pushes naming main ask (harmless).
 
 Review round 2 FINDINGS (1 Material, 2 Minor, 2 Notes), fixed: M1 quoted and refs/heads spellings now ask for every core branch, not only main; m1 quoted and refs/heads pushes into production/stage/dev ask; m2 forced rename or copy onto a core branch asks (branch -m/-M/-c/-C/--move/--copy * <core>); a first attempt (branch * <core>) wrongly asked for git branch --merged main and the checker caught it. Template profile now 123 allow / 0 deny / 1380 ask (earlier note's 616 is stale); checker 70 template and 64 repo checks, 0 mismatches in both shells; repo profile still byte-identical. n1 git branch -M main after git init asks once at setup (accepted).
+
+Review round 3 FINDINGS (1 Material, 2 Minor): M1 Claude Code matches PowerShell rules case-insensitively (text in the CLI binary, per the reviewer), so PowerShell ask rules 'branch -D *' and 'switch -C *' would also catch routine 'branch -d' and 'switch -c'. Fixed: generator emits those two only for Bash (both profiles); checker matches PowerShell case-insensitively and probes branch -d / switch -c as must-allow. The committed repo .claude/settings.json fails 2 PowerShell checks until the owner copies the regenerated file (scratchpad settings-for-template-repo.json); recorded in 0027. m1 single-quoted pushes into non-main cores ask; m2 plain pushes of production/stage/dev ask. Template profile now 123/0/1412; checks 75 Bash / 73 PowerShell template, 64/63 repo (new file), 0 mismatches.
 <!-- SECTION:NOTES:END -->

@@ -59,8 +59,10 @@ for t in TOOLS:
                 f"{t}({g} push * +*)", f"{t}({g} push *--tags*)", f"{t}({g} push *--follow-tags*)",
                 f"{t}({g} push * refs/tags/*)", f"{t}({g} push * v*)",
                 f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
-                f"{t}({g} branch -D *)", f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
+                f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                 f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)"]
+        if t == "Bash":  # PowerShell matches case-insensitively, so -D would also catch -d
+            ask += [f"{t}({g} branch -D *)"]
 
 if PROFILE == "template":
     # Owner answer 5 (0021) amended by 0024: read-only tools, package scripts, backlog, git add/commit/push and
@@ -100,14 +102,16 @@ if PROFILE == "template":
                     ask += [f"{t}({g} branch {f} * {core})"]
             for core in CORES[1:]:
                 ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)", f"{t}({g} push * HEAD:{core}*)",
-                        f"{t}({g} push * *:refs/heads/{core}*)", f"{t}({g} push * \"*:{core}\"*)"]
+                        f"{t}({g} push * *:refs/heads/{core}*)", f"{t}({g} push * \"*:{core}\"*)", f"{t}({g} push * '*:{core}'*)",
+                        f"{t}({g} push * {core})", f"{t}({g} push * {core} *)"]
             ask += [f"{t}({g} push *--force*)", f"{t}({g} push -f *)", f"{t}({g} push * -f)", f"{t}({g} push * -f *)",
                     f"{t}({g} push * +*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
                     f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
-                    f"{t}({g} branch -D *)", f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
+                    f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                     f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)",
-                    f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)",
-                    f"{t}({g} switch -C *)"]
+                    f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)"]
+            if t == "Bash":  # PowerShell matches case-insensitively: -D would catch -d, -C would catch -c
+                ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)"]
 
 out = {"$schema": "https://json.schemastore.org/claude-code-settings.json",
        "permissions": {"allow": allow, "deny": deny, "ask": ask}}

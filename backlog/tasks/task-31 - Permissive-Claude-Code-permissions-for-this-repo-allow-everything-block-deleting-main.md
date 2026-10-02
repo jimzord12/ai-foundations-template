@@ -7,7 +7,7 @@ status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 23:01'
-updated_date: '2026-10-02 00:03'
+updated_date: '2026-10-02 00:49'
 labels:
   - agents
   - claude
@@ -67,6 +67,8 @@ Review round 2 FINDINGS: M1 PowerShell matches deny rules against the whole line
 Review round 3 FINDINGS: M1 PowerShell checks an && / || chain as one unit (narrow allows never pre-approve it; deny matches across it), while ; splits statements (verified by the reviewer's echo probes in dontAsk mode). Fixed: AGENTS.md bullet now says run each git command as its own PowerShell call, no && or || chains; 0027 states the accurate mechanism and lists chains under the classifier limit. N1 mechanism of the proof's PowerShell denial noted.
 
 Review round 4 PASS (0 Blocking/Material); reviewer's live probes confirmed: PowerShell ; splits statements, && chains are never pre-approved by narrow rules and deny matches across them. Notes N1 ('narrow' added to the AGENTS.md bullet) and N2 (AC #1 lists chains) applied; N3 committed with this change.
+
+2026-10-02 (TASK-24 review round 3): PowerShell rules match case-insensitively, so this repo's PowerShell ask rule for branch -D also caught branch -d. Generator fixed; the regenerated file waits for the owner to copy it (owner batch).
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

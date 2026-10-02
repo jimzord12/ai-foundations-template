@@ -12,7 +12,8 @@ def rules(kind):
     out = []
     for r in p.get(kind, []):
         m = re.fullmatch(TOOL + r"\((.*)\)", r)
-        if m: out.append(re.compile("^" + ".*".join(re.escape(x) for x in m.group(1).split("*")) + "$", re.S))
+        # Claude Code matches PowerShell rules case-insensitively.
+        if m: out.append(re.compile("^" + ".*".join(re.escape(x) for x in m.group(1).split("*")) + "$", re.S | (re.I if TOOL == "PowerShell" else 0)))
     return out
 D, A, L = rules("deny"), rules("ask"), rules("allow")
 def verdict(c):
@@ -38,7 +39,7 @@ must = {
    "git --no-pager branch -D main", "git -c core.x=y branch -D main", "git push origin refs/heads/main --delete", "git branch -m main old"],
  "ask": ["git push --force origin feature/x", "git push -f origin x", "git push origin x -f", "git push origin +feature/x",
    "git push origin v0.1.0", "git push --tags", "git push --follow-tags origin main", "git reset --hard HEAD~1", "git reset -q --hard",
-   "git clean -fd", "git branch -D feature/old", "git branch -f feature/x main"],
+   "git clean -fd", "git branch -f feature/x main"],
 }
 if PROFILE == "template":
     must = {
@@ -46,21 +47,24 @@ if PROFILE == "template":
        "git push -u origin feature/x", "git push origin feature/x-fix", "git merge --ff-only feature/x", "git branch -d feature/x",
        "git push origin --delete feature/x", "git branch --merged main", f"git -C {P} status", f"git -C {P} commit -m x",
        "npm run check", "npm test", "npm ci", "npm install", "backlog task list", "npx backlog.md task list", "git fetch", "git pull",
-       "git push origin HEAD:main", "git push origin feature/x:main"],
+       "git push origin HEAD:main", "git push origin feature/x:main", "git branch -d feature/x", "git switch -c feature/y"],
      "ask": ["git branch -D main", "git branch -d production", "git branch -d -f stage", "git push origin --delete main",
        "git push --delete origin dev", "git push origin :production", "git push origin HEAD:production", "git push origin feature/x:stage",
        'git branch -D "main"', f"git -C {P} branch -D main", "git branch -m main old", "git push --force origin feature/x",
        "git push -f origin x", "git push origin +feature/x", "git push --mirror origin", "git reset --hard HEAD~1", "git clean -fd",
-       "git branch -D feature/old", "git branch -f feature/x main", "git switch --discard-changes main", "git switch -f main",
-       "git switch -C feature/x", 'git push origin ":main"', "git push origin ':stage'", "git push origin --delete refs/heads/dev",
+       "git branch -f feature/x main", "git switch --discard-changes main", "git switch -f main", 'git push origin ":main"', "git push origin ':stage'", "git push origin --delete refs/heads/dev",
        "git push origin :refs/heads/production", "git push --prune origin", "git branch -M main old", "git branch -f -m main x",
        "git switch --force main", "git push origin main --delete", 'git push origin --delete "production"',
        "git push --delete origin 'stage'", 'git branch -d "production"', 'git push origin ":refs/heads/dev"',
        "git push origin HEAD:refs/heads/production", 'git push origin "feature/x:dev"', "git branch -M feature/x main",
-       "git branch -C feature/x production"],
+       "git branch -C feature/x production", "git push origin 'HEAD:production'", "git push origin dev", "git push -u origin stage"],
      "classifier": ["npm install lodash", "npm run dev", f"git -C {P} reflog", "git restore .", "git checkout -- a.ts", "curl https://x",
        "node -e 1", "git rebase main", "git tag v1"],
     }
+    if TOOL == "Bash":
+        must["ask"] += ["git branch -D feature/old", "git switch -C feature/x"]
+if PROFILE == "repo" and TOOL == "Bash":
+    must["ask"] += ["git branch -D feature/old"]
 bad = 0
 for want, cs in must.items():
     for c in cs:

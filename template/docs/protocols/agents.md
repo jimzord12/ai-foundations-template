@@ -34,7 +34,7 @@ skills: [review-core]
 - The allowlist reduces friction; it is not a sandbox. Anything not listed (installing a new dependency, other commands, file edits in manual mode) prompts, or in auto mode goes to Claude Code's classifier.
 - Auto mode ignores blanket rules such as `Bash` or `PowerShell`, which is why the list is per command.
 - Merging into a core branch other than `main` cannot be detected from the command alone; that rule stays in AGENTS.md.
-- In PowerShell, run each git command as its own call.
+- In PowerShell, run each git command as its own call. PowerShell rules match case-insensitively.
 - Writes under `.claude/` are protected: settings never pre-approve them, so changing a profile, a skill or `.claude/settings.json` may need the owner.
 - A folder Claude Code has not trusted ignores the project's allow list. Before an unattended `claude -p` run in a new folder, open Claude Code there once and accept the trust prompt.
 - For a guard that does not depend on how a command is spelled, protect `main` with a GitHub ruleset that blocks deletion and force pushes.
