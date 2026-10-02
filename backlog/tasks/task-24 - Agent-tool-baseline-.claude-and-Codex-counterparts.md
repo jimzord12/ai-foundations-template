@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 00:38'
+updated_date: '2026-10-02 00:41'
 labels:
   - agents
   - claude
@@ -79,4 +79,6 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 Verification: generator repo profile byte-identical to .claude/settings.json; template profile 123 allow / 0 deny / 616 ask; check_settings.py 0 mismatches for repo (64) and template (51) profiles, Bash and PowerShell. Smoke express/next/rn exit 0, AGENTS.md 67/68/67 lines, rendered .claude/settings.json identical to the template file, agents.md present, no Jinja leftovers, leak grep clean. dogfood_check.py: detects missing and differing copies (exit 1), --sync fixes them, clean run exit 0. Proof (evidence in scratchpad proof-evidence/task24/): dontAsk with --settings: switch -c, commit, backlog ran; push --delete main, branch -D, push --force and node -e refused; control without --settings: all refused; auto with --settings and --debug: the three ran from allow rules (no permission suggestion, unlike node -e which hit the classifier), ask commands held. Project-scoped allow entries were ignored in all runs (untrusted folder), which is why the file was passed with --settings. Not observed in auto mode: npm run and npx backlog.md entries.
 
 Review round 1 FINDINGS (1 Material, 5 Minor, 4 Notes), fixed: M1 quoted ':core' pushes and 'branch * -m/-M core' now ask in the template profile (checker probes added); m1 HEAD:main allowed, HEAD: asks only for production, stage, dev; m2 checker f-string fixed and more ask probes (62 template checks, 0 mismatches both shells); m3 agents.md says the template ships the narrow list, 'ask-first list in AGENTS.md', '.claude/settings.json' instead of 'this file' (dogfood copy resynced); m4 mapped folders hold only template copies (dogfood.json, 0031); m5 debug-log excerpt kept in evidence and 0031 wording softened. Notes: AC3 text now says folders copied recursively; template allowlist is slightly wider than answer 5 (fetch, pull, npm ci, bare npm install, git -C forms) — included in the owner question; --dry-run pushes naming main ask (harmless).
+
+Review round 2 FINDINGS (1 Material, 2 Minor, 2 Notes), fixed: M1 quoted and refs/heads spellings now ask for every core branch, not only main; m1 quoted and refs/heads pushes into production/stage/dev ask; m2 forced rename or copy onto a core branch asks (branch -m/-M/-c/-C/--move/--copy * <core>); a first attempt (branch * <core>) wrongly asked for git branch --merged main and the checker caught it. Template profile now 123 allow / 0 deny / 1380 ask (earlier note's 616 is stale); checker 70 template and 64 repo checks, 0 mismatches in both shells; repo profile still byte-identical. n1 git branch -M main after git init asks once at setup (accepted).
 <!-- SECTION:NOTES:END -->

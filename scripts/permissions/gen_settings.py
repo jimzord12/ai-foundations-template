@@ -82,18 +82,25 @@ if PROFILE == "template":
     for t in TOOLS:
         for g in ["git", "git -C *"]:
             for core in CORES:
-                for m in ([core, f'"{core}"', f"'{core}'"] if core == "main" else [core]):
+                names = [core, f'"{core}"', f"'{core}'"]
+                for m in names:
                     for tail in ["", " *"]:
                         for f in ["-d", "-D", "--delete"]:
                             ask += [f"{t}({g} branch {f}* {m}{tail})", f"{t}({g} branch * {f}* {m}{tail})"]
+                for m in names + [f"refs/heads/{core}", f'"refs/heads/{core}"']:
+                    for tail in ["", " *"]:
                         ask += [f"{t}({g} push *-d* {m}{tail})", f"{t}({g} push * :{m}{tail})"]
                     ask += [f"{t}({g} push * {m} *-d*)"]
                 ask += [f"{t}({g} push * refs/heads/{core} *-d*)", f"{t}({g} push *-d* refs/heads/{core}*)",
                         f"{t}({g} push * :refs/heads/{core}*)", f"{t}({g} push * \":{core}\"*)", f"{t}({g} push * ':{core}'*)",
                         f"{t}({g} branch -m {core}*)", f"{t}({g} branch -M {core}*)", f"{t}({g} branch --move {core}*)",
-                        f"{t}({g} branch * -m {core}*)", f"{t}({g} branch * -M {core}*)"]
+                        f"{t}({g} branch * -m {core}*)", f"{t}({g} branch * -M {core}*)",
+                        f"{t}({g} push * \":refs/heads/{core}\"*)"]
+                for f in ["-m", "-M", "-c", "-C", "--move", "--copy"]:
+                    ask += [f"{t}({g} branch {f} * {core})"]
             for core in CORES[1:]:
-                ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)", f"{t}({g} push * HEAD:{core}*)"]
+                ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)", f"{t}({g} push * HEAD:{core}*)",
+                        f"{t}({g} push * *:refs/heads/{core}*)", f"{t}({g} push * \"*:{core}\"*)"]
             ask += [f"{t}({g} push *--force*)", f"{t}({g} push -f *)", f"{t}({g} push * -f)", f"{t}({g} push * -f *)",
                     f"{t}({g} push * +*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
                     f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",

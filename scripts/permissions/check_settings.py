@@ -54,7 +54,10 @@ if PROFILE == "template":
        "git branch -D feature/old", "git branch -f feature/x main", "git switch --discard-changes main", "git switch -f main",
        "git switch -C feature/x", 'git push origin ":main"', "git push origin ':stage'", "git push origin --delete refs/heads/dev",
        "git push origin :refs/heads/production", "git push --prune origin", "git branch -M main old", "git branch -f -m main x",
-       "git switch --force main", "git push origin main --delete"],
+       "git switch --force main", "git push origin main --delete", 'git push origin --delete "production"',
+       "git push --delete origin 'stage'", 'git branch -d "production"', 'git push origin ":refs/heads/dev"',
+       "git push origin HEAD:refs/heads/production", 'git push origin "feature/x:dev"', "git branch -M feature/x main",
+       "git branch -C feature/x production"],
      "classifier": ["npm install lodash", "npm run dev", f"git -C {P} reflog", "git restore .", "git checkout -- a.ts", "curl https://x",
        "node -e 1", "git rebase main", "git tag v1"],
     }
