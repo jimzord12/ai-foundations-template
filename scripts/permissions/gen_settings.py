@@ -89,10 +89,11 @@ if PROFILE == "template":
                         ask += [f"{t}({g} push *-d* {m}{tail})", f"{t}({g} push * :{m}{tail})"]
                     ask += [f"{t}({g} push * {m} *-d*)"]
                 ask += [f"{t}({g} push * refs/heads/{core} *-d*)", f"{t}({g} push *-d* refs/heads/{core}*)",
-                        f"{t}({g} push * :refs/heads/{core}*)", f"{t}({g} push * HEAD:{core}*)",
-                        f"{t}({g} branch -m {core}*)", f"{t}({g} branch -M {core}*)", f"{t}({g} branch --move {core}*)"]
+                        f"{t}({g} push * :refs/heads/{core}*)", f"{t}({g} push * \":{core}\"*)", f"{t}({g} push * ':{core}'*)",
+                        f"{t}({g} branch -m {core}*)", f"{t}({g} branch -M {core}*)", f"{t}({g} branch --move {core}*)",
+                        f"{t}({g} branch * -m {core}*)", f"{t}({g} branch * -M {core}*)"]
             for core in CORES[1:]:
-                ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)"]
+                ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)", f"{t}({g} push * HEAD:{core}*)"]
             ask += [f"{t}({g} push *--force*)", f"{t}({g} push -f *)", f"{t}({g} push * -f)", f"{t}({g} push * -f *)",
                     f"{t}({g} push * +*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
                     f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 00:32'
+updated_date: '2026-10-02 00:38'
 labels:
   - agents
   - claude
@@ -29,7 +29,7 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 <!-- AC:BEGIN -->
 - [ ] #1 template/.claude/settings.json ships with an allowlist for generated projects. Open owner question before building: the narrow list from owner answer 5 (read-only tools, package scripts, backlog, git add/commit/push, git switch, branch, merge and push --delete; nothing broader), or the permissive policy this repo adopted in decision 0027 (everything allowed except deleting main). Either way it needs narrow per-command rules, because auto mode drops blanket Bash, PowerShell, Agent and Monitor rules (see 0027 and scripts/permissions/). This repo's own root settings are owned by TASK-31
 - [ ] #2 .claude/agents/ and .claude/skills/ layout documented in the router of both the root and the template AGENTS.md (at most 4 lines each) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write, dogfooded files must not be .jinja or link to template-only files)
-- [ ] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. TASK-24 adds only docs/protocols/agents.md and the .claude/agents/* and .claude/skills/* globs; TASK-11 adds review.md and TASK-26 adds ready.md when they create them. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are never copied
+- [ ] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. TASK-24 adds only docs/protocols/agents.md and the .claude/agents and .claude/skills folders (copied recursively; a mapped folder holds only template copies); TASK-11 adds review.md and TASK-26 adds ready.md when they create them. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are never copied
 - [ ] #4 Proof via headless claude -p --output-format stream-json --verbose in a generated project with --setting-sources project and no permission-skipping flags: an allowlisted command runs without a prompt and a non-listed command appears in permission_denials. An untrusted workspace ignores project allow entries, so either use a trusted workspace or pass the file with --settings in dontAsk mode, as the TASK-31 proof did
 <!-- AC:END -->
 
@@ -77,4 +77,6 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 2026-10-02 readiness round 1 NOT READY: 3 Material (proof did not test the allowlist, auto-mode behaviour unproven, dogfood semantics for skills underspecified) and 7 Minor, all explicit fixes folded into plan v2 (step 10); proceeding without another round. Building AC1 with the standing owner answer 5 (0021, amended by 0024); the permissive alternative goes to the owner's question batch.
 
 Verification: generator repo profile byte-identical to .claude/settings.json; template profile 123 allow / 0 deny / 616 ask; check_settings.py 0 mismatches for repo (64) and template (51) profiles, Bash and PowerShell. Smoke express/next/rn exit 0, AGENTS.md 67/68/67 lines, rendered .claude/settings.json identical to the template file, agents.md present, no Jinja leftovers, leak grep clean. dogfood_check.py: detects missing and differing copies (exit 1), --sync fixes them, clean run exit 0. Proof (evidence in scratchpad proof-evidence/task24/): dontAsk with --settings: switch -c, commit, backlog ran; push --delete main, branch -D, push --force and node -e refused; control without --settings: all refused; auto with --settings and --debug: the three ran from allow rules (no permission suggestion, unlike node -e which hit the classifier), ask commands held. Project-scoped allow entries were ignored in all runs (untrusted folder), which is why the file was passed with --settings. Not observed in auto mode: npm run and npx backlog.md entries.
+
+Review round 1 FINDINGS (1 Material, 5 Minor, 4 Notes), fixed: M1 quoted ':core' pushes and 'branch * -m/-M core' now ask in the template profile (checker probes added); m1 HEAD:main allowed, HEAD: asks only for production, stage, dev; m2 checker f-string fixed and more ask probes (62 template checks, 0 mismatches both shells); m3 agents.md says the template ships the narrow list, 'ask-first list in AGENTS.md', '.claude/settings.json' instead of 'this file' (dogfood copy resynced); m4 mapped folders hold only template copies (dogfood.json, 0031); m5 debug-log excerpt kept in evidence and 0031 wording softened. Notes: AC3 text now says folders copied recursively; template allowlist is slightly wider than answer 5 (fetch, pull, npm ci, bare npm install, git -C forms) — included in the owner question; --dry-run pushes naming main ask (harmless).
 <!-- SECTION:NOTES:END -->
