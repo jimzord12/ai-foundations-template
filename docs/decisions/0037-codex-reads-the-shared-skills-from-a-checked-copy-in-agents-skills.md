@@ -33,7 +33,7 @@ Chosen option: "(b1) a second copy checked by folder pairs", because it is the o
 
 - Good, because one source feeds both tools with no new code, and a live Codex session proved it.
 - Bad, because every generated project holds two physical copies with no drift check there, only the written rule and the Parity lens.
-- Bad, because the reviewer skills take about 1,300 characters of Codex's skill list, out of a list budget of 2% of the model's context window (8,000 characters as the fallback); a 0.159.3 session listed 12.7k characters of skills without truncation.
+- Bad, because the six shared skills (reviewer and challenger lenses) take about 1,300 characters of Codex's skill list, out of a list budget of 2% of the model's context window (8,000 characters as the fallback); a 0.159.3 session listed 12.7k characters of skills without truncation.
 
 ## More Information
 
@@ -55,6 +55,8 @@ Chosen option: "(b1) a second copy checked by folder pairs", because it is the o
   8. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/skills/src/assets/samples/skill-creator/references/openai_yaml.md
   9. Claude Code skills (skills only from `.claude/skills/`, no skill-path setting): https://code.claude.com/docs/en/skills
   10. Copier configuring, `preserve_symlinks` (a symlink is rendered as the file it points to): https://copier.readthedocs.io/en/stable/configuring/
+  11. Skill-list budget (2% of the context window in tokens, 8,000 characters as the fallback; `[skills] max_context_tokens` overrides): https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/ext/skills/src/render.rs
+- Known residue: a Codex session started inside `template/` of this repo lists each shared skill twice (it walks up past `template/.agents/skills` to `.agents/skills`); start Codex at the repo root.
 - Live proof, on a fresh express render outside any repo, after `git init`:
   - `codex exec --sandbox read-only --ephemeral --json -C <dir> -o <out> "<prompt>"` with a list prompt. Codex named all six skills (context-lenses, docs-lenses, ready, review-core, review-lenses, scan-lenses) at `r9/<name>/SKILL.md` (Codex's skill-roots table mapped `r9` to the render's `.agents/skills`; the number depends on the machine's other skill roots), and its event log had no command executions.
   - A second run asked to use `$review-core`. Codex read `.agents/skills/review-core/SKILL.md` and quoted `# Review core`.

@@ -6,7 +6,7 @@ How this project's agent profiles, skills and Claude Code permissions are laid o
 
 - `.claude/agents/<name>.md`: one profile per job (a reviewer, a challenger, a maintainer). Profiles stay thin: a job, a tool list, a model, and the skills they preload.
 - `.claude/skills/<name>/SKILL.md` (plus any scripts it needs): shared knowledge that several profiles reuse.
-- `.agents/skills/<name>/`: Codex's copy of `.claude/skills/`, byte for byte (Codex's project skill folder; Claude Code reads only `.claude/skills/`; checked against the Codex docs and source on 2026-10-02). Change a shared skill in `.claude/skills/` and copy the folder to `.agents/skills/` in the same change (a removed or renamed skill is removed or renamed there too); never edit the copy alone. Codex ignores Claude-only frontmatter such as `user-invocable`, so it lists the reviewer skills as ordinary skills; that is expected.
+- `.agents/skills/<name>/`: Codex's copy of `.claude/skills/`, byte for byte (Codex's project skill folder; Claude Code reads only `.claude/skills/`; checked against the Codex docs and source on 2026-10-02). Add or change a shared skill in `.claude/skills/` and copy the folder to `.agents/skills/` in the same change (a removed or renamed skill is removed or renamed there too); never edit the copy alone. Codex ignores Claude-only frontmatter such as `user-invocable`, so it lists the reviewer and challenger skills as ordinary skills; that is expected.
 - A profile preloads skills with the `skills` field; the full skill content is injected into the subagent at start.
 - Files under `.claude/` hold no template syntax and link only to files that exist in this project.
 

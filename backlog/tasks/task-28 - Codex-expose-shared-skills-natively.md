@@ -1,15 +1,14 @@
 ---
 id: TASK-28
 title: 'Codex: expose shared skills natively'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:22'
+updated_date: '2026-10-02 03:28'
 labels:
   - codex
   - skills
-  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -28,19 +27,19 @@ Owner decision 2026-10-01: in v0.1.0 Codex gets only what it supports natively: 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Codex's current skill discovery location and format verified from its docs and recorded
-- [ ] #2 Shared skills reach Codex from one source, template/.claude/skills/: its Codex copies, template/.agents/skills/ (rendered into every generated project) and this repo's .agents/skills/, are folder pairs in dogfood.json, and python scripts/dogfood_check.py passes (CI runs it later, TASK-13)
-- [ ] #3 Verified in a live Codex session, in a freshly rendered project, that lists or uses one shared skill
-- [ ] #4 Rule recorded in docs/protocols/agents.md (template, synced to this repo): .agents/skills/ is Codex's byte-identical copy of .claude/skills/, and a shared skill is changed in .claude/skills/ and copied in the same change; this repo's AGENTS.md says the folder pairs in dogfood.json cover every new shared skill and --sync creates its copies
+- [x] #1 Codex's current skill discovery location and format verified from its docs and recorded
+- [x] #2 Shared skills reach Codex from one source, template/.claude/skills/: its Codex copies, template/.agents/skills/ (rendered into every generated project) and this repo's .agents/skills/, are folder pairs in dogfood.json, and python scripts/dogfood_check.py passes (CI runs it later, TASK-13)
+- [x] #3 Verified in a live Codex session, in a freshly rendered project, that lists or uses one shared skill
+- [x] #4 Rule recorded in docs/protocols/agents.md (template, synced to this repo): .agents/skills/ is Codex's byte-identical copy of .claude/skills/, and a shared skill is changed in .claude/skills/ and copied in the same change; this repo's AGENTS.md says the folder pairs in dogfood.json cover every new shared skill and --sync creates its copies
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -218,4 +217,46 @@ Fallback challenger (code-reviewer + ready skill). One Minor folded in: step 6b 
   - From a subfolder, the walk-up to `.git` still found them.
   - Without `.git`, a copy one level up was not found.
   - The six skills take 1,302 characters of the list.
+
+## Review loop
+
+Mixed change, so each round ran three reviewers: context-reviewer for the instruction files, docs-reviewer for record 0037, the READMEs and the notes, and code-reviewer for the copy mechanism.
+
+| Round | context-reviewer | docs-reviewer | code-reviewer |
+|---|---|---|---|
+| 1 | FINDINGS: 1 Material | FINDINGS: 1 Material | PASS |
+| 2 | PASS | PASS | PASS |
+
+- Round 1, context-reviewer: the record-number rule had moved out of its owner (the decisions README).
+- Round 1, docs-reviewer: 0037 gave the wrong skill-list budget.
+- Round 2 Minors, applied:
+  - the copy rule covers adding a skill;
+  - root AGENTS.md names the sources, since `template/.agents/skills/` is itself a copy;
+  - the decisions README says to renumber if the number is taken at merge, and to use the local main branch when there is no remote;
+  - 0037 adds source 11 (render.rs, the budget) and the known residue (Codex started inside `template/` lists each skill twice), and words the cost as "six shared skills".
+- Parked: DRAFT-3, a template .gitattributes (pre-existing finding).
+
+## Final checks
+
+- dogfood: 0 problem(s).
+- Smoke test express / next / rn: each exited 0, with "6 files identical" for the two skill folders.
+- Scratch proof files deleted.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Codex now reads the same shared skills as Claude Code, from one source.
+
+- Source and copies: `template/.claude/skills/` stays the source. Two `dogfood.json` folder pairs copy it to `template/.agents/skills/`, which is rendered into every generated project, and to this repo's `.agents/skills/`. `dogfood_check.py` catches drift.
+- Rule: generated projects get the copy rule in `docs/protocols/agents.md` (add, change, remove or rename a skill in both folders in the same change). The context-lenses Parity lens checks it.
+- Other docs: this repo's AGENTS.md and README describe the copies.
+- Record numbers: the decisions README now owns the rule. Take the next number free on the fetched main branch, and renumber if it is taken by the time you merge. ready.md points to it.
+- Decision 0037 records:
+  - the discovery facts, verified against codex-cli 0.159.3 and its source;
+  - the options, and the trade-offs: two copies, and no drift check in generated projects.
+- Live proof in Codex on a fresh render:
+  - all six skills listed with no command run;
+  - `$review-core` used: it read `.agents/skills/review-core/SKILL.md` and quoted `# Review core`.
+- Process: the readiness gate took three rounds; the review loop took two rounds, PASS on all three reviewers.
+<!-- SECTION:FINAL_SUMMARY:END -->
