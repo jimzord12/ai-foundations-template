@@ -4,7 +4,7 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-02 16:17'
+updated_date: '2026-10-02 16:31'
 labels:
   - testing
 milestone: m-0
@@ -23,9 +23,9 @@ Cheap, deterministic layer of the testing strategy, no agents involved. Today on
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Render test per stack: right files, one stack block, no leftover Jinja, links resolve, rendered AGENTS.md at most 100 lines
-- [ ] #2 copier update test using local tags in a scratch clone: local edits under Project specifics kept, template change applied
-- [ ] #3 Collision tests on freshly scaffolded Next.js and RN projects and the Express skeleton: AGENTS.md, CLAUDE.md, tsconfig, lint config and package.json land as documented, non-interactively
+- [ ] #1 Render test per Phase 1 pack: right files, the right pack in docs/stack.md, no leftover Jinja, links resolve, rendered AGENTS.md at most 100 lines
+- [ ] #2 copier update test using local tags in a scratch clone: local edits under Project specifics kept, template change applied, a changed pack refreshed, the stored stack and skeleton answers kept
+- [ ] #3 Collision tests on freshly scaffolded Next.js and RN projects, an existing Express project and the Express skeleton: AGENTS.md, CLAUDE.md, tsconfig, lint config and package.json land as documented, non-interactively; an existing Express project keeps its own package.json and src even with --overwrite
 - [ ] #4 Each test shown red when the behaviour it covers is broken; harness language choice recorded
 <!-- AC:END -->
 
