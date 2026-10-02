@@ -17,10 +17,22 @@ Commit and push feature branches without asking. Merge into `main` without askin
 
 ## Cleaning up
 
-- Delete a feature branch, locally and on the remote, as soon as it is merged. Core branches are never deleted after a merge.
-- Delete temporary files and scratch output you created.
-- Never delete untracked or ignored files you did not create: they may be the owner's work, `.env` files or local preferences.
-- Never discard uncommitted changes you did not make (for example with `git restore` or `git checkout -- <path>`).
+Keep the repository clean: when you can delete something safely, delete it, and do not ask. In the era of AI the cost of a leftover is higher than the cost of a loss: a stale branch, worktree or scratch file misleads the next agent and piles up, while lost work can almost always be regenerated or re-derived. If something is worth keeping, keep it properly (a decision record, a Backlog task, the code on `main`) and delete the scaffolding around it; do not keep things "just in case".
+
+Delete without asking:
+
+- any branch that is fully merged into its base, locally and on the remote (core branches are never deleted after a merge);
+- any branch or worktree you created yourself, merged or not, once you are done with it or it was a dead end;
+- a worktree with no uncommitted changes (plain `git worktree remove`; do not use `--force` on a worktree you did not create);
+- stale remote-tracking refs (`git fetch --prune`);
+- temporary files and scratch output you created.
+
+Still ask (the list is in AGENTS.md): core branches, an unmerged branch you did not create whose commits exist nowhere else, force pushes, `reset --hard`, `git clean`.
+
+Never:
+
+- delete untracked or ignored files you did not create: they may be the owner's work, `.env` files or local preferences;
+- discard uncommitted changes you did not make (for example with `git restore` or `git checkout -- <path>`).
 
 ## Asking first
 
