@@ -1,11 +1,11 @@
 ---
 id: TASK-34
 title: 'Protocol cards: a header on every protocol file plus a check script'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-02 15:59'
-updated_date: '2026-10-02 15:59'
+updated_date: '2026-10-02 16:21'
 labels:
   - feature
 dependencies: []
@@ -21,19 +21,19 @@ A protocol is spread across several places: the rules file in docs/protocols/, a
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Every file in template/docs/protocols/ starts with a card stating its id, kind (process or rule), status, summary, when it applies, and the agents, skills and related protocols it uses; process cards also say when it ends and what it produces
-- [ ] #2 A check script fails when a card is missing or malformed, names an agent, skill or protocol that does not exist, when an agent profile or shared skill belongs to no protocol, or when a protocol is not routed from template/AGENTS.md.jinja
-- [ ] #3 The card format and the rule to keep it are documented where agents in generated projects will read them, and this repo's AGENTS.md names the check
-- [ ] #4 A decision record explains the card and why versions, a UI and decision links were left out
+- [x] #1 Every file in template/docs/protocols/ starts with a card stating its id, kind (process or rule), status, summary, when it applies, and the agents, skills and related protocols it uses; process cards also say when it ends and what it produces
+- [x] #2 A check script fails when a card is missing or malformed, names an agent, skill or protocol that does not exist, when an agent profile or shared skill belongs to no protocol, or when a protocol is not routed from template/AGENTS.md.jinja
+- [x] #3 The card format and the rule to keep it are documented where agents in generated projects will read them, and this repo's AGENTS.md names the check
+- [x] #4 A decision record explains the card and why versions, a UI and decision links were left out
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -51,4 +51,12 @@ A protocol is spread across several places: the rules file in docs/protocols/, a
 
 <!-- SECTION:NOTES:BEGIN -->
 Attended run; owner asked to do it now (ready gate waived by the owner).
+
+Review loop: 3 rounds, three reviewers each (context-reviewer, code-reviewer, docs-reviewer). R1 FINDINGS (wrong router heading, status meanings, loose routing, non-YAML values), all fixed. R2 context PASS; code and docs FINDINGS (YAML divergences such as yes/null/#1, committed .pyc), fixed. R3 PASS on all three; their Minors applied (clear unknown-key errors, printable values, letter-first names). Router gained rows for git.md and done.md; the "When to read what" table is now the protocol index and only its last cell counts. Evidence: protocol_check 8 cards 0 problems; planted breaks (renamed agent, unknown key, rule with ends-when, unrouted, colon, backtick, #, empty item, list kind, BOM, trailing space, prose-only route, stack-only route, Situation-column route, heading renamed, misspelled key) each fail with a clear message; 100k fuzzed values incl. control chars vs PyYAML safe_load, 0 mismatches; smoke render passes on express, next, rn; dogfood_check 0 problems.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Every protocol in template/docs/protocols/ now starts with a YAML protocol card (id, kind process|rule, status, summary, applies-when, ends-when/produces for processes, agents, skills, related). scripts/protocol_check.py (stdlib) fails on missing or malformed cards, unknown names, orphan profiles or skills, and protocols without a row in the router table, and only accepts values that load as the same YAML. Format documented in docs/protocols/agents.md "Protocol cards"; decision 0039. Verified with the check, planted breaks, a PyYAML fuzz comparison and the three-stack smoke test; review loop PASS in round 3. Follow-ups not created: ship the check to generated projects; a draft card for the lab protocol (DRAFT-2) and a home for lab-examples.md.
+<!-- SECTION:FINAL_SUMMARY:END -->
