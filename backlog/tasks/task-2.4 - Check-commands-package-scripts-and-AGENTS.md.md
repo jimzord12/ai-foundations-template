@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 16:45'
+updated_date: '2026-10-02 16:59'
 labels:
   - stack
   - instructions
@@ -28,7 +28,7 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Post-copy task adds only the combined check script (runs typecheck, lint, format:check and test, which 2.1-2.3 add)
+- [ ] #1 Post-copy task adds only the combined check script (runs typecheck, lint, format:check and test, which 2.1-2.3 add) for each pack that defines them (the generic pack defines none, so a project on it has no check script)
 - [ ] #2 npm run check passes on a freshly scaffolded project for each Phase 1 pack, and fails when any one of the four fails
 - [ ] #3 The packs and AGENTS.md name the exact commands, within the line budget of the phase plan
 <!-- AC:END -->

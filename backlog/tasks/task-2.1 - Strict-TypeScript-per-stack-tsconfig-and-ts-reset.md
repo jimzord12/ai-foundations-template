@@ -4,7 +4,7 @@ title: 'Strict TypeScript per stack: tsconfig and ts-reset'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 16:52'
+updated_date: '2026-10-02 16:58'
 labels:
   - stack
   - typescript
@@ -29,7 +29,7 @@ Agents write more consistent code under a strict compiler. Ship one tsconfig.fou
 - [ ] #2 ts-reset installed (via the post-copy task) and wired per pack
 - [ ] #3 npm run typecheck (tsc -p tsconfig.foundations.json --noEmit) passes on a freshly scaffolded project for each Phase 1 pack (Next.js, RN, Express skeleton) and each framework's own build is unaffected; the script runs the pack's prepare step first (for example next typegen) and the post-copy task ensures typescript is a dev dependency (record 0040); the open checks listed in record 0036 (editor-only plugins through extends) are verified
 - [ ] #4 Choices and versions recorded in docs/decisions/
-- [ ] #5 2.1 adds the typecheck script (the pack's prepare step, then tsc -p tsconfig.foundations.json --noEmit) through the post-copy task
+- [ ] #5 2.1 adds the typecheck script (the pack's prepare step, then tsc -p tsconfig.foundations.json --noEmit) through the post-copy task for each pack that defines one (the generic pack defines none)
 <!-- AC:END -->
 
 ## Definition of Done
