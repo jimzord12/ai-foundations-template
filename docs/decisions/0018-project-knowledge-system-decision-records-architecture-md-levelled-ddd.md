@@ -27,3 +27,4 @@ More files per project; their effect on agents is measured by the evals (TASK-20
 ## More Information
 
 - Builds on [0007](0007-agent-instructions-live-per-project-as-a-thin-agents-md-router.md).
+- The design evolution protocol is implemented by [0028](0028-authority-tiers-and-design-evolution-protocol.md).

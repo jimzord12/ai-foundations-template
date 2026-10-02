@@ -4,7 +4,7 @@ title: Definition of done and evidence rule
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 23:18'
+updated_date: '2026-10-02 00:04'
 labels:
   - instructions
   - verification
@@ -45,4 +45,6 @@ Owner practice from agentic-wave and Night Shift: a green test does not prove be
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01: owns the done rule text; TASK-2 subtasks own the tooling it refers to.
+
+2026-10-02 (TASK-7 readiness): done.md is the detailed owner of the end-of-task one-line-per-decision summary; AGENTS.md keeps the one rule line and charter.md does not restate it.
 <!-- SECTION:NOTES:END -->

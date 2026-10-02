@@ -27,3 +27,4 @@ Quality depends on the instruction files being good; details are tracked in TASK
 ## More Information
 
 - Changes the default of [0002](0002-agent-instruction-baseline.md).
+- Narrowed by [0028](0028-authority-tiers-and-design-evolution-protocol.md): big architecture changes need the owner's approval.

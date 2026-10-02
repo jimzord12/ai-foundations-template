@@ -1,10 +1,11 @@
 ---
 id: TASK-7
 title: 'Tech-lead charter: authority tiers and architecture-evolution triggers'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@claude'
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 23:12'
+updated_date: '2026-10-02 00:06'
 labels:
   - instructions
   - charter
@@ -43,17 +44,13 @@ The main agent acts as tech lead and senior engineer and owns the codebase; the 
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. Branch feature/task-7-charter from main after TASK-31 merges.
-2. template/docs/protocols/charter.md: roles (agent = tech lead and senior engineer who owns the codebase; owner = technical product owner); authority tiers per decision kind (product: owner decides; architecture: agent proposes, owner approves big changes, with a concrete test for 'big': crosses a boundary named in architecture.md, adds a project-wide pattern or layer, moves or renames many files, or changes a public API or data model; technical: agent decides and records); the hard-to-reverse list always goes to the owner (database, auth provider, hosting and infrastructure, paid services, core framework changes, anything contradicting the instructions) with options, tradeoffs and a recommendation; do not re-argue a recorded decision without new facts; end-of-task one-line-per-decision summary.
-3. template/docs/protocols/evolution.md: ladder (inline code, function, module, pattern or interface, folder restructure, ports and adapters at a boundary); measurable signals (second copy note it, third extract it; file over about 300 lines or function over about 50; one change needing edits in more than 3 folders; the same bug fixed twice; test setup pain; a second business area means glossary level 2); procedure (architecture record status proposed, owner approval for big changes, one commit that only moves or renames and updates references with checks green, then separate commits for behaviour, update architecture.md and the glossary in the same change, tests and review pass); step-down rule (an abstraction with one implementation and no second in sight, or indirection nobody uses, is removed through a new record that supersedes the old); interim rules (friction signals come from the end-of-task summary until a findings pipeline exists; the full safe-move protocol arrives in a later template version). No task IDs of this repo in shipped text.
-4. template/AGENTS.md.jinja: 'Who decides what' shrinks to a pointer that still names the owner-only hard-to-reverse list in one line (always loaded, safety-critical); 'Evolve the codebase' shrinks to a pointer plus the ladder in one line; router rows for charter.md and evolution.md. Net line change negative or at most +4; rendered <= 100 lines. template/docs/decisions/README.md Kinds bullet points to charter.md instead of AGENTS.md 'Who decides what'.
-5. Decision record 'Design evolution protocol and authority tiers' (kind product, owner-approved design 2026-10-01) plus index row.
-6. Verify: smoke test 3 stacks (files present, no Jinja leftovers, line count, router paths exist); grep that every pointer target exists; grep shipped files for TASK- IDs (none).
-7. Independent review loop to PASS; merge, push, delete branch.
+1. Stop condition: start only after TASK-31 is merged into main (record 0027 exists on main); branch feature/task-7-charter from main. New record is 0028.
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner of authority tiers (who decides what). TASK-25 references these tiers for who decides each decision kind instead of restating them.
+
+Moved-rule table (old template AGENTS.md line -> new home): 23 'You decide' -> stays in AGENTS.md; 24 kind mapping -> stays (one line) plus pointer to charter.md for 'big'; 25 hard-to-reverse list -> stays in AGENTS.md only (charter.md references it); 26 supersede wording -> removed from AGENTS.md, owned by docs/decisions/README.md line 8; 27 end-of-task decision summary -> stays (done.md will own detail, TASK-15 note); 30 Evolve paragraph -> one ladder line plus rule of three in AGENTS.md, signals/bands/move/step-down in evolution.md, interim proposal-pipeline wording dropped (roadmap moved to record 0028). Verification: smoke express/next/rn exit 0, AGENTS.md 57/58/57 lines (was 55/56/55), no Jinja leftovers, all router paths exist except the docs/adr/ brownfield example; reference grep shows only valid 'Who decides what' / 'Evolve the codebase' references; leak grep (TASK-, task-, Phase N, findings pipeline, 0008, 0018) finds nothing in template/.
 <!-- SECTION:NOTES:END -->
