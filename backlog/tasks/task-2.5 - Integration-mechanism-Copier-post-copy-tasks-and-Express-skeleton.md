@@ -4,7 +4,7 @@ title: 'Integration mechanism: Copier post-copy tasks and Express skeleton'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 16:18'
+updated_date: '2026-10-02 16:24'
 labels:
   - stack
   - copier
@@ -25,14 +25,14 @@ Next.js, React Native and other framework projects are scaffolded first with the
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Copier _tasks run after copy and add scripts and dev dependencies without a merge prompt; README documents which files are overwritten (instruction and documentation files only) and which config files are extended instead of overwritten (record 0036)
-- [ ] #2 Detection per record 0040: the stack question loses its choices and its default is computed in copier.yml from package.json through _external_data, with a fixed precedence list (Expo before React Native, Next.js before Express, and so on); no match or no package.json gives generic; the answer is stored; -d stack=<name> overrides it; a name with no pack file renders the generic pack; the pack names express, next and rn stay valid
+- [ ] #2 Detection per record 0040: the stack question loses its choices and its default is computed in copier.yml from package.json through _external_data, with a fixed precedence list (Expo before React Native, Next.js before Express, and so on); no match or no package.json gives generic; the answer is stored; -d stack=<name> overrides it; a name with no pack file renders the generic pack; the pack names express, next and rn stay valid; a package.json that is not valid YAML (for example tab-indented) aborts the first copy, so the README documents the -d stack=<name> workaround and a test reproduces the case
 - [ ] #3 Packs live in packs/ at the template root, outside template/: one file per framework plus generic, rendered into docs/stack.md by template/docs/stack.md.jinja so Copier tracks it; Phase 1 ships next, rn, express and generic (the stack blocks of template/AGENTS.md.jinja move into them); each pack names its prepare step before typecheck, how it meets lint, format:check and test, and the framework's own checker where tsc does not cover its files; AGENTS.md names the stack, points at docs/stack.md and stays within the line budget of the phase plan; the Next.js rule about the nextjs-agent-rules block says AGENTS.md
-- [ ] #4 Express skeleton ships (package.json, src/app.ts with a GET /health route, .gitignore including .env) and runs with npm install then the start script
-- [ ] #5 Verified on a freshly scaffolded Next.js project, a freshly scaffolded RN project (current stable template) and the Express skeleton: copy finishes non-interactively with --defaults and picks the right pack
+- [ ] #4 Express skeleton ships (package.json, src/app.ts with a GET /health route, .gitignore including .env) under conditional file names on stack (0004's mechanism, kept for this case only) and runs with npm install then the start script
+- [ ] #5 Verified on a freshly scaffolded Next.js project, a freshly scaffolded RN project (current stable template) and the Express skeleton (an empty folder copied with -d stack=express): copy finishes non-interactively with --defaults and picks the right pack; detection is also run on the package.json of each real scaffold
 - [ ] #6 Post-copy tasks (scripts and dev dependencies only) run only on copy (guarded with _copier_operation or equivalent, verified in the installed Copier version) or are idempotent, so copier update never overwrites the user's scripts; decision recorded; a changed pack reaches existing projects through copier update (checked)
-- [ ] #7 Root AGENTS.md smoke-test command and the backlog Definition of Done updated so the smoke test still renders into an empty folder (for example with --skip-tasks), plus a separate documented check that runs the tasks on a scaffolded project; root AGENTS.md "Where things go" and the README intro and layout row describe packs instead of inline stack blocks
+- [ ] #7 Root AGENTS.md smoke-test command and the backlog Definition of Done updated so the smoke test still renders into an empty folder (for example with --skip-tasks), plus a separate documented check that runs the tasks on a scaffolded project; root AGENTS.md "Where things go" (keeping the conditional-file-name sentence for the Express skeleton) and the README intro and layout row describe packs instead of inline stack blocks
 - [ ] #8 Scripts and dependencies 2.5 itself adds are named: Express skeleton start and dev scripts plus a TypeScript runner; Next.js and RN get none from 2.5 (their scripts come from 2.1-2.4). The decision for the copy-only guard states the consequence: later script or dependency changes reach existing projects only through a documented manual step
-- [ ] #9 Adding a framework is documented (a pack file and one precedence line) and a check fails when the precedence list names a pack that has no file
+- [ ] #9 Adding a framework is documented (a pack file and one precedence line; packs are Jinja templates, so code samples are wrapped in raw tags) and a check fails when the precedence list names a pack that has no file
 <!-- AC:END -->
 
 ## Definition of Done
@@ -50,4 +50,6 @@ Next.js, React Native and other framework projects are scaffolded first with the
 2026-10-02: ready label removed: criterion 1 changed after the challenge (record 0036, ready.md); plan and challenge again before unattended work, or the owner waives it.
 
 2026-10-02: scope widened by record 0040 (stack-agnostic core with packs picked by detection; spike evidence there). Criteria 2, 3 and 9 are new; 1, 5, 6 and 7 are reworded; the old criteria 2 to 6 are now 4 to 8. Detection runs in the stack question default and Copier renders the pack, so copier update refreshes it and no detection script is needed. Phase 1 packs: Next.js, bare React Native, Express; further frameworks are TASK-2.6. The spikes found that a pack must declare a prepare step before typecheck and that typescript can be missing from a scaffold; both are inputs to 2.1.
+
+2026-10-02 review round 2: the Express skeleton starts from an empty folder, so it is chosen with -d stack=express and its files keep conditional names on stack (criteria 4, 5, 7); a tab-indented package.json aborts the first copy (criterion 2); packs are Jinja templates (criterion 9).
 <!-- SECTION:NOTES:END -->

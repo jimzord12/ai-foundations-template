@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:07'
-updated_date: '2026-10-02 16:18'
+updated_date: '2026-10-02 16:24'
 labels:
   - stack
   - packs
@@ -21,7 +21,7 @@ ordinal: 24000
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Owner 2026-10-02: the template targets any modern TypeScript project in an app ecosystem, not three stacks. Record 0040 makes that a generic core plus a pack per framework picked by detection, and a spike showed the mechanism and the foundations tsconfig work on real Next.js, Astro and SvelteKit scaffolds. Phase 1 (v0.1.0) ships packs for Next.js, bare React Native and Express only; this task adds the rest once the mechanism and the check contract are proven there. It is not part of Phase 1 and does not block the v0.1.0 tag; when it is scheduled is the owner's call.
+Owner 2026-10-02: the template targets any modern TypeScript project in an app ecosystem, not three stacks. Record 0040 makes that a generic core plus a pack per framework, with the framework detected in the stack question's default. Spikes showed the foundations tsconfig works on real Next.js, Astro and SvelteKit scaffolds; detection was checked on hand-written package.json files only. Phase 1 (v0.1.0) ships packs for Next.js, bare React Native and Express only; this task adds the rest once the mechanism and the check contract are proven there. It is not part of Phase 1 and does not block the v0.1.0 tag; when it is scheduled is the owner's call.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
