@@ -1,3 +1,15 @@
+---
+protocol: ready
+kind: process
+status: active
+summary: A task or phase is planned and challenged by a fresh agent before any unattended work starts on it.
+applies-when: Planning a task or a phase, or picking up work for an unattended run.
+ends-when: The challenger returns READY and the task gets the ready label, or it stays unready on owner questions or the round cap.
+produces: A plan in the task, a verdict per round in the task notes, and the ready label.
+agents: [readiness-challenger, code-reviewer]
+skills: [ready]
+related: [review, done, charter]
+---
 # Ready gate
 
 Work runs unattended only after it has been planned and challenged, so gaps surface before the run instead of halfway through it with nobody to ask. This file says what "ready" means, what the plan holds, how the challenge runs, and how a whole phase gets ready. Where this file exists, it is the project's rule for starting work.

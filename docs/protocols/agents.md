@@ -1,3 +1,13 @@
+---
+protocol: agents
+kind: rule
+status: active
+summary: How agent profiles, shared skills, their Codex copies and protocol cards are laid out, and what the permissions allow.
+applies-when: Adding or changing an agent profile, a skill, a protocol or a permission rule.
+agents: []
+skills: []
+related: []
+---
 # Agents, skills and permissions
 
 How this project's agent profiles, skills and Claude Code permissions are laid out.
@@ -9,6 +19,29 @@ How this project's agent profiles, skills and Claude Code permissions are laid o
 - `.agents/skills/<name>/`: Codex's copy of `.claude/skills/`, byte for byte (Codex's project skill folder; Claude Code reads only `.claude/skills/`; checked against the Codex docs and source on 2026-10-02). Add or change a shared skill in `.claude/skills/` and copy the folder to `.agents/skills/` in the same change (a removed or renamed skill is removed or renamed there too); never edit the copy alone. Codex ignores Claude-only frontmatter such as `user-invocable`, so it lists the reviewer and challenger skills as ordinary skills; that is expected.
 - A profile preloads skills with the `skills` field; the full skill content is injected into the subagent at start.
 - Files under `.claude/` hold no template syntax and link only to files that exist in this project.
+
+## Protocol cards
+
+A protocol's pieces live in different folders (its rules in `docs/protocols/`, its profiles and skills under `.claude/`), so every protocol file starts with a card that names them. Keep it in the same change as the body:
+
+```markdown
+---
+protocol: review              # the file name without .md
+kind: process                 # process (it starts and ends) or rule (always in force)
+status: active                # draft, active or retired
+summary: Independent fresh-context review of every non-trivial change before it merges.
+applies-when: A non-trivial change is ready to merge.
+ends-when: A round returns PASS, or the round cap is reached.     # process only
+produces: A findings report with a verdict per round.             # process only
+agents: [code-reviewer, context-reviewer]   # profiles in .claude/agents/ it uses
+skills: [review-core, review-lenses]        # skills in .claude/skills/ it uses
+related: [done]                             # other protocols it points to
+---
+```
+
+- One sentence per value, no colons inside it; lists use `[a, b]`, or `[]` when empty. The comments above are for this example only; real cards have none.
+- Every profile and every shared skill is listed on at least one card. A new protocol gets a row in the AGENTS.md "Where to look" table, which is the index of protocols.
+- Leave decision records off the card; link them from the body.
 
 ## Profile frontmatter
 

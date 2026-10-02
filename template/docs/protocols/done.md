@@ -1,3 +1,13 @@
+---
+protocol: done
+kind: rule
+status: active
+summary: What done means, what counts as evidence, how tests may mock, and what the end-of-task summary holds.
+applies-when: Finishing a task, writing tests, or reporting results to the owner.
+agents: []
+skills: []
+related: [git, evolution, charter, ready, review]
+---
 # Done
 
 What "done" means, what counts as evidence, and what to tell the owner at the end of a task.

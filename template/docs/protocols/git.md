@@ -1,3 +1,13 @@
+---
+protocol: git
+kind: rule
+status: active
+summary: Branch levels, merging and cleanup without asking, the ask-first requests, secrets and commit hygiene.
+applies-when: Branching, committing, merging, deleting branches or files, or handling a secret.
+agents: []
+skills: []
+related: [review, done]
+---
 # Git and safety
 
 A default that keeps work moving without babysitting while protecting what cannot be undone. A project may tighten these rules; loosening the ask-first list needs a decision record by the owner.
