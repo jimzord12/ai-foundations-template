@@ -4,7 +4,7 @@ title: 'Lab protocol: spikes before high-impact decisions'
 status: Draft
 assignee: []
 created_date: '2026-10-02 02:41'
-updated_date: '2026-10-02 08:28'
+updated_date: '2026-10-02 15:51'
 labels:
   - agents protocols
 dependencies: []
@@ -67,6 +67,7 @@ TASK-7 (charter), TASK-11 (review loop), TASK-26 (Ready gate: could require a la
 - [ ] #7 Proof run: an agent given a planted uncertain assumption follows the protocol end to end (spike task, lab worktree, LAB.md with falsifier and budget, evidence-backed conclusion, distilled decision record, worktree removed and tag pushed); transcript and resulting files attached as evidence
 - [ ] #8 The change passes the review loop in docs/protocols/review.md
 - [ ] #9 Whether writes under .claude/worktrees/ prompt in Claude Code is checked with a headless run and noted in agents.md (the git worktree and git tag allow rules already landed, decision 0038)
+- [ ] #10 lab.md (doc-2) is re-synced with decision 0039 before it ships: step 9 no longer treats a lab branch the agent created as ask-first, and the pushed lab-closed tag is kept only if it still earns its place (tags are leftovers too)
 <!-- AC:END -->
 
 ## Definition of Done

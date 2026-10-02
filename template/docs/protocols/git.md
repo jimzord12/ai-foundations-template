@@ -22,12 +22,15 @@ Keep the repository clean: when you can delete something safely, delete it, and 
 Delete without asking:
 
 - any branch that is fully merged into its base, locally and on the remote (core branches are never deleted after a merge);
-- any branch or worktree you created yourself, merged or not, once you are done with it or it was a dead end;
-- a worktree with no uncommitted changes (plain `git worktree remove`; do not use `--force` on a worktree you did not create);
-- stale remote-tracking refs (`git fetch --prune`);
+- any branch or worktree that is yours (below), merged or not, once you are done with it or it was a dead end; remove a worktree with plain `git worktree remove`, which still refuses while it has uncommitted changes (do not add `--force` unless they are yours to discard);
+- stale remote-tracking refs (`git fetch --prune`) and worktree entries whose folder is already gone (`git worktree prune`);
 - temporary files and scratch output you created.
 
-Still ask (the list is in AGENTS.md): core branches, an unmerged branch you did not create whose commits exist nowhere else, force pushes, `reset --hard`, `git clean`.
+**Yours** means you created it in this session or task (a task note says so), or it sits under an agent-only name: a branch under `lab/`, or a worktree under `.claude/worktrees/`. Git does not record who made a branch and agent commits carry the owner's name, so if you cannot tell, it is not yours. Another worktree is not yours to remove (plain removal also deletes its ignored files, such as `.env`, and another session may be working in it): mention it in your end-of-task summary instead.
+
+"Whose commits exist nowhere else" means no other branch, remote branch or tag holds them; a remote-tracking ref (`origin/x`) of the branch you are deleting does not count.
+
+Still ask (full list in AGENTS.md "Git and safety"): deleting a core branch, deleting an unmerged branch that is not yours whose commits exist nowhere else, merging into a core branch other than `main`, force pushes, `reset --hard`, `git clean`.
 
 Never:
 
