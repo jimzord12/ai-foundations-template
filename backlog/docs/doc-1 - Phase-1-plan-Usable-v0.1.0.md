@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-01 23:45'
+updated_date: '2026-10-02 03:06'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -53,4 +53,4 @@ The project Definition of Done applies to every task. Template content is proven
 
 ## Owner answers (2026-10-01)
 
-RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus overwrite-on-purpose configs plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended; for this repo replaced on 2026-10-02 by record 0027: everything allowed except deleting main); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions/`.
+RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus configs that are extended, never overwritten (refined 2026-10-02 by record 0036), plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended; for this repo replaced on 2026-10-02 by record 0027: everything allowed except deleting main); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions/`.
