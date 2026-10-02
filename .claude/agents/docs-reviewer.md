@@ -1,6 +1,6 @@
 ---
 name: docs-reviewer
-description: Fresh-context reviewer for project docs (README, architecture, glossary, decision records), or for a change that may have made them stale. Use for each round of the review loop; checks every claim against the code and returns findings, a NOT_CHECKED list and a PASS, FINDINGS or INCOMPLETE verdict.
+description: Fresh-context reviewer for project docs (README, architecture, glossary, decision records). Use for each round of the review loop; checks every claim against the code and returns findings, a NOT_CHECKED list and a PASS, FINDINGS or INCOMPLETE verdict.
 tools: Read, Grep, Glob, Bash
 model: opus
 effort: high
