@@ -5,7 +5,7 @@ Work runs unattended only after it has been planned and challenged, so gaps surf
 ## When it applies
 
 - Unattended work starts only on tasks labelled `ready`, or waived by the owner.
-- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, a phase pass recorded for this task (not marked "plan at pickup"), the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
+- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, a note "passed the phase check, round N" (without "plan at pickup"), the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
 - In an attended run, the owner may waive the gate for a task: note "ready gate waived by the owner" in the task notes; it then counts as ready.
 - Depth scales with the task:
 

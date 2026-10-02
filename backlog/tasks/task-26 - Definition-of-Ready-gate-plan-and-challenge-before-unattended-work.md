@@ -1,14 +1,13 @@
 ---
 id: TASK-26
 title: 'Definition of Ready gate: plan and challenge before unattended work'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 19:50'
-updated_date: '2026-10-02 03:02'
+updated_date: '2026-10-02 03:06'
 labels:
   - process
-  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -25,19 +24,19 @@ Owner-approved 2026-10-01. Gate before unattended work: ready checklist, plan wr
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 ready skill and readiness-challenger profile ship in template/ and in this repo (dogfood manifest); docs/protocols/ready.md linked from the router in both the root and the template AGENTS.md
-- [ ] #2 Rule in both AGENTS.md files: unattended work starts only on tasks labelled ready; owner may waive when attended; depth scales with size
-- [ ] #3 Proof: the shipped challenger is run on one real task in this repo and its verdict recorded
-- [ ] #4 docs/protocols/ready.md contains: the ready checklist, what the plan written into the task must hold, the READY / NOT READY verdict, batched owner questions with recommended answers, and both the task level and the phase level
+- [x] #1 ready skill and readiness-challenger profile ship in template/ and in this repo (dogfood manifest); docs/protocols/ready.md linked from the router in both the root and the template AGENTS.md
+- [x] #2 Rule in both AGENTS.md files: unattended work starts only on tasks labelled ready; owner may waive when attended; depth scales with size
+- [x] #3 Proof: the shipped challenger is run on one real task in this repo and its verdict recorded
+- [x] #4 docs/protocols/ready.md contains: the ready checklist, what the plan written into the task must hold, the READY / NOT READY verdict, batched owner questions with recommended answers, and both the task level and the phase level
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -108,4 +107,53 @@ Verdict on TASK-28's plan: NOT READY (2 Material, 4 Minor). The full disposition
 One false claim: "decisions README missing rows 0023-0030" was wrong. All rows are present.
 
 Lesson adopted into ready.md: every task the plan needs first is a declared dependency.
+
+## Proof record, completed
+
+- Init event listed `readiness-challenger` among the agents.
+- The run used no `--debug`, so the "no skipped-skill warning in the debug log" check was not done. The subagent's own transcript shows both skills (review-core, ready) injected at startup, which covers the same risk.
+- The subagent listed the phase lenses of the ready skill in their written order. (Earlier note: "row" means this list.)
+
+## Labels from before the gate
+
+Eleven To Do tasks still carry `ready` from the Phase 1 readiness pass, before this gate existed: TASK-2, 2.1-2.5, 13, 16, 17, 23 and 27. None of them records a verdict, a phase pass or a waiver, so under ready.md's pickup check the label alone does not start them. Each is planned and challenged at pickup, and its label is kept or removed on the verdict. Decided by the agent in the unattended run: keep the labels and re-check at pickup; reported to the owner.
+
+## Review loop
+
+Mixed change: context-reviewer for the instruction files, docs-reviewer for record 0035, the README and the task notes.
+
+| Round | context-reviewer | docs-reviewer |
+|---|---|---|
+| 1 | FINDINGS: 2 Material | FINDINGS: 1 Material |
+| 2 | FINDINGS: 1 Material | PASS |
+| 3 | FINDINGS: 2 Material | PASS |
+| 4 | PASS | PASS |
+
+- Round 1, context-reviewer: phase-passed tasks rejected at pickup; the owner's waiver had no effect.
+- Round 1, docs-reviewer: 0035 copied the old pickup rule.
+- Round 2, context-reviewer: tasks planned at pickup were unmarked.
+- Round 3, context-reviewer: per-task labelling vs the phase verdict; skill lenses vs checklist item 3 on in-phase dependencies.
+- All fixed. Round 4 Minors applied: the pickup check quotes the note text; the profile names `npx backlog.md`; the notes above.
+- Reviews were pinned to a commit after round 1, because in round 1 an edit landed mid-review.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Added the ready gate to the template and dogfooded it. docs/protocols/ready.md holds:
+- when the gate applies, the owner's waiver and the depth table;
+- the 7-item checklist (every prerequisite is a declared dependency);
+- what the plan holds (seams, files, interfaces precise enough to write tests first, steps, checks, evidence);
+- the challenge loop and batched owner questions (owner away: the task and its dependents stay unready);
+- the `ready` label and the pickup check (a label alone never starts work);
+- the phase level ("plan at pickup", "passed the phase check, round N").
+
+Also added:
+- the hidden `ready` skill (task and phase lenses, severities, the READY/NOT READY mapping);
+- the readiness-challenger profile (read-only, Opus, preloads review-core and ready);
+- the rule and router rows in both AGENTS.md files, and the dogfood pair for ready.md;
+- done.md: unready tasks go in the end-of-task summary;
+- decision 0035.
+
+Proof: the shipped challenger, run headless on TASK-28's plan, answered the preload probe before any tool call and returned NOT READY with two real gaps. Review loop: 4 rounds, ending PASS on both reviewers.
+<!-- SECTION:FINAL_SUMMARY:END -->
