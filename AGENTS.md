@@ -6,12 +6,13 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 - `template/` — only content that belongs in generated projects. Files ending in `.jinja` are rendered with Jinja; other files are copied as-is. Stack-specific content lives in inline `{% if stack %}` blocks; whole stack-specific files can use conditional names, e.g. `{% if stack == 'express' %}stack-express.md{% endif %}` (an empty rendered name means "skip").
 - `copier.yml` — questions and settings. Changing a question's name breaks `copier update` for existing projects; add a `_migrations` entry if you must.
 - `docs/decisions/` — decision records for this template, one MADR file per decision; format, rules and index in `docs/decisions/README.md`. Record every non-trivial decision. Check them before deciding anything.
-- `.claude/agents/`, `.claude/skills/`, `docs/protocols/agents.md` and `docs/protocols/review.md` are copies of the template's files, listed in `dogfood.json`: edit the `template/` source, then run `python scripts/dogfood_check.py --sync` (the owner runs it when Claude Code refuses an agent write under `.claude/`). `python scripts/dogfood_check.py` fails on drift.
+- `.claude/agents/`, `.claude/skills/`, `docs/protocols/agents.md`, `docs/protocols/review.md` and `docs/protocols/ready.md` are copies of the template's files, listed in `dogfood.json`: edit the `template/` source, then run `python scripts/dogfood_check.py --sync` (the owner runs it when Claude Code refuses an agent write under `.claude/`). `python scripts/dogfood_check.py` fails on drift.
 - `backlog/` — open work, managed with Backlog.md (see section below). Don't track open work anywhere else.
   The CLI is `backlog` (install once: `npm i -g backlog.md`) or `npx backlog.md <command>` without installing.
 
 ## Rules
 - Review every non-trivial change with the loop in `docs/protocols/review.md`; it also names who writes feedback-driven instruction changes (`context-maintainer`).
+- Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md`, or waived by the owner in an attended run; depth scales with task size.
 - Standard over custom: use established conventions and widely adopted tools; justify custom work in a decision record.
 - Verify current versions and docs of tools before relying on them.
 - Ask before major or hard-to-reverse choices; say clearly what is decided vs. suggested.

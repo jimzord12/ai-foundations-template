@@ -28,7 +28,7 @@ Next.js and React Native projects are scaffolded first (`create-next-app` and th
 | `docs/agent-instructions.md` | Superseded baseline, kept for history; see `template/AGENTS.md.jinja` |
 | `backlog/` | Open work, managed with [Backlog.md](https://github.com/MrLesk/Backlog.md) |
 | `AGENTS.md` / `CLAUDE.md` | Instructions for agents working on *this* repo |
-| `docs/protocols/` | Copies of the template's `agents.md` and `review.md`, used by agents working on this repo |
+| `docs/protocols/` | Copies of the template protocols listed in `dogfood.json`, used by agents working on this repo |
 | `.claude/` | This repo's permission settings (`settings.json`) and copies of the template's agent profiles and skills |
 | `dogfood.json` | Lists the template files copied into this repo; `scripts/dogfood_check.py` checks and syncs them |
 | `scripts/` | `dogfood_check.py`, and `permissions/` (generator and checker for the `settings.json` files) |
