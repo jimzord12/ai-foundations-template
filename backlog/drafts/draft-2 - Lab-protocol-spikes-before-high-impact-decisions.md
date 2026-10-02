@@ -4,6 +4,7 @@ title: 'Lab protocol: spikes before high-impact decisions'
 status: Draft
 assignee: []
 created_date: '2026-10-02 02:41'
+updated_date: '2026-10-02 08:28'
 labels:
   - agents protocols
 dependencies: []
@@ -61,11 +62,11 @@ TASK-7 (charter), TASK-11 (review loop), TASK-26 (Ready gate: could require a la
 - [ ] #2 template/docs/protocols/git.md "Branches" says lab/<LAB-ID> branches sit outside the branch levels, are never merged and are not pushed, and points to lab.md
 - [ ] #3 The glossary defines lab and spike (one concept, two names) and the lab record
 - [ ] #4 A decision record in docs/decisions/ captures the choices above (required-before rule, budget, evidence tag and docs/labs, worktree location, spike task type), with alternatives considered
-- [ ] #5 Permission rules for git worktree and git tag in template/.claude/settings.json are decided and recorded (git branch -D keeps its ask rule), and agents.md notes whether writes under .claude/worktrees/ prompt
-- [ ] #6 dogfood.json and the repo copies are in sync if lab.md is also used in this repo (python scripts/dogfood_check.py passes)
-- [ ] #7 Smoke test passes for express, next and rn, and each rendered project contains lab.md and lab-examples.md with working links
-- [ ] #8 Proof run: an agent given a planted uncertain assumption follows the protocol end to end (spike task, lab worktree, LAB.md with falsifier and budget, evidence-backed conclusion, distilled decision record, worktree removed and tag pushed); transcript and resulting files attached as evidence
-- [ ] #9 The change passes the review loop in docs/protocols/review.md
+- [ ] #5 dogfood.json and the repo copies are in sync if lab.md is also used in this repo (python scripts/dogfood_check.py passes)
+- [ ] #6 Smoke test passes for express, next and rn, and each rendered project contains lab.md and lab-examples.md with working links
+- [ ] #7 Proof run: an agent given a planted uncertain assumption follows the protocol end to end (spike task, lab worktree, LAB.md with falsifier and budget, evidence-backed conclusion, distilled decision record, worktree removed and tag pushed); transcript and resulting files attached as evidence
+- [ ] #8 The change passes the review loop in docs/protocols/review.md
+- [ ] #9 Whether writes under .claude/worktrees/ prompt in Claude Code is checked with a headless run and noted in agents.md (the git worktree and git tag allow rules already landed, decision 0038)
 <!-- AC:END -->
 
 ## Definition of Done
