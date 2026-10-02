@@ -89,6 +89,7 @@ if PROFILE == "template":
                     for tail in ["", " *"]:
                         for f in ["-d", "-D", "--delete"]:
                             ask += [f"{t}({g} branch {f}* {m}{tail})", f"{t}({g} branch * {f}* {m}{tail})"]
+                        ask += [f"{t}({g} switch -C {m}{tail})", f"{t}({g} switch --force-create {m}{tail})"]
                 for m in names + [f"refs/heads/{core}", f'"refs/heads/{core}"']:
                     for tail in ["", " *"]:
                         ask += [f"{t}({g} push *-d* {m}{tail})", f"{t}({g} push * :{m}{tail})"]

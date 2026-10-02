@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 00:49'
+updated_date: '2026-10-02 00:52'
 labels:
   - agents
   - claude
@@ -83,4 +83,6 @@ Review round 1 FINDINGS (1 Material, 5 Minor, 4 Notes), fixed: M1 quoted ':core'
 Review round 2 FINDINGS (1 Material, 2 Minor, 2 Notes), fixed: M1 quoted and refs/heads spellings now ask for every core branch, not only main; m1 quoted and refs/heads pushes into production/stage/dev ask; m2 forced rename or copy onto a core branch asks (branch -m/-M/-c/-C/--move/--copy * <core>); a first attempt (branch * <core>) wrongly asked for git branch --merged main and the checker caught it. Template profile now 123 allow / 0 deny / 1380 ask (earlier note's 616 is stale); checker 70 template and 64 repo checks, 0 mismatches in both shells; repo profile still byte-identical. n1 git branch -M main after git init asks once at setup (accepted).
 
 Review round 3 FINDINGS (1 Material, 2 Minor): M1 Claude Code matches PowerShell rules case-insensitively (text in the CLI binary, per the reviewer), so PowerShell ask rules 'branch -D *' and 'switch -C *' would also catch routine 'branch -d' and 'switch -c'. Fixed: generator emits those two only for Bash (both profiles); checker matches PowerShell case-insensitively and probes branch -d / switch -c as must-allow. The committed repo .claude/settings.json fails 2 PowerShell checks until the owner copies the regenerated file (scratchpad settings-for-template-repo.json); recorded in 0027. m1 single-quoted pushes into non-main cores ask; m2 plain pushes of production/stage/dev ask. Template profile now 123/0/1412; checks 75 Bash / 73 PowerShell template, 64/63 repo (new file), 0 mismatches.
+
+Review round 4 FINDINGS (1 Material): removing the generic PowerShell 'switch -C *' rule left 'git switch -C <core>' unasked in PowerShell. Fixed: core-specific 'switch -C <core>' and '--force-create <core>' ask rules for both shells (no case collision with routine 'switch -c feature/x'); checker probes added (template 78 Bash / 76 PowerShell, 0 mismatches; repo scratch file 64/63, 0). Template profile 123/0/1604. Note: the repo profile allows overwriting local main by design (0027 blocks only deletion).
 <!-- SECTION:NOTES:END -->
