@@ -44,4 +44,5 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0036](0036-config-files-extend-the-projects-own-instead-of-overwriting-it.md) | technical | accepted | Config files extend the project's own instead of overwriting it |
 | [0037](0037-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md) | technical | accepted | Codex reads the shared skills from a checked copy in .agents/skills |
 | [0038](0038-template-allowlist-adds-git-worktree-and-git-tag.md) | technical | accepted | Template allowlist adds git worktree and git tag |
+| [0039](0039-delete-what-is-safely-deletable-without-asking.md) | product | accepted | Delete what is safely deletable without asking |
 | [0040](0040-every-protocol-starts-with-a-checked-protocol-card.md) | architecture | accepted | Every protocol starts with a checked protocol card |
