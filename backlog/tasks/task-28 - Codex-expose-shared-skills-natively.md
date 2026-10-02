@@ -4,7 +4,7 @@ title: 'Codex: expose shared skills natively'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:02'
+updated_date: '2026-10-02 03:07'
 labels:
   - codex
   - skills
@@ -44,9 +44,9 @@ Owner decision 2026-10-01: in v0.1.0 Codex gets only what it supports natively: 
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-# TASK-28 plan: Codex reads the shared skills
+# TASK-28 plan v2: Codex reads the shared skills
 
-Branch: `feature/task-28-codex-skills` (level 1, from `main`). Findings and sources: `research.md`.
+Branch: `feature/task-28-codex-skills` (level 1, from `main`). Findings and sources are below; v2 folds in the readiness challenge of 2026-10-02 (see notes).
 
 ## Approach (option b1)
 
@@ -57,10 +57,34 @@ Branch: `feature/task-28-codex-skills` (level 1, from `main`). Findings and sour
 
 Both are **folder pairs**, so a new skill (or a `scripts/` file inside one) is covered without touching the manifest again. `dogfood_check.py` needs no code change: it already handles any source/copy path pair.
 
+## Codex skill discovery (AC #1, checked 2026-10-02)
+
+| Question | Answer | Source |
+|---|---|---|
+| Project folder | `.agents/skills/<name>/SKILL.md` in **every directory from the cwd up to the project root** (root = nearest ancestor holding a `project_root_markers` entry, default `.git`; with no marker, the cwd only). Also `<repo>/.codex/skills` when the repo has a project config layer (`.codex/`). | docs [1]; `codex-rs/ext/skills/src/host_roots.rs` (`repo_agents_skill_roots`, `roots_from_layer_stack`) [3] |
+| User folder | `$HOME/.agents/skills`; `$CODEX_HOME/skills` (`~/.codex/skills`) still read, marked deprecated in source. | [1], [3] |
+| Admin / system | `/etc/codex/skills` (admin), bundled system skills (`~/.codex/skills/.system`), plugin skill roots. | [1], [3] |
+| Configurable extra path? | **No.** `[skills]` in `config.toml` accepts only `bundled.enabled`, `include_instructions`, `max_context_tokens` and `[[skills.config]]` enable/disable rules (by `path` or `name`). Extra roots exist only through the app-server API (`set_extra_roots`) or an installed plugin. | `codex-rs/config/src/skills_config.rs` [4]; `host_service.rs` |
+| SKILL.md format | YAML frontmatter between `---` lines. Read: `name` (≤64 chars; defaults to the folder name), `description` (required, one line after whitespace collapse), `metadata.short-description` (optional). Optional folders `scripts/`, `references/`, `assets/`, and `agents/openai.yaml` (UI, `policy.allow_implicit_invocation`, MCP dependencies). | docs [1][2]; `codex-rs/skills/src/parser.rs` [5] |
+| Claude-only fields (`user-invocable: false`, `disable-model-invocation`, `allowed-tools`…) | **Ignored.** The serde struct has no `deny_unknown_fields`, so unknown keys are dropped silently. Proven: all six `user-invocable: false` skills are listed (section 3). | [5], live test |
+| Symlinks | Directory symlinks are **followed** for Repo, User and Admin scopes; ignored for System. Hidden directories below a root are skipped. Scan depth 6. | `codex-rs/ext/skills/src/loader/host.rs` (`DirectorySymlinkPolicy::Follow`), `loader/mod.rs` [6]; docs [1] |
+| How a session uses skills | A `<skills_instructions>` block lists name + description + path for every skill (budget: 2% of context or 8,000 chars). Rule given to the model: use a skill when the user names it (`$name` or plain text) **or the task clearly matches its description**; then read the whole SKILL.md. `/skills` in the TUI lists them; `$name` invokes. `policy.allow_implicit_invocation: false` (in `agents/openai.yaml`) keeps a skill out of the model's list but still invocable with `$name`. | `catalog_prompt.rs` [7]; docs [1][2]; `skill-creator/references/openai_yaml.md` [8] |
+| Untrusted folder | Project skills load even in a folder Codex has never trusted (live test below ran in a fresh scratch folder). | live test |
+
+## Options
+
+| Option | Works? | Verdict |
+|---|---|---|
+| (a) Codex reads `.claude/skills` by config | No such setting (only plugins or app-server API). | Rejected. |
+| (b1) Second copy `template/.agents/skills`, a folder pair in `dogfood.json` checked by `dogfood_check.py`; this repo also gets `.agents/skills` | Works (live proof). Uses the existing script and manifest unchanged; the folder pair covers new skills and any `scripts/` files automatically. | **Recommended.** |
+| (b2) Per-skill Jinja wrapper `template/.agents/skills/<n>/SKILL.md.jinja` = `{% include 'template/.claude/skills/<n>/SKILL.md' %}` | Works (byte-identical render). | Rejected: one wrapper per file to remember (no check catches a missing one), skill text becomes Jinja (a future `{{` breaks rendering), binary or script files cannot be included, and this repo still needs a dogfood pair for its own `.agents/skills`. |
+| (c) Symlinks | Both tools follow them, but Git for Windows checks them out as text files and Copier then renders that text file. | Rejected (0031 already rejected symlinks for the same reason). |
+| (d) Source in `.agents/skills`, Claude Code pointed at it | Claude Code has no skill-path setting; would need symlinks in `.claude/skills`. | Rejected. |
+
 ## Before starting
 
-- TASK-26 is in flight on `main` (commit `7b1d08e` plus uncommitted edits to `AGENTS.md`, `template/AGENTS.md.jinja`, `ready.md`, `done.md` at the time of research). Start this branch after TASK-26 is merged, so the `ready` skill is in the copies and the `AGENTS.md` line 9 edit does not conflict.
-- Read `backlog instructions task-execution`; set TASK-28 In Progress; write the plan below into the task; apply the AC rewording in `ac-rewording.md` (owner-approved or as decided).
+- Depends on TASK-26 (declared; merged into `main` 2026-10-02), so the `ready` skill is in the copies: six shared skills (review-core, review-lenses, context-lenses, docs-lenses, scan-lenses, ready).
+- Read `backlog instructions task-execution`; set TASK-28 In Progress. The reworded criteria are already in the task.
 
 ## Steps
 
@@ -77,7 +101,7 @@ Both are **folder pairs**, so a new skill (or a `scripts/` file inside one) is c
 4. `template/.claude/skills/context-lenses/SKILL.md`, Parity lens: add one clause, "Codex reads shared skills from `.agents/skills/`, a copy of `.claude/skills/`; a skill changed in one folder only is a Parity finding." Then `--sync` (updates `.claude/skills` and both Codex copies). If Claude Code refuses the write under `template/.claude/`, the owner makes it or runs `--sync`.
 5. This repo's `AGENTS.md` "Where things go" line 9: list `.agents/skills/` and `template/.agents/skills/` as copies; add "a new shared skill goes in `template/.claude/skills/`; `--sync` creates its Codex copies (the folder pairs cover every skill)".
 6. `README.md` layout table: add an `.agents/` row ("Codex's copies of the template's skills"), and make the `dogfood.json` row say it also lists Codex's copy inside `template/`.
-7. Decision record, number taken when written: **"Codex reads the shared skills from a checked copy in `.agents/skills`"**, kind `technical`, decision-makers `agent`. Context: owner answer 4 in 0021 (Codex gets AGENTS.md and skills natively). Options a, b1, b2, c, d with one line each (from research.md table). Outcome b1. Consequences: good — one source, no new code, new skills covered automatically, proven live; bad — two physical copies in every generated project with no drift check there (instruction plus Parity lens only); Codex lists the reviewer skills (~1,300 chars of its catalog). More information: refines 0031 (the manifest now also holds a copy inside `template/`); the live proof commands and output. Add the row to `docs/decisions/README.md`.
+7. Decision record, written after the live proof below (in its own commit), number taken when written: **"Codex reads the shared skills from a checked copy in `.agents/skills`"**, kind `technical`, decision-makers `agent`. Context: owner answer 4 in 0021 (Codex gets AGENTS.md and skills natively). Options a, b1, b2, c, d with one line each (the Options table above). Outcome b1. Consequences: good — one source, no new code, new skills covered automatically, proven live; bad — two physical copies in every generated project with no drift check there (instruction plus Parity lens only); Codex lists the reviewer skills (~1,300 chars of its catalog). More information: refines 0031 (the manifest now also holds a copy inside `template/`); the live proof commands and output. Add the row to `docs/decisions/README.md`.
 8. Commit (render with `--vcs-ref HEAD` sees committed work only).
 
 ## Checks
@@ -101,10 +125,10 @@ Render **outside** the repo and `git init` it: inside `.tmp/` Codex would walk u
 $p = "<scratchpad>/codex-proof"
 uvx copier copy --trust --defaults --vcs-ref HEAD -d project_name=smoke -d stack=express C:\Users\jimzord12\Documents\GitHub\ai-foundations-template $p
 git -C $p init -q
-codex exec --sandbox read-only --ephemeral -C $p -o "$p-list.txt" "Answer only from the skills list in your instructions, without running any command or reading any file: which listed skills have their SKILL.md in this project's .agents/skills folder? Give each name with the path shown in the list."
-codex exec --sandbox read-only --ephemeral -C $p -o "$p-use.txt" "Use `$review-core: open its SKILL.md and quote its first Markdown heading line exactly. Do not modify any file."
+codex exec --sandbox read-only --ephemeral --json -C $p -o "$p-list.txt" "Answer only from the skills list in your instructions, without running any command or reading any file: which listed skills have their SKILL.md in this project's .agents/skills folder? Give each name with the path shown in the list." > "$p-list.jsonl"
+codex exec --sandbox read-only --ephemeral --json -C $p -o "$p-use.txt" "Use `$review-core: open its SKILL.md and quote its first Markdown heading line exactly. Do not modify any file." > "$p-use.jsonl"
 ```
-Expected: the list names every shared skill (six once TASK-26's `ready` is in) with a `rN/<name>/SKILL.md` path and no `exec` lines in the log; the second answers `# Review core`. Cross-check without a model call: `codex debug prompt-input "x"` run in `$p` shows the `.agents/skills` root and the skills. Optional for this repo: `codex debug prompt-input "x"` at the repo root lists the root `.agents/skills`. Record commands and output in the task's final summary and the decision record.
+Expected: the list names every shared skill (six once TASK-26's `ready` is in) with a `rN/<name>/SKILL.md` path, and its `--json` event stream (redirect stdout to `$p-list.jsonl`) has no command-execution events; the second answers `# Review core`. Cross-check without a model call: `codex debug prompt-input "x"` run in `$p` shows the `.agents/skills` root and the skills. Optional for this repo: `codex debug prompt-input "x"` at the repo root lists the root `.agents/skills`. Record commands and output in the task's final summary and the decision record.
 
 ## Review loop (`docs/protocols/review.md`)
 
@@ -122,6 +146,19 @@ Tell every reviewer the `.agents/skills/` trees and `.claude/skills` copy are pr
 ## Files touched
 
 `dogfood.json`, `template/.agents/skills/**` (new, synced), `.agents/skills/**` (new, synced), `template/docs/protocols/agents.md` (+ synced copy), `template/.claude/skills/context-lenses/SKILL.md` (+ synced copies), `AGENTS.md`, `README.md`, `docs/decisions/<nnnn>-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md`, `docs/decisions/README.md`.
+
+## Sources (all checked 2026-10-02)
+
+1. OpenAI, "Build skills" (Codex skills page; `https://developers.openai.com/codex/skills` now 308-redirects here): https://learn.chatgpt.com/docs/build-skills
+2. Same page, `agents/openai.yaml` example and `allow_implicit_invocation` default.
+3. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/ext/skills/src/host_roots.rs
+4. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/config/src/skills_config.rs
+5. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/skills/src/parser.rs
+6. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/ext/skills/src/loader/host.rs and `loader/mod.rs`
+7. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/ext/skills/src/catalog_prompt.rs
+8. https://github.com/openai/codex/blob/rust-v0.159.3/codex-rs/skills/src/assets/samples/skill-creator/references/openai_yaml.md
+9. Claude Code docs, Skills: https://code.claude.com/docs/en/skills
+10. Copier docs, Configuring (`preserve_symlinks`): https://copier.readthedocs.io/en/stable/configuring/
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
