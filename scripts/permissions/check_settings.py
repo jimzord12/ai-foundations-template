@@ -58,7 +58,8 @@ if PROFILE == "template":
        "git push --delete origin 'stage'", 'git branch -d "production"', 'git push origin ":refs/heads/dev"',
        "git push origin HEAD:refs/heads/production", 'git push origin "feature/x:dev"', "git branch -M feature/x main",
        "git branch -C feature/x production", "git push origin 'HEAD:production'", "git push origin dev", "git push -u origin stage",
-       "git switch -C main", "git switch -C production origin/production", "git switch --force-create stage"],
+       "git switch -C main", "git switch -C production origin/production", "git switch --force-create stage", "git push origin --delete 'refs/heads/main'", "git push origin ':refs/heads/dev'",
+       'git push origin "+main"', "git push origin '+feature/x'"],
      "classifier": ["npm install lodash", "npm run dev", f"git -C {P} reflog", "git restore .", "git checkout -- a.ts", "curl https://x",
        "node -e 1", "git rebase main", "git tag v1"],
     }

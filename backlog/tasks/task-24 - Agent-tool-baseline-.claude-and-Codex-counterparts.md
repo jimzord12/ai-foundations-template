@@ -1,11 +1,11 @@
 ---
 id: TASK-24
 title: 'Agent tool baseline: .claude/ layout, permission allowlist, dogfood manifest'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 00:52'
+updated_date: '2026-10-02 00:56'
 labels:
   - agents
   - claude
@@ -27,19 +27,19 @@ Owner of the agent-tool layout for this repo and generated projects. Layout rule
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 template/.claude/settings.json ships with an allowlist for generated projects. Open owner question before building: the narrow list from owner answer 5 (read-only tools, package scripts, backlog, git add/commit/push, git switch, branch, merge and push --delete; nothing broader), or the permissive policy this repo adopted in decision 0027 (everything allowed except deleting main). Either way it needs narrow per-command rules, because auto mode drops blanket Bash, PowerShell, Agent and Monitor rules (see 0027 and scripts/permissions/). This repo's own root settings are owned by TASK-31
-- [ ] #2 .claude/agents/ and .claude/skills/ layout documented in the router of both the root and the template AGENTS.md (at most 4 lines each) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write, dogfooded files must not be .jinja or link to template-only files)
-- [ ] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. TASK-24 adds only docs/protocols/agents.md and the .claude/agents and .claude/skills folders (copied recursively; a mapped folder holds only template copies); TASK-11 adds review.md and TASK-26 adds ready.md when they create them. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are never copied
-- [ ] #4 Proof via headless claude -p --output-format stream-json --verbose in a generated project with --setting-sources project and no permission-skipping flags: an allowlisted command runs without a prompt and a non-listed command appears in permission_denials. An untrusted workspace ignores project allow entries, so either use a trusted workspace or pass the file with --settings in dontAsk mode, as the TASK-31 proof did
+- [x] #1 template/.claude/settings.json ships with an allowlist for generated projects. Open owner question before building: the narrow list from owner answer 5 (read-only tools, package scripts, backlog, git add/commit/push, git switch, branch, merge and push --delete; nothing broader), or the permissive policy this repo adopted in decision 0027 (everything allowed except deleting main). Either way it needs narrow per-command rules, because auto mode drops blanket Bash, PowerShell, Agent and Monitor rules (see 0027 and scripts/permissions/). This repo's own root settings are owned by TASK-31
+- [x] #2 .claude/agents/ and .claude/skills/ layout documented in the router of both the root and the template AGENTS.md (at most 4 lines each) and in docs/protocols/agents.md (thin profiles, skills preloaded with the skills field, read-only reviewers get no Edit or Write, dogfooded files must not be .jinja or link to template-only files)
+- [x] #3 Dogfood manifest at dogfood.json in this repo's root lists source-to-copy pairs. TASK-24 adds only docs/protocols/agents.md and the .claude/agents and .claude/skills folders (copied recursively; a mapped folder holds only template copies); TASK-11 adds review.md and TASK-26 adds ready.md when they create them. Template-only files (charter.md, evolution.md, git.md, done.md, stack files) are never copied
+- [x] #4 Proof via headless claude -p --output-format stream-json --verbose in a generated project with --setting-sources project and no permission-skipping flags: an allowlisted command runs without a prompt and a non-listed command appears in permission_denials. An untrusted workspace ignores project allow entries, so either use a trusted workspace or pass the file with --settings in dontAsk mode, as the TASK-31 proof did
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -85,4 +85,12 @@ Review round 2 FINDINGS (1 Material, 2 Minor, 2 Notes), fixed: M1 quoted and ref
 Review round 3 FINDINGS (1 Material, 2 Minor): M1 Claude Code matches PowerShell rules case-insensitively (text in the CLI binary, per the reviewer), so PowerShell ask rules 'branch -D *' and 'switch -C *' would also catch routine 'branch -d' and 'switch -c'. Fixed: generator emits those two only for Bash (both profiles); checker matches PowerShell case-insensitively and probes branch -d / switch -c as must-allow. The committed repo .claude/settings.json fails 2 PowerShell checks until the owner copies the regenerated file (scratchpad settings-for-template-repo.json); recorded in 0027. m1 single-quoted pushes into non-main cores ask; m2 plain pushes of production/stage/dev ask. Template profile now 123/0/1412; checks 75 Bash / 73 PowerShell template, 64/63 repo (new file), 0 mismatches.
 
 Review round 4 FINDINGS (1 Material): removing the generic PowerShell 'switch -C *' rule left 'git switch -C <core>' unasked in PowerShell. Fixed: core-specific 'switch -C <core>' and '--force-create <core>' ask rules for both shells (no case collision with routine 'switch -c feature/x'); checker probes added (template 78 Bash / 76 PowerShell, 0 mismatches; repo scratch file 64/63, 0). Template profile 123/0/1604. Note: the repo profile allows overwriting local main by design (0027 blocks only deletion).
+
+Review round 5 PASS (whole-task check: ~90 ordinary commands allowed in both shells, ~55 core deletion/overwrite spellings per core ask, generator byte-identical, checker 0 mismatches). Minors applied after PASS: single-quoted refs and quoted +refspec forms ask (template 123/0/1708; checks 82 Bash / 80 PowerShell, 0 mismatches); agents.md says branch -D is instruction-only in PowerShell and to commit with plain git commit (dogfood copy resynced); 0031 rule count. AC1 is checked as built with the standing owner answer 5; the permissive alternative stays in the owner's question batch.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Generated projects get .claude/settings.json (narrow per-command allowlist per owner answer 5 and 0024, the AGENTS.md ask-first list as about 1,700 generated ask rules covering quoted, refs/heads and git -C spellings for main, production, stage and dev, nothing denied) and docs/protocols/agents.md (layout, frontmatter, permissions facts: auto mode drops blanket rules, PowerShell matches case-insensitively, .claude/ is protected, untrusted folders ignore allow lists). scripts/permissions/ now has repo and template profiles plus a case-aware checker; dogfood.json and scripts/dogfood_check.py (--sync) keep this repo's copies identical. Record 0031. Proof: headless dontAsk, control and auto runs on a rendered project. Review: 5 rounds (FINDINGS x4, then PASS); round 3 found PowerShell case-insensitive matching, which also affects this repo's own settings (regenerated file awaits the owner's copy).
+<!-- SECTION:FINAL_SUMMARY:END -->

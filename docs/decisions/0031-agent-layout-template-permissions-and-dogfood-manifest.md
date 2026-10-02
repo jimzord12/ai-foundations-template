@@ -28,7 +28,7 @@ Generated projects needed a place for agent profiles and shared skills, a permis
 - Good, because routine git, npm check and Backlog commands run without prompts in a generated project, while destructive git still asks.
 - Bad, because writes under `.claude/` are protected paths: Claude Code never pre-approves them, so the owner may have to run `--sync` or approve profile and skill changes.
 - Bad, because the allowlist is not a sandbox: `npm install` and `npm run check` run package scripts.
-- Bad, because matching is on command text, so the ask list spells each core-branch deletion and overwrite many ways (quoted, `refs/heads/`, `git -C`), about 1,400 generated rules; edit the generator, never the file.
+- Bad, because matching is on command text, so the ask list spells each core-branch deletion and overwrite many ways (quoted, `refs/heads/`, `git -C`), about 1,600 generated rules; edit the generator, never the file.
 - Claude Code matches PowerShell rules case-insensitively, so the PowerShell rules leave out ask entries whose case twins are routine (`branch -D` vs `-d`, `switch -C` vs `-c`); in PowerShell, force-deleting a feature branch is an instruction-only rule, while force-creating or deleting a core branch still asks through core-specific rules.
 - Known residue: merging into a core branch other than `main` cannot be detected from the command, so it is an instruction-only rule; nested `template/.claude/skills` may appear twice in this repo once Claude reads files under `template/`.
 

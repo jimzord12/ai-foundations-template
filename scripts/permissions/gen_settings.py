@@ -90,7 +90,7 @@ if PROFILE == "template":
                         for f in ["-d", "-D", "--delete"]:
                             ask += [f"{t}({g} branch {f}* {m}{tail})", f"{t}({g} branch * {f}* {m}{tail})"]
                         ask += [f"{t}({g} switch -C {m}{tail})", f"{t}({g} switch --force-create {m}{tail})"]
-                for m in names + [f"refs/heads/{core}", f'"refs/heads/{core}"']:
+                for m in names + [f"refs/heads/{core}", f'"refs/heads/{core}"', f"'refs/heads/{core}'"]:
                     for tail in ["", " *"]:
                         ask += [f"{t}({g} push *-d* {m}{tail})", f"{t}({g} push * :{m}{tail})"]
                     ask += [f"{t}({g} push * {m} *-d*)"]
@@ -98,7 +98,7 @@ if PROFILE == "template":
                         f"{t}({g} push * :refs/heads/{core}*)", f"{t}({g} push * \":{core}\"*)", f"{t}({g} push * ':{core}'*)",
                         f"{t}({g} branch -m {core}*)", f"{t}({g} branch -M {core}*)", f"{t}({g} branch --move {core}*)",
                         f"{t}({g} branch * -m {core}*)", f"{t}({g} branch * -M {core}*)",
-                        f"{t}({g} push * \":refs/heads/{core}\"*)"]
+                        f"{t}({g} push * \":refs/heads/{core}\"*)", f"{t}({g} push * ':refs/heads/{core}'*)"]
                 for f in ["-m", "-M", "-c", "-C", "--move", "--copy"]:
                     ask += [f"{t}({g} branch {f} * {core})"]
             for core in CORES[1:]:
@@ -106,7 +106,7 @@ if PROFILE == "template":
                         f"{t}({g} push * *:refs/heads/{core}*)", f"{t}({g} push * \"*:{core}\"*)", f"{t}({g} push * '*:{core}'*)",
                         f"{t}({g} push * {core})", f"{t}({g} push * {core} *)"]
             ask += [f"{t}({g} push *--force*)", f"{t}({g} push -f *)", f"{t}({g} push * -f)", f"{t}({g} push * -f *)",
-                    f"{t}({g} push * +*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
+                    f"{t}({g} push * +*)", f"{t}({g} push * \"+*)", f"{t}({g} push * '+*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
                     f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
                     f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                     f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)",
