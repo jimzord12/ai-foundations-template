@@ -1,5 +1,5 @@
 ---
-status: superseded by 0040
+status: superseded by 0041
 date: 2026-09-29
 decision-makers: owner
 kind: architecture
@@ -26,5 +26,5 @@ Stack-specific files are scattered through `template/` instead of grouped in one
 
 ## More Information
 
-- Superseded by [0040](0040-stack-agnostic-core-with-stack-packs-picked-by-detection.md): a generic core plus stack packs picked by detection.
+- Superseded by [0041](0041-stack-agnostic-core-with-stack-packs-picked-by-detection.md): a generic core plus stack packs picked by detection.
 - Narrowed by [0007](0007-agent-instructions-live-per-project-as-a-thin-agents-md-router.md): stack rules are inline `{% if stack %}` blocks, not separate `.claude/rules/stack-*.md` files.

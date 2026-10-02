@@ -4,7 +4,7 @@ title: 'CI workflow for generated projects: check'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 16:59'
+updated_date: '2026-10-02 17:05'
 labels:
   - ci
   - stack
@@ -24,7 +24,7 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Template ships .github/workflows/check.yml for every stack that runs npm ci and npm run check, triggered on push to any branch and on pull requests
+- [ ] #1 Template ships .github/workflows/check.yml for every Phase 1 pack that runs npm ci and npm run check where the project has a check script (a project on the generic pack has none and still gets the workflow for secret scanning, unless this task decides otherwise at pickup), triggered on push to any branch and on pull requests
 - [ ] #2 Workflow is green on a freshly generated project per stack pushed as a branch to jimzord12/ai-foundations-scratch, and red when a check fails; the agent deletes only branches it created, never repositories
 - [ ] #3 Action versions verified against current docs and recorded
 <!-- AC:END -->
@@ -43,5 +43,5 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
 
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The generated workflow runs npm ci and npm run check only where the project has a check script (a project on the generic pack, including a framework with no pack yet, gets no scripts under record 0040); it must not hard-code a stack list. Projects without a check script still get the workflow for secret scanning (TASK-23) unless this task decides otherwise at pickup. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
+2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The generated workflow runs npm ci and npm run check only where the project has a check script (a project on the generic pack, including a framework with no pack yet, gets no scripts under record 0041); it must not hard-code a stack list. Projects without a check script still get the workflow for secret scanning (TASK-23) unless this task decides otherwise at pickup. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

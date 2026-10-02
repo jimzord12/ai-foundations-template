@@ -4,7 +4,7 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-02 16:37'
+updated_date: '2026-10-02 17:05'
 labels:
   - testing
 milestone: m-0
@@ -41,5 +41,5 @@ Cheap, deterministic layer of the testing strategy, no agents involved. Today on
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The render test checks that detection picks the right pack for sample package.json files; the check that pack files and the precedence list agree is TASK-2.5 criterion 9, so reuse it instead of restating it. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
+2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The render test checks that detection picks the right pack for sample package.json files; the check that pack files and the precedence list agree is TASK-2.5 criterion 9, so reuse it instead of restating it. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

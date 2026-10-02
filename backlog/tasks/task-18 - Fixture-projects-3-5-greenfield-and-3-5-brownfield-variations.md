@@ -4,7 +4,7 @@ title: 'Fixture projects: 3-5 greenfield and 3-5 brownfield variations'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-02 16:37'
+updated_date: '2026-10-02 17:05'
 labels:
   - testing
   - fixtures
@@ -32,7 +32,7 @@ The template must be tried on realistic projects. Greenfield: freshly scaffolded
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. Fixtures are per pack and may use the framework's own scaffolder; a fixture with an unknown framework exercises the generic fallback. Re-plan this at pickup.
+2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. Fixtures are per pack and may use the framework's own scaffolder; a fixture with an unknown framework exercises the generic fallback. Re-plan this at pickup.
 
-2026-10-02: a brownfield JavaScript-only Express project has no tsconfig.json, so the foundations file would extend a missing file (record 0040, Not checked): decide at pickup whether the template adds one or the project is out of scope.
+2026-10-02: a brownfield JavaScript-only Express project has no tsconfig.json, so the foundations file would extend a missing file (record 0041, Not checked): decide at pickup whether the template adds one or the project is out of scope.
 <!-- SECTION:NOTES:END -->

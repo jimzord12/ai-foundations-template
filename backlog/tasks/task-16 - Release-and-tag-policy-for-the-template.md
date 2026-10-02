@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-02 16:17'
+updated_date: '2026-10-02 17:05'
 labels:
   - release
 milestone: m-0
@@ -61,5 +61,5 @@ Copier update only delivers template changes to projects when a git tag exists, 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
 
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The README scaffold-then-copy steps describe how the stack is detected (the stack question default) and how to override it, not a closed stack list. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
+2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The README scaffold-then-copy steps describe how the stack is detected (the stack question default) and how to override it, not a closed stack list. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

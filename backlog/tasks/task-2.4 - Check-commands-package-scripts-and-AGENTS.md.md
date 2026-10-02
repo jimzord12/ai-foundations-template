@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 16:59'
+updated_date: '2026-10-02 17:05'
 labels:
   - stack
   - instructions
@@ -47,5 +47,5 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-02 (TASK-15): template done.md and its Backlog definition_of_done line name the combined script npm run check; keep that name.
 
-2026-10-02: ready label removed: criteria changed after the challenge (record 0040, ready.md); plan and challenge again before unattended work, or the owner waives it.
+2026-10-02: ready label removed: criteria changed after the challenge (record 0041, ready.md); plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->
