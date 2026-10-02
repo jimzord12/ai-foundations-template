@@ -4,7 +4,7 @@ title: 'Fixture projects: 3-5 greenfield and 3-5 brownfield variations'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 16:08'
 labels:
   - testing
   - fixtures
@@ -28,3 +28,9 @@ The template must be tried on realistic projects. Greenfield: freshly scaffolded
 - [ ] #3 Each fixture can be rebuilt from scratch with one command and pinned tool versions
 - [ ] #4 Adoption guide for brownfield projects written from what the fixtures reveal (dry run first, clean branch, never blind overwrite, how to handle an existing AGENTS.md); tested on the brownfield fixtures
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per pack, Phase 1 packs being Next.js, bare React Native and Express (more in TASK-2.6). Fixtures are per pack and may use the framework's own scaffolder; a fixture with an unknown framework should exercise the generic fallback. Re-plan this at pickup.
+<!-- SECTION:NOTES:END -->

@@ -4,7 +4,7 @@ title: Test runner per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 03:09'
+updated_date: '2026-10-02 16:07'
 labels:
   - stack
   - tests
@@ -20,13 +20,13 @@ ordinal: 1300
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Each stack needs a test runner agents can call in seconds, matching the owner's rule that tests exercise the real implementation (mocks only at true external boundaries). Evaluate current standards (for example Vitest for Express and Next.js, Jest for React Native, which is the RN default) and verify versions.
+Each supported framework (its pack) needs a test runner agents can call in seconds behind one contract: the test script, matching the owner's rule that tests exercise the real implementation (mocks only at true external boundaries). Evaluate current standards (for example Vitest for Express and Next.js, Jest for React Native, which is the RN default) and verify versions.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Runner chosen and configured per stack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), recorded in docs/decisions/
-- [ ] #2 Example test per stack exercises named real code: Express GET /health via the app, a Next.js utility function (async Server Components are out of scope for unit tests and stated as such), the RN App component render
+- [ ] #1 Runner chosen and configured for each Phase 1 pack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), written in the pack and recorded in docs/decisions/
+- [ ] #2 Example test per Phase 1 pack exercises named real code: Express GET /health via the app, a Next.js utility function (async Server Components are out of scope for unit tests and stated as such), the RN App component render
 - [ ] #3 Each example test is shown red after deliberately breaking the code under test, then green again (evidence recorded)
 - [ ] #4 2.3 adds the test script through the post-copy task
 <!-- AC:END -->
@@ -46,4 +46,6 @@ Each stack needs a test runner agents can call in seconds, matching the owner's 
 2026-10-02: record 0036 applies: never overwrite the project's own config; ship a new file that extends or imports it, and verify that per tool before relying on it.
 
 2026-10-02: ready label removed: its dependency 2.5 changed what the plan relies on (record 0036, ready.md); plan and challenge again, or the owner waives it.
+
+2026-10-02: record 0040: the contract (test) is the same for every framework and each pack says how it is met; frameworks beyond Phase 1 are TASK-2.6.
 <!-- SECTION:NOTES:END -->

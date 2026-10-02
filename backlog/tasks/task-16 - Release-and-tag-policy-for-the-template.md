@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-01 23:18'
+updated_date: '2026-10-02 16:08'
 labels:
   - release
   - ready
@@ -61,4 +61,6 @@ Copier update only delivers template changes to projects when a git tag exists, 
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
+
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per pack, Phase 1 packs being Next.js, bare React Native and Express (more in TASK-2.6). The README scaffold-then-copy steps describe detection and the stack override, not a closed stack list. Re-plan this at pickup.
 <!-- SECTION:NOTES:END -->

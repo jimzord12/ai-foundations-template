@@ -4,7 +4,7 @@ title: 'Automated template tests: render, copier update, collision cases'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 16:08'
 labels:
   - testing
   - ready
@@ -38,3 +38,9 @@ Cheap, deterministic layer of the testing strategy, no agents involved. Today on
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per pack, Phase 1 packs being Next.js, bare React Native and Express (more in TASK-2.6). The render test no longer looks for one stack block in AGENTS.md; it checks that the detector picks the right pack and that every pack it can return exists. Re-plan this at pickup.
+<!-- SECTION:NOTES:END -->

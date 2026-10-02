@@ -4,11 +4,10 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 00:21'
+updated_date: '2026-10-02 16:07'
 labels:
   - stack
   - instructions
-  - ready
 milestone: m-0
 dependencies:
   - TASK-2.1
@@ -24,14 +23,14 @@ ordinal: 1400
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). Ship them as package.json scripts per stack and name them in the AGENTS.md stack blocks.
+Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). The contract is the same for every pack; the scripts come from the packs (2.1 to 2.3) and each pack names them.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 Post-copy task adds only the combined check script (runs typecheck, lint, format:check and test, which 2.1-2.3 add)
-- [ ] #2 npm run check passes on a freshly scaffolded project per stack, and fails when any one of the four fails
-- [ ] #3 AGENTS.md stack blocks name the exact commands, within the line budget of the phase plan
+- [ ] #2 npm run check passes on a freshly scaffolded project for each Phase 1 pack, and fails when any one of the four fails
+- [ ] #3 The packs and AGENTS.md name the exact commands, within the line budget of the phase plan
 <!-- AC:END -->
 
 ## Definition of Done
@@ -47,4 +46,6 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-02 (TASK-15): template done.md and its Backlog definition_of_done line name the combined script npm run check; keep that name.
+
+2026-10-02: ready label removed: criteria changed after the challenge (record 0040, ready.md); plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

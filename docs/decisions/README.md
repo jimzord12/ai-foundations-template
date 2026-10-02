@@ -9,7 +9,7 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0001](0001-don-t-adopt-effect-ts.md) | technical | accepted | Don't adopt Effect-TS |
 | [0002](0002-agent-instruction-baseline.md) | product | accepted | Agent-instruction baseline |
 | [0003](0003-distribute-the-template-with-copier.md) | technical | accepted | Distribute the template with Copier |
-| [0004](0004-one-template-shared-files-conditional-per-stack-files.md) | architecture | accepted | One template, shared files + conditional per-stack files |
+| [0004](0004-one-template-shared-files-conditional-per-stack-files.md) | architecture | superseded by 0040 | One template, shared files + conditional per-stack files |
 | [0005](0005-track-open-work-with-backlog-md.md) | technical | accepted | Track open work with Backlog.md |
 | [0006](0006-public-github-repo-mit-license.md) | product | accepted | Public GitHub repo, MIT license |
 | [0007](0007-agent-instructions-live-per-project-as-a-thin-agents-md-router.md) | architecture | accepted | Agent instructions live per project, as a thin AGENTS.md router |
@@ -44,3 +44,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0036](0036-config-files-extend-the-projects-own-instead-of-overwriting-it.md) | technical | accepted | Config files extend the project's own instead of overwriting it |
 | [0037](0037-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md) | technical | accepted | Codex reads the shared skills from a checked copy in .agents/skills |
 | [0038](0038-template-allowlist-adds-git-worktree-and-git-tag.md) | technical | accepted | Template allowlist adds git worktree and git tag |
+| [0040](0040-stack-agnostic-core-with-stack-packs-picked-by-detection.md) | architecture | accepted | Stack-agnostic core with stack packs picked by detection |

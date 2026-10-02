@@ -6,11 +6,10 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 16:07'
 labels:
   - template
   - tooling
-  - ready
 milestone: m-0
 dependencies:
   - TASK-2.1
@@ -25,12 +24,12 @@ ordinal: 1450
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Parent for the technical baseline every generated project gets, split into one-change subtasks. Stacks: Express 5 + Zod, Next.js 16.3, bare React Native at the current stable of @react-native-community/template (owner answer 2026-10-01; verify the version when 2.5 starts). Start with TASK-2.5 (integration mechanism and Express skeleton); 2.1-2.3 build on it; 2.4 wires the check commands. CI is owned by TASK-13 (template repo) and TASK-27 (generated projects); the done rule by TASK-15.
+Parent for the technical baseline every generated project gets, split into one-change subtasks. Stack-agnostic by design (record 0040): a generic core plus a small pack per framework, the pack picked by a post-copy task that reads package.json. The intended reach is any modern TypeScript project: web (Next.js, Astro, SvelteKit, Solid), mobile (bare React Native, Expo) and backend (Elysia, Hono, Fastify, Express, Nest.js). Phase 1 (v0.1.0) verifies the mechanism on Next.js 16.3, bare React Native at the current stable of @react-native-community/template (owner answer 2026-10-01; verify the version when 2.5 starts) and Express 5 + Zod; more frameworks arrive as packs (TASK-2.6). Start with TASK-2.5 (integration mechanism, packs and Express skeleton); 2.1-2.3 build on it; 2.4 wires the check commands. CI is owned by TASK-13 (template repo) and TASK-27 (generated projects); the done rule by TASK-15.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 All subtasks Done
+- [ ] #1 All Phase 1 subtasks (2.1 to 2.5) Done; TASK-2.6 is later work and does not block v0.1.0
 <!-- AC:END -->
 
 ## Definition of Done
@@ -41,3 +40,9 @@ Parent for the technical baseline every generated project gets, split into one-c
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: ready label removed: description and criterion changed after the challenge (record 0040, ready.md); plan and challenge again before unattended work, or the owner waives it.
+<!-- SECTION:NOTES:END -->

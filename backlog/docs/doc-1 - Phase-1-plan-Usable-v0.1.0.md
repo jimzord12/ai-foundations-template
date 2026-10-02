@@ -3,13 +3,13 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-02 03:06'
+updated_date: '2026-10-02 16:08'
 ---
 # Phase 1 plan: Usable v0.1.0
 
-**Goal.** A project created from the template today is genuinely usable by agents: strong instructions (knowledge system, charter, git and done rules, review loop, ready gate), a real technical baseline per stack (integration mechanism, strict TypeScript, lint/format, tests, check commands), CI for both the template and generated projects with secret scanning, released as tag `v0.1.0`.
+**Goal.** A project created from the template today is genuinely usable by agents: strong instructions (knowledge system, charter, git and done rules, review loop, ready gate), a real technical baseline through a stack-agnostic mechanism (record 0040: a generic core plus a pack per framework, picked by detection; strict TypeScript, lint/format, tests, check commands), verified for Next.js, bare React Native and Express, with further frameworks as packs after v0.1.0 (TASK-2.6), CI for both the template and generated projects with secret scanning, released as tag `v0.1.0`.
 
-**Exit criteria.** Every Phase 1 task is Done; this repo's CI is green on `main`; a project generated per stack from `gh:jimzord12/ai-foundations-template@v0.1.0` passes `npm run check` and its own CI workflow.
+**Exit criteria.** Every Phase 1 task is Done; this repo's CI is green on `main`; a project generated for each Phase 1 pack (Next.js, bare React Native, Express) from `gh:jimzord12/ai-foundations-template@v0.1.0` passes `npm run check` and its own CI workflow.
 
 ## Rules for running this phase
 
@@ -36,14 +36,14 @@ updated_date: '2026-10-02 03:06'
 | 6b | TASK-30 project-docs review | `docs-lenses` skill, `docs-reviewer`, optional `scannability-reviewer` | 11, 25 |
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
-| 9 | TASK-2.5 integration mechanism | Copier post-copy tasks, Express skeleton | none |
+| 9 | TASK-2.5 integration mechanism | Copier post-copy tasks that detect the framework and install its pack (Next.js, bare React Native, Express, generic), Express skeleton | none |
 | 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
 | 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |
 | 12a | TASK-32 lint and CI rules | Agents add or propose lint and CI checks; Findings subsection in `done.md` | 15, 2.2, 27 |
 | 12b | TASK-33 TypeScript settings | Triggered guidance for stricter flags in `typescript.md`; Findings subsection | 15, 2.1, 32 |
 | 13 | TASK-17 automated tests | Render, update and collision tests that fail when broken | 2.4 |
-| 14 | TASK-13 template CI | Workflow running 17, `check` per stack, identical-check | 17 |
+| 14 | TASK-13 template CI | Workflow running 17, `check` per Phase 1 pack, identical-check | 17 |
 | 15 | TASK-23 secret scanning | gitleaks in both workflows, `.env.example`, planted-secret proof | 27 (and 13) |
 | 16 | TASK-16 release | Versioning rule, README fixes, tag `v0.1.0` (owner approves push) | all above |
 
@@ -53,4 +53,4 @@ The project Definition of Done applies to every task. Template content is proven
 
 ## Owner answers (2026-10-01)
 
-RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus configs that are extended, never overwritten (refined 2026-10-02 by record 0036), plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended; for this repo replaced on 2026-10-02 by record 0027: everything allowed except deleting main); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Recorded in `docs/decisions/`.
+RN at current stable; this repo migrates its decision log; Copier post-copy tasks plus configs that are extended, never overwritten (refined 2026-10-02 by record 0036), plus an Express skeleton; Codex native only (AGENTS.md and skills); allowlist of read-only tools, package scripts, backlog, git add/commit/push plus the branch commands switch, branch, merge and push --delete (amended; for this repo replaced on 2026-10-02 by record 0027: everything allowed except deleting main); tag push approved by the owner; generated projects get CI; CI proofs run on branches of the private `jimzord12/ai-foundations-scratch` (decision "Scratch repository for CI proofs"). Stack support was widened on 2026-10-02 (record 0040): a generic core plus a pack per framework, with further frameworks in TASK-2.6. Recorded in `docs/decisions/`.
