@@ -37,4 +37,5 @@ Chosen option: "Ship it with definitions … protected from being loosened", bec
 ## More Information
 
 - Ships the branch model of [0023](0023-branch-model-feature-branches-no-pull-requests-delete-when-merged.md) and [0024](0024-branch-model-refinements-after-the-first-instruction-review.md).
+- The ask-first item about deleting unmerged branches is narrowed by [0039](0039-delete-what-is-safely-deletable-without-asking.md).
 - This repo's own permissions are [0027](0027-this-repo-allows-everything-except-deleting-main.md); generated-project permissions are decided in TASK-24 and must match the ask-first list.

@@ -26,4 +26,5 @@ No pull requests. Work happens on feature branches up to three levels below `mai
 
 ## More Information
 
+- The approval for deleting unmerged branches is narrowed by [0039](0039-delete-what-is-safely-deletable-without-asking.md).
 - Refined by [0024](0024-branch-model-refinements-after-the-first-instruction-review.md).

@@ -1,3 +1,13 @@
+---
+protocol: evolution
+kind: rule
+status: active
+summary: Start simple and add structure only when friction demands it, with ceremony scaled to the change.
+applies-when: Code shows a friction signal or a change alters the structure the architecture doc describes.
+agents: []
+skills: []
+related: [charter, done]
+---
 # Evolving the design
 
 Start simple and add structure only when friction shows it is needed. This file says what to watch for, how much ceremony a change needs, and how to move code without breaking it.
