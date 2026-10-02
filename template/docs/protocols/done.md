@@ -31,7 +31,7 @@ Other protocols send items here, so keep this name. The summary holds:
 
 1. **Decisions** you took, one line each, including structural changes you made (`docs/protocols/evolution.md`).
 2. **Evidence**, as above.
-3. **Waiting on the owner:** proposed records and open product questions (`docs/protocols/charter.md`), ask-first actions you skipped while the owner was away, and changes left unmerged with unresolved review findings (`docs/protocols/git.md`).
+3. **Waiting on the owner:** proposed records and open product questions (`docs/protocols/charter.md`), ask-first actions you skipped while the owner was away, and changes left unmerged with unresolved review findings (`docs/protocols/review.md`).
 4. **Findings:** your own observations, not a relay of what subagents reported. This includes friction you noticed but did not act on (`docs/protocols/evolution.md`). Other protocols add subsections here. An empty subsection folds into one line (for example "Lint/CI: none"); when every subsection is empty, the section is "Findings: none".
 
 Leave out sections 1 to 3 when they are empty; Findings always appears, at least as "Findings: none". This defines the content. The owner's personal format (for example a recap or a next-move line) still applies.

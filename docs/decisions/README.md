@@ -37,3 +37,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0029](0029-git-and-safety-rules-for-generated-projects.md) | product | accepted | Git and safety rules for generated projects |
 | [0030](0030-definition-of-done-evidence-and-end-of-task-summary.md) | product | accepted | Definition of done, evidence and end-of-task summary |
 | [0031](0031-agent-layout-template-permissions-and-dogfood-manifest.md) | technical | accepted | Agent layout, template permissions and dogfood manifest |
+| [0032](0032-review-loop-protocol-code-reviewer-and-review-skills.md) | technical | accepted | Review loop protocol, code-reviewer and review skills |
