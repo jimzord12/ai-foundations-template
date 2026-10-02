@@ -4,7 +4,7 @@ title: Release and tag policy for the template
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-02 21:27'
 labels:
   - release
 milestone: m-0
@@ -25,8 +25,9 @@ dependencies:
   - TASK-29
   - TASK-30
   - TASK-31
-  - TASK-32
-  - TASK-33
+  - TASK-37
+  - TASK-39
+  - TASK-40
 priority: medium
 type: chore
 ordinal: 1900
@@ -62,4 +63,6 @@ Copier update only delivers template changes to projects when a git tag exists, 
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
 
 2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The README scaffold-then-copy steps describe how the stack is detected (the stack question default) and how to override it, not a closed stack list. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
+
+2026-10-03: dependencies on TASK-32 and TASK-33 removed (moved to phase 2 on 2026-10-02, so they must not gate the v0.1.0 tag); the remaining phase 1 tasks TASK-37, TASK-39 and TASK-40 added.
 <!-- SECTION:NOTES:END -->
