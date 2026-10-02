@@ -4,7 +4,7 @@ title: Test runner per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-02 18:26'
 labels:
   - stack
   - tests
@@ -28,7 +28,7 @@ Each supported framework (its pack) needs a test runner agents can call in secon
 - [ ] #1 Runner chosen and configured for each Phase 1 pack (verify current standards, for example Vitest for Express and Next.js, Jest for RN), written in the pack and recorded in docs/decisions/
 - [ ] #2 Example test per Phase 1 pack exercises named real code: Express GET /health via the app (a skeleton file, under the skeleton condition, so an existing Express app does not receive it), a Next.js utility function (async Server Components are out of scope for unit tests and stated as such), the RN App component render
 - [ ] #3 Each example test is shown red after deliberately breaking the code under test, then green again (evidence recorded)
-- [ ] #4 2.3 adds the test script through the post-copy task for each pack that defines one, and any per-pack config file in the home TASK-2.5 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
+- [ ] #4 2.3 adds the test script through the post-copy task for each pack that defines one, unless the project already has a test script (TASK-2.5 criterion 6), and any per-pack config file in the home TASK-2.5 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
 <!-- AC:END -->
 
 ## Definition of Done

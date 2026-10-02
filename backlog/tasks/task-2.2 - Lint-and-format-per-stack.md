@@ -4,7 +4,7 @@ title: Lint and format per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-02 18:26'
 labels:
   - stack
   - lint
@@ -27,7 +27,7 @@ One standard linter and formatter per supported framework (its pack), behind one
 <!-- AC:BEGIN -->
 - [ ] #1 Linter and formatter chosen for each Phase 1 pack (Next.js, bare React Native, Express), extending the framework shipped config where one exists (Next.js ESLint, RN ESLint and Prettier); the choice is written in the pack and the reason recorded in docs/decisions/
 - [ ] #2 lint and format:check scripts exit 0 on a freshly scaffolded project for each Phase 1 pack, and lint exits non-zero on a planted violation
-- [ ] #3 2.2 adds the lint and format:check scripts through the post-copy task for each pack that defines them, and any per-pack config file in the home TASK-2.5 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
+- [ ] #3 2.2 adds the lint and format:check scripts through the post-copy task for each pack that defines them, unless the project already has one of that name (TASK-2.5 criterion 6), and any per-pack config file in the home TASK-2.5 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
 <!-- AC:END -->
 
 ## Definition of Done

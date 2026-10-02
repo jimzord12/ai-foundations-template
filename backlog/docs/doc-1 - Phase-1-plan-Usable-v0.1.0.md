@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-02 18:27'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -49,7 +49,7 @@ updated_date: '2026-10-02 17:05'
 
 ## Verification
 
-The project Definition of Done applies to every task. Template content is proven on freshly scaffolded projects (create-next-app, the current RN community template, the Express skeleton), not only on renders.
+The project Definition of Done applies to every task. Template content is proven on freshly scaffolded projects (create-next-app, the current RN community template, the Express skeleton, and an existing Express project), not only on renders.
 
 ## Owner answers (2026-10-01)
 
