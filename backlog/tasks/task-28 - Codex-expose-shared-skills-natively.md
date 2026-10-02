@@ -1,13 +1,15 @@
 ---
 id: TASK-28
 title: 'Codex: expose shared skills natively'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@claude'
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:13'
+updated_date: '2026-10-02 03:15'
 labels:
   - codex
   - skills
+  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -137,7 +139,7 @@ Then write the decision record in its own commit. Number: the next one free on `
 ## Review loop (`docs/protocols/review.md`)
 
 Mixed change, so each round runs three reviewers:
-- `context-reviewer`: `template/docs/protocols/agents.md`, `context-lenses`, `AGENTS.md` (pass the diff text and the task; it has no shell).
+- `context-reviewer`: `template/docs/protocols/agents.md`, `context-lenses`, `ready.md` (step 6b), `AGENTS.md` (pass the diff text and the task; it has no shell).
 - `docs-reviewer`: the decision record, decisions README row, `README.md`.
 - `code-reviewer`: `dogfood.json` and the copy mechanism (the smoke and dogfood checks).
 
@@ -149,7 +151,7 @@ Tell every reviewer the `.agents/skills/` trees and `.claude/skills` copy are pr
 
 ## Files touched
 
-`dogfood.json`, `template/.agents/skills/**` (new, synced), `.agents/skills/**` (new, synced), `template/docs/protocols/agents.md` (+ synced copy), `template/.claude/skills/context-lenses/SKILL.md` (+ synced copies), `AGENTS.md`, `README.md`, `docs/decisions/<nnnn>-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md`, `docs/decisions/README.md`.
+`dogfood.json`, `template/.agents/skills/**` (new, synced), `.agents/skills/**` (new, synced), `template/docs/protocols/agents.md` (+ synced copy), `template/.claude/skills/context-lenses/SKILL.md` (+ synced copies), `template/docs/protocols/ready.md` (+ synced copy), `AGENTS.md`, `README.md`, `docs/decisions/<nnnn>-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md`, `docs/decisions/README.md`.
 
 ## Sources (all checked 2026-10-02)
 
@@ -193,4 +195,8 @@ Run through the gate's fallback (code-reviewer applying the ready skill), becaus
 - Minor: reviewers could widen the scope to the six skill descriptions. Fixed: settled in the brief that the descriptions stay.
 - Minor: `codex debug prompt-input` has no `-C`. Fixed: it now uses Push-Location.
 - Adopted: ready.md says the record number is "free on the main branch" (plan step 6b).
+
+## Readiness challenge, task level, round 3 (2026-10-02): READY
+
+Fallback challenger (code-reviewer + ready skill). One Minor folded in: step 6b files added to Files touched and the context-reviewer list. Notes: 6b is a lesson from planning (kept); if 0037 is taken before merge, rename and fix the index row and links.
 <!-- SECTION:NOTES:END -->

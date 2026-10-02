@@ -1,5 +1,5 @@
 {
-  "description": "Template files this repo also uses. Each source (file, or folder copied recursively) must match its copy exactly. Check: python scripts/dogfood_check.py; fix: python scripts/dogfood_check.py --sync. A mapped folder holds only template copies; --sync removes extra files, so repo-only agents or skills need their own folder.",
+  "description": "Copies of template files, used by this repo or shipped inside template/ (Codex's template/.agents/skills). Each source (file, or folder copied recursively) must match its copy exactly. Check: python scripts/dogfood_check.py; fix: python scripts/dogfood_check.py --sync. A mapped folder holds only template copies; --sync removes extra files, so repo-only agents or skills need their own folder.",
   "pairs": [
     {
       "source": "template/docs/protocols/agents.md",
@@ -20,6 +20,14 @@
     {
       "source": "template/.claude/skills",
       "copy": ".claude/skills"
+    },
+    {
+      "source": "template/.claude/skills",
+      "copy": "template/.agents/skills"
+    },
+    {
+      "source": "template/.claude/skills",
+      "copy": ".agents/skills"
     }
   ]
 }
