@@ -4,11 +4,10 @@ title: 'CI for the template: smoke-test all three stacks on every push'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:49'
-updated_date: '2026-10-02 16:08'
+updated_date: '2026-10-02 16:17'
 labels:
   - ci
   - quality
-  - ready
 milestone: m-0
 dependencies:
   - TASK-17
@@ -46,5 +45,5 @@ The smoke test (copier copy for express, next, rn) is manual today and easy to f
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner of the CI workflow. TASK-23 adds its secret-scanning step to this workflow; TASK-2 subtasks provide the check commands it runs.
 
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per pack, Phase 1 packs being Next.js, bare React Native and Express (more in TASK-2.6). The template CI should iterate over the packs the detector can return, so a new pack is covered without editing the workflow. Re-plan this at pickup.
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. How CI covers later packs is decided at pickup. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

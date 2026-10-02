@@ -28,3 +28,4 @@ Baseline changes reach projects via a template tag plus `copier update` (not ins
 
 - Resolves the open placement note in [0002](0002-agent-instruction-baseline.md); the rest of 0002 stands.
 - Narrows [0004](0004-one-template-shared-files-conditional-per-stack-files.md).
+- Its inline stack blocks are replaced by [0040](0040-stack-agnostic-core-with-stack-packs-picked-by-detection.md): stack rules move into packs rendered to `docs/stack.md`; the thin-router idea stands.

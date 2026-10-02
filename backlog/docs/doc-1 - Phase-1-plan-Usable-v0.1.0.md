@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-02 16:08'
+updated_date: '2026-10-02 16:18'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -36,7 +36,7 @@ updated_date: '2026-10-02 16:08'
 | 6b | TASK-30 project-docs review | `docs-lenses` skill, `docs-reviewer`, optional `scannability-reviewer` | 11, 25 |
 | 7 | TASK-26 ready gate | `ready` skill, `readiness-challenger` profile, `ready.md` | 11 |
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
-| 9 | TASK-2.5 integration mechanism | Copier post-copy tasks that detect the framework and install its pack (Next.js, bare React Native, Express, generic), Express skeleton | none |
+| 9 | TASK-2.5 integration mechanism | Stack detection in the stack question default, packs (Next.js, bare React Native, Express, generic) rendered into docs/stack.md, Copier post-copy tasks for scripts, Express skeleton | none |
 | 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
 | 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |

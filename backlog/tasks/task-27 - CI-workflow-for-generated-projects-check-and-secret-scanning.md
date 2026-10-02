@@ -4,11 +4,10 @@ title: 'CI workflow for generated projects: check'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 16:08'
+updated_date: '2026-10-02 16:17'
 labels:
   - ci
   - stack
-  - ready
 milestone: m-0
 dependencies:
   - TASK-2.4
@@ -44,5 +43,5 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
 
-2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per pack, Phase 1 packs being Next.js, bare React Native and Express (more in TASK-2.6). The generated workflow runs the same npm run check contract whatever the pack; it must not hard-code a stack list. Re-plan this at pickup.
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The generated workflow runs the same npm run check contract whatever the pack; it must not hard-code a stack list. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->
