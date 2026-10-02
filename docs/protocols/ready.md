@@ -5,7 +5,7 @@ Work runs unattended only after it has been planned and challenged, so gaps surf
 ## When it applies
 
 - Unattended work starts only on tasks labelled `ready`, or waived by the owner.
-- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, the phase READY of a fully planned task, the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
+- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, the phase READY of a task not marked "plan at pickup", the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
 - In an attended run, the owner may waive the gate for a task: note "ready gate waived by the owner" in the task notes; it then counts as ready.
 - Depth scales with the task:
 
@@ -39,7 +39,7 @@ Write it into the task (`backlog task edit <id> --plan`), traced against the cod
 
 ## The challenge
 
-1. Spawn a fresh `readiness-challenger` (a subagent that has not seen the planning). Give it the task id (or the phase plan), the level (task or phase), whether the working tree is on the main branch, the round number, the settled decisions and owner answers, the lead lenses you choose (names: `.claude/skills/ready/SKILL.md`), and every earlier report with your disposition of each finding. If the profile is missing or your tool cannot run it, use `code-reviewer` and tell it to apply `.claude/skills/ready/SKILL.md` and answer READY or NOT READY.
+1. Spawn a fresh `readiness-challenger` (a subagent that has not seen the planning). Give it the task id (or the phase plan), the level (task or phase), whether the working tree is on the main branch, the round number, the settled decisions and owner answers, the lead lenses you choose (names: `.claude/skills/ready/SKILL.md`), and every earlier report with your disposition of each finding. If the profile is missing or your tool cannot run it, use `code-reviewer` and tell it to apply `.claude/skills/ready/SKILL.md` and answer READY or NOT READY; for a phase, split the brief by groups of tasks if it runs out of turns.
 2. On NOT READY, fix the plan or the task and start the next round with a new challenger. When the only open findings are owner questions you cannot answer, stop the rounds and go to "Owner questions". INCOMPLETE, NOT_CHECKED items and the round caps work as in the review loop (`docs/protocols/review.md`).
 3. On READY, add the label (`backlog task edit <id> --add-label ready`) and append the verdict and the number of rounds to the task notes.
 
@@ -56,7 +56,7 @@ Ask the owner once, in one batch, not one question at a time. Each question hold
 
 A phase is a milestone, or any set of tasks run unattended together. Before the run:
 
-1. Write the phase plan as a Backlog document (`backlog doc create`): goal, exit criteria, task order with dependencies, which tasks touch the same files, and rules for the run (for example one runner, or which tasks may run in parallel).
+1. Write the phase plan as a Backlog document (`backlog doc create`): goal, exit criteria, task order with dependencies, the tasks planned at pickup, which tasks touch the same files, and rules for the run (for example one runner, or which tasks may run in parallel).
 2. Plan every task. One whose plan depends on code an earlier task in the phase will change is checked here on checklist items 1 to 6 only; its plan is written at pickup, traced against the code as it is then, and challenged at task level before work starts (on NOT READY, remove its label).
 3. Run the challenge at level "phase": order and dependencies, shared files, decision-record numbers (two tasks must not claim the same number; a plan names a new record by title and takes the next free number when it writes it), and the owner questions of every task, batched up front.
-4. Label the tasks that pass and append the phase verdict to each labelled task's notes. The phase challenge stands in for a separate challenge of each fully planned task; tasks planned at pickup still get their own. The run takes only labelled tasks, in the planned order, with the pickup check above.
+4. Label the tasks that pass (no open Blocking or Material finding in the last round, and no dependency on a task that has one) and append the phase verdict to each labelled task's notes, adding "plan at pickup" for the tasks planned at pickup. The phase challenge stands in for a separate challenge of each fully planned task; tasks planned at pickup still get their own. The run takes only labelled tasks, in the planned order, with the pickup check above.
