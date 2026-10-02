@@ -126,6 +126,12 @@ if PROFILE == "template":
                 ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)",
                         f"{t}({g} worktree add -B *)", f"{t}({g} worktree add * -B *)"]
 
+if PROFILE == "repo":
+    # Decision 0042: this repo asks nothing; the commands that used to ask are allowed, and AGENTS.md tells agents
+    # to double-check before running them. Only deleting main stays denied.
+    allow += ask
+    ask = []
+
 out = {"$schema": "https://json.schemastore.org/claude-code-settings.json",
        "permissions": {"allow": allow, "deny": deny, "ask": ask}}
 json.dump(out, open(sys.argv[1], "w", encoding="utf-8", newline="\n"), indent=2)

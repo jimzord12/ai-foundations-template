@@ -79,8 +79,9 @@ if PROFILE == "template":
     }
     if TOOL == "Bash":
         must["ask"] += ["git branch -D feature/old", "git switch -C feature/x", "git worktree add -B feature/x ../x HEAD~1"]
-if PROFILE == "repo" and TOOL == "Bash":
-    must["ask"] += ["git branch -D feature/old"]
+if PROFILE == "repo":
+    # Decision 0042: this repo asks nothing, so the commands that used to ask must now be allowed.
+    must["allow"] += must.pop("ask") + ["git branch -D feature/old"]
 bad = 0
 for want, cs in must.items():
     for c in cs:

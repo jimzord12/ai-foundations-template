@@ -47,3 +47,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0039](0039-delete-what-is-safely-deletable-without-asking.md) | product | accepted | Delete what is safely deletable without asking |
 | [0040](0040-every-protocol-starts-with-a-checked-protocol-card.md) | architecture | accepted | Every protocol starts with a checked protocol card |
 | [0041](0041-stack-agnostic-core-with-stack-packs-picked-by-detection.md) | architecture | accepted | Stack-agnostic core with stack packs picked by detection |
+| [0042](0042-this-repo-asks-nothing-agents-double-check-destructive-commands.md) | product | accepted | This repo asks nothing; agents double-check destructive commands |
