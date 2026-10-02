@@ -4,6 +4,7 @@ title: Drop the non-core git branch -D ask rule from the template permission pro
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:01'
+updated_date: '2026-10-02 16:07'
 labels:
   - permissions agents
 dependencies: []
@@ -26,6 +27,7 @@ Decision 0039 lets agents delete their own unmerged branches without asking, but
 - [ ] #1 Decide, with the owner, which of the three sources keep the Bash branch -D ask rule (template profile, this repo profile, the owner user settings) and record the answer
 - [ ] #2 Template profile in scripts/permissions/gen_settings.py and template/.claude/settings.json no longer ask for git branch -D on non-core branches if the answer is to drop it; check_settings.py cases updated; core-branch asks unchanged
 - [ ] #3 template/docs/protocols/agents.md Permissions bullet matches the new behaviour
+- [ ] #4 If the owner also wants this repo profile (decision 0027) and .claude/settings.json changed, update scripts/permissions/gen_settings.py repo profile and have the owner copy .claude/settings.json (agents cannot write it)
 <!-- AC:END -->
 
 ## Definition of Done

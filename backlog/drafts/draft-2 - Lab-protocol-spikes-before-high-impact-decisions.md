@@ -4,7 +4,7 @@ title: 'Lab protocol: spikes before high-impact decisions'
 status: Draft
 assignee: []
 created_date: '2026-10-02 02:41'
-updated_date: '2026-10-02 15:56'
+updated_date: '2026-10-02 16:07'
 labels:
   - agents protocols
 dependencies: []
@@ -66,8 +66,8 @@ TASK-7 (charter), TASK-11 (review loop), TASK-26 (Ready gate: could require a la
 - [ ] #6 Proof run: an agent given a planted uncertain assumption follows the protocol end to end (spike task, lab worktree, LAB.md with falsifier and budget, evidence-backed conclusion, distilled decision record, worktree removed and tag pushed); transcript and resulting files attached as evidence
 - [ ] #7 The change passes the review loop in docs/protocols/review.md
 - [ ] #8 Whether writes under .claude/worktrees/ prompt in Claude Code is checked with a headless run and noted in agents.md (the git worktree and git tag allow rules already landed, decision 0038)
-- [ ] #9 lab.md (doc-2) is re-synced with decision 0039 before it ships: step 9 no longer treats a lab branch the agent created as ask-first, and the pushed lab-closed tag is kept only if it still earns its place (tags are leftovers too)
-- [ ] #10 template/docs/protocols/git.md "Branches" says lab/<LAB-ID> branches sit outside the branch levels, are never merged and are not pushed, and points to lab.md; if lab/ is meant to count as agent-only for the cleanup rule (decision 0039), reserve the prefix there too
+- [ ] #9 template/docs/protocols/git.md "Branches" says lab/<LAB-ID> branches sit outside the branch levels, are never merged and are not pushed, and points to lab.md (a branch name proves no ownership under decision 0039, so reserving lab/ for agents would need its own record)
+- [ ] #10 lab.md (doc-2) is re-synced with decision 0039 before it ships: step 9 no longer treats a lab branch the agent created as ask-first, and the pushed lab-closed tag is kept only if it still earns its place (tags are leftovers too)
 <!-- AC:END -->
 
 ## Definition of Done
