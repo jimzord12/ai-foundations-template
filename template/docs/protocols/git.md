@@ -21,7 +21,7 @@ Keep the repository clean: when you can delete something safely, delete it, and 
 
 Delete without asking:
 
-- any branch that has landed on its base: all its commits are on the base (`git log <base>..<branch>` is empty), the base has moved past it (`git log <branch>..<base>` is not), and its tip commit is more than a day old; locally and on the remote. Core branches are never deleted after a merge. These checks leave alone a branch someone has just opened or merged;
+- any branch that has landed on its base: all its commits are on the base (`git log <base>..<branch>` is empty), the base has moved past it (`git log <branch>..<base>` is not), and its tip commit is more than a day old; locally and on the remote. Fetch first and run the checks on `origin/<branch>` too, so a commit pushed after your last fetch is not lost. Core branches are never deleted after a merge. These checks leave alone a branch someone has just committed to or merged;
 - any branch that is yours (below), merged or not, once you are done with it or it was a dead end, locally and on the remote;
 - a worktree you started in this session, once you are done with it (plain `git worktree remove`, which refuses while it has uncommitted changes; add `--force` only for changes that are yours to discard);
 - stale remote-tracking refs (`git fetch --prune`) and worktree entries whose folder is already gone (`git worktree prune`);
@@ -30,8 +30,6 @@ Delete without asking:
 **Yours** means you started it yourself: you made the branch from a base, and nobody else has pushed to it. A branch is yours in this session or, if a note on the task says you opened it, in a later session of the same task; note each branch you open for a task. A worktree is yours only in the session that created it. Checking out or tracking a branch someone else pushed does not make it yours. Git does not record who made a branch and agent commits carry the owner's name, so if you cannot tell, it is not yours; a name or folder such as `.claude/worktrees/` proves nothing, because other sessions and people use it too.
 
 Do not remove a worktree you did not start in this session, even one a task note mentions: plain removal also deletes its ignored files (such as `.env`) and it may still be in use (a live session's worktree is not always marked `locked`). Leave it and mention it in your end-of-task summary, along with any branch you meant to remove but left because it was not yours.
-
-"Whose commits exist nowhere else" means no other branch, remote branch or tag holds them; a remote-tracking ref (`origin/x`) of the branch you are deleting does not count.
 
 Still ask: see "Asking first" below.
 
@@ -42,7 +40,7 @@ Never:
 
 ## Asking first
 
-The list of actions that need the owner's approval is in AGENTS.md "Git and safety". Each request shows:
+The list of actions that need the owner's approval is in AGENTS.md "Git and safety". "Whose commits exist nowhere else" there means no other branch, remote branch or tag holds them; a remote-tracking ref (`origin/x`) of the branch being deleted does not count. Each request shows:
 
 - the exact command;
 - what it targets (branch, commits, files);
