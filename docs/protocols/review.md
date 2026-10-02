@@ -32,4 +32,6 @@ If a named profile is missing or your tool cannot run it, use `code-reviewer` (f
 
 When feedback should change how agents behave (an owner's correction, a rule applied wrongly, an ambiguous convention), `context-maintainer` writes the change: give it the feedback in the owner's words and the example that triggered it, and send each round's open findings back to it. If the profile is missing or your tool cannot run it, make the edit yourself applying `.claude/skills/context-lenses/SKILL.md`. The change then goes through the loop with `context-reviewer`.
 
+**Opt-in add-on for human-facing docs:** `scannability-reviewer` checks how fast a doc reads (a README, a guide, a checklist), never whether it is true. Add it to a round, next to the reviewers above, when the owner asks or when the change adds or rewrites steps a human follows (a quickstart, a runbook, a test checklist); it then counts like any other reviewer in that round. If the profile is missing, skip it: no fallback.
+
 Reports follow the shape in the review-core skill.
