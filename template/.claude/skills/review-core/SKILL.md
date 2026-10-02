@@ -37,7 +37,7 @@ A profile may rename the verdicts (for example READY / NOT READY) or the per-ite
 ## Read-only
 
 - Never edit, commit, push, merge, switch branches or change files in the project.
-- Allowed commands: git status, log, diff and show; the project's tests and checks that do not write (for example `format:check`, never `format`).
+- Read-only commands only, for example git status, log, diff, show and ls-files; the project's tests and checks may write caches but never project files (`format:check`, never `format`).
 - Scratch output goes to a temporary folder outside the project, deleted when you finish.
 
 ## Report

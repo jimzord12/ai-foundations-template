@@ -1,11 +1,11 @@
 ---
 id: TASK-11
 title: 'Review loop: code-reviewer profile and review-core / review-lenses skills'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-02 00:57'
+updated_date: '2026-10-02 01:02'
 labels:
   - review
   - agents
@@ -26,19 +26,19 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 review-core and review-lenses skills plus the code-reviewer profile ship in template/ and in this repo (the agents and skills folder pairs already exist in dogfood.json; the review.md pair is added)
-- [ ] #2 docs/protocols/review.md states the loop, caps, and the attended rule: a run is attended only while the owner is replying in the session, otherwise unattended; router line in AGENTS.md (at most 4 lines); this repo's root AGENTS.md also points to it
-- [ ] #3 Proof in headless claude -p in this repo: the code-reviewer profile is found and lists the names of the skills injected at startup without reading any file (proving preloading, not the built-in /code-review), and runs one real review round on a diff in this repo; the stream shows an Agent call with subagent_type code-reviewer and no main-thread Skill call; report saved in the task notes
-- [ ] #4 docs/protocols/review.md states that changes to instruction files (AGENTS.md, protocols, agent profiles, skills) and decision records are non-trivial and always reviewed, and routes each kind of change to a reviewer profile (code, agent context, project docs) with code-reviewer as the fallback when a named profile is missing
+- [x] #1 review-core and review-lenses skills plus the code-reviewer profile ship in template/ and in this repo (the agents and skills folder pairs already exist in dogfood.json; the review.md pair is added)
+- [x] #2 docs/protocols/review.md states the loop, caps, and the attended rule: a run is attended only while the owner is replying in the session, otherwise unattended; router line in AGENTS.md (at most 4 lines); this repo's root AGENTS.md also points to it
+- [x] #3 Proof in headless claude -p in this repo: the code-reviewer profile is found and lists the names of the skills injected at startup without reading any file (proving preloading, not the built-in /code-review), and runs one real review round on a diff in this repo; the stream shows an Agent call with subagent_type code-reviewer and no main-thread Skill call; report saved in the task notes
+- [x] #4 docs/protocols/review.md states that changes to instruction files (AGENTS.md, protocols, agent profiles, skills) and decision records are non-trivial and always reviewed, and routes each kind of change to a reviewer profile (code, agent context, project docs) with code-reviewer as the fallback when a named profile is missing
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -76,4 +76,12 @@ Fresh-context review loop for this repo and generated projects. Specific thin pr
 2026-10-02 (TASK-14): once review.md ships, tighten the fallback review definition in template docs/protocols/git.md ('Merging' section) to point at it.
 
 2026-10-02 readiness round 1 NOT READY: 5 Material (proof could pass with preloading broken, dogfooded files pointing at template-only files, review cap vs the owner's global cap, review-core drift from 0025, Bash not read-only) and 9 Minor, all explicit fixes folded into plan v2 (step 12); proceeding without another round. Owner batch: should the owner's global 5-round cap defer to a project's review.md (recommended yes).
+
+Proof (evidence: scratchpad proof-evidence/task11-out.jsonl, task11-review-round1.md): headless claude -p in this repo, default mode, --debug. Init lists agent code-reviewer; the main thread made exactly one Agent call (subagent_type code-reviewer) and no Skill call; the subagent's first tool calls were git diffs (it read no skill file) and its report opens 'Skills loaded at startup ... review-core and review-lenses'; no skipped-skill warning. The subagent (fresh context, Opus per the profile) ran review round 1 on this branch: PASS, 0 Blocking, 0 Material, 6 Minor, 3 Notes. Minors applied after PASS: lens-name pointer, one reviewer per distinct profile for mixed changes, INCOMPLETE handling, review-core read-only wording (caches allowed, never project files), agents.md Bash note and matching example, 0032 links to 0025 and 0012; Note 8 applied ('adds or changes a test'). Copies resynced (dogfood_check 0 problems); smoke rn exit 0, AGENTS.md 68 lines. The TASK-14 follow-up (git.md points to review.md) is done here.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Generated projects, and this repo, get the review loop: docs/protocols/review.md (non-trivial rule with instruction files and decision records always reviewed, the loop, caps 8 attended / 15 unattended, routing by kind of change with code-reviewer as fallback), a thin code-reviewer profile (Opus, high effort, turn limit) preloading the hidden review-core and review-lenses skills. git.md and done.md point to review.md; dogfooded via dogfood.json. Record 0032. Proof: a headless run spawned code-reviewer, which named both preloaded skills without reading files and returned a PASS review of this very change.
+<!-- SECTION:FINAL_SUMMARY:END -->

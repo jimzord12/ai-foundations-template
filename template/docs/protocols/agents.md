@@ -14,7 +14,7 @@ How this project's agent profiles, skills and Claude Code permissions are laid o
 `name` and `description` are required. Useful optional fields (checked against the Claude Code docs on 2026-10-02): `tools`, `disallowedTools`, `model`, `effort`, `maxTurns`, `skills`, `permissionMode`, `isolation`. Verify the current docs before relying on others.
 
 - Leaving out `tools` gives the subagent every tool. List tools explicitly.
-- Read-only roles (reviewers, challengers) get no `Edit` or `Write`.
+- Read-only roles (reviewers, challengers) get no `Edit` or `Write`. If they keep `Bash` (to run git and tests), they are read-only by instruction only: Claude Code cannot allow part of Bash.
 
 ```markdown
 ---
@@ -23,7 +23,8 @@ description: Reviews a diff with fresh context and reports Blocking, Material, M
 tools: Read, Grep, Glob, Bash
 model: opus
 effort: high
-skills: [review-core]
+maxTurns: 60
+skills: [review-core, review-lenses]
 ---
 ```
 

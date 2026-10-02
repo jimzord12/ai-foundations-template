@@ -34,4 +34,5 @@ Chosen option: "A thin `code-reviewer` profile that preloads two shared skills",
 
 ## More Information
 
+- Refines [0025](0025-two-documentation-reviewer-families-with-shared-skills.md): the round caps move from `review-core` to `review.md`. Applies [0012](0012-review-loop-caps-raised-to-8-attended-and-15-unattended.md).
 - Dogfooded into this repo through `dogfood.json`.
