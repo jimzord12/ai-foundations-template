@@ -4,7 +4,7 @@ title: 'Strict TypeScript per stack: tsconfig and ts-reset'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 16:45'
+updated_date: '2026-10-02 16:52'
 labels:
   - stack
   - typescript
@@ -25,7 +25,7 @@ Agents write more consistent code under a strict compiler. Ship one tsconfig.fou
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 The template ships one tsconfig.foundations.json that extends the project's own tsconfig.json with the strict flags and never overwrites it (record 0036); 2.1 also adds a tsconfig.json and the typescript dev dependency to the Express skeleton (which has no scaffolder; its package.json is a template file shipped by 2.5), under the same skeleton condition as the other skeleton files, from a standard strict base, for the foundations file to extend
+- [ ] #1 The template ships one tsconfig.foundations.json that extends the project's own tsconfig.json with the strict flags and never overwrites it (record 0036); 2.1 also adds a tsconfig.json and the typescript dev dependency to the Express skeleton (which has no TypeScript scaffolder; its package.json is a template file shipped by 2.5), under the same skeleton condition as the other skeleton files, from a standard strict base, for the foundations file to extend
 - [ ] #2 ts-reset installed (via the post-copy task) and wired per pack
 - [ ] #3 npm run typecheck (tsc -p tsconfig.foundations.json --noEmit) passes on a freshly scaffolded project for each Phase 1 pack (Next.js, RN, Express skeleton) and each framework's own build is unaffected; the script runs the pack's prepare step first (for example next typegen) and the post-copy task ensures typescript is a dev dependency (record 0040); the open checks listed in record 0036 (editor-only plugins through extends) are verified
 - [ ] #4 Choices and versions recorded in docs/decisions/
