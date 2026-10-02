@@ -50,7 +50,8 @@ if PROFILE == "template":
        "git push origin HEAD:main", "git push origin feature/x:main", "git branch -d feature/x", "git switch -c feature/y",
        "git worktree add -b lab/LAB-1-x .claude/worktrees/LAB-1-x abc1234", "git worktree list", "git worktree remove .claude/worktrees/LAB-1-x",
        "git worktree prune", f"git -C {P} worktree list", "git tag lab-closed/LAB-1-x lab/LAB-1-x", "git tag", "git tag --list 'lab-*'",
-       "git push origin lab-closed/LAB-1-x", f"git -C {P} tag v1"],
+       "git push origin lab-closed/LAB-1-x", f"git -C {P} tag v1", 'git tag -a lab-closed/x lab/x -m "evidence"',
+       "git tag -l --format=%(refname)", "git worktree add -b lab/LAB-2-y .claude/worktrees/LAB-2-y main"],
      "ask": ["git branch -D main", "git branch -d production", "git branch -d -f stage", "git push origin --delete main",
        "git push --delete origin dev", "git push origin :production", "git push origin HEAD:production", "git push origin feature/x:stage",
        'git branch -D "main"', f"git -C {P} branch -D main", "git branch -m main old", "git push --force origin feature/x",
@@ -65,12 +66,16 @@ if PROFILE == "template":
        'git push origin "+main"', "git push origin '+feature/x'",
        "git worktree remove --force .claude/worktrees/x", "git worktree remove -f .claude/worktrees/x", "git worktree remove .claude/worktrees/x --force",
        "git worktree remove .claude/worktrees/x -f", f"git -C {P} worktree remove --force x", "git tag -d lab-closed/x", "git tag --delete x",
-       "git tag -f lab-closed/x lab/x", "git tag --force x", f"git -C {P} tag -d x"],
+       "git tag -f lab-closed/x lab/x", "git tag --force x", f"git -C {P} tag -d x",
+       "git tag x -d", "git tag lab-closed/x --delete", "git tag -a -f v1 -m m", "git tag -fa v1", "git tag v1 HEAD -f",
+       "git tag -a v1 --force", "git tag -s -f v1", "git worktree remove -ff x", f"git -C {P} tag x -d",
+       "git worktree add -B main ../x HEAD~1", "git worktree add -B production ../p HEAD", "git worktree add -f -B main ../x HEAD",
+       'git worktree add -B "dev" ../x HEAD', f"git -C {P} worktree add -B stage ../x HEAD"],
      "classifier": ["npm install lodash", "npm run dev", f"git -C {P} reflog", "git restore .", "git checkout -- a.ts", "curl https://x",
        "node -e 1", "git rebase main", "git stash"],
     }
     if TOOL == "Bash":
-        must["ask"] += ["git branch -D feature/old", "git switch -C feature/x"]
+        must["ask"] += ["git branch -D feature/old", "git switch -C feature/x", "git worktree add -B feature/x ../x HEAD~1"]
 if PROFILE == "repo" and TOOL == "Bash":
     must["ask"] += ["git branch -D feature/old"]
 bad = 0

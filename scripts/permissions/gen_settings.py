@@ -113,10 +113,15 @@ if PROFILE == "template":
                     f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                     f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)",
                     f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)",
-                    f"{t}({g} worktree remove *--force*)", f"{t}({g} worktree remove -f *)", f"{t}({g} worktree remove * -f*)",
-                    f"{t}({g} tag -d *)", f"{t}({g} tag --delete *)", f"{t}({g} tag -f *)", f"{t}({g} tag --force *)"]
-            if t == "Bash":  # PowerShell matches case-insensitively: -D would catch -d, -C would catch -c
-                ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)"]
+                    # Forced worktree removal and tag delete/force, flag first or later (-fa, "tag x -d"); "-af" is not caught.
+                    f"{t}({g} worktree remove -f*)", f"{t}({g} worktree remove * -f*)", f"{t}({g} worktree remove *--force*)",
+                    f"{t}({g} tag -d*)", f"{t}({g} tag * -d*)", f"{t}({g} tag *--delete*)",
+                    f"{t}({g} tag -f*)", f"{t}({g} tag * -f*)", f"{t}({g} tag *--force*)"]
+            for core in CORES:  # worktree add -B resets an existing branch, like switch -C
+                for m in [core, f'"{core}"', f"'{core}'"]:
+                    ask += [f"{t}({g} worktree add *-B {m})", f"{t}({g} worktree add *-B {m} *)"]
+            if t == "Bash":  # PowerShell matches case-insensitively: -D would catch -d, -C would catch -c, -B would catch -b
+                ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)", f"{t}({g} worktree add *-B *)"]
 
 out = {"$schema": "https://json.schemastore.org/claude-code-settings.json",
        "permissions": {"allow": allow, "deny": deny, "ask": ask}}

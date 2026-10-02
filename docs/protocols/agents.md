@@ -35,7 +35,7 @@ skills: [review-core, review-lenses]
 
 - The allowlist reduces friction; it is not a sandbox. Anything not listed (installing a new dependency, other commands, file edits in manual mode) prompts, or in auto mode goes to Claude Code's classifier.
 - Auto mode ignores blanket rules such as `Bash` or `PowerShell`, which is why the list is per command.
-- Forced worktree removal (`git worktree remove --force`) and deleting or moving a tag (`git tag -d`, `-f`) ask: the first discards uncommitted work, the second leaves no trace.
+- Claude Code's settings ask before `git worktree remove` with a force flag (it discards uncommitted work), before `git tag` with `-d`, `--delete`, `-f` or `--force` in most spellings (git keeps no reflog for tags; `git tag -af` slips through), and before `git worktree add -B` on a core branch (it resets the branch; in Bash any branch asks). These are a settings guard only, not on the ask-first list in AGENTS.md; follow them by instruction where the settings do not apply.
 - Merging into a core branch other than `main` cannot be detected from the command alone; that rule stays in AGENTS.md.
 - In PowerShell, run each git command as its own call. PowerShell rules match case-insensitively, so force-deleting a feature branch (`branch -D`) is not asked there; follow the ask-first list by instruction.
 - Commit from the project folder with plain `git commit`: with `git -C <path>`, a message that names a risky command (for example `reset --hard`) can trigger an ask rule.
