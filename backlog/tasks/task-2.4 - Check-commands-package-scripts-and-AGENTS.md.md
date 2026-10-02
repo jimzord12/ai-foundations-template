@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 16:07'
+updated_date: '2026-10-02 16:45'
 labels:
   - stack
   - instructions
@@ -23,7 +23,7 @@ ordinal: 1400
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). The contract is the same for every pack; the scripts come from the packs (2.1 to 2.3) and each pack names them.
+Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). The contract is the same for every pack; the scripts come from 2.1 to 2.3 (where they live: TASK-2.5 criterion 1) and each pack names them.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria

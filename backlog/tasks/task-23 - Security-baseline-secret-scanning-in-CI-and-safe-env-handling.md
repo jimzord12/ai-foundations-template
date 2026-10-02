@@ -4,11 +4,10 @@ title: 'Security baseline: secret scanning in CI and safe env handling'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 16:45'
 labels:
   - security
   - ci
-  - ready
 milestone: m-0
 dependencies:
   - TASK-13
@@ -48,4 +47,6 @@ Repos are public and agents commit often, so a leaked secret is a real risk. The
 2026-10-01: adds a step to the CI workflow owned by TASK-13.
 
 2026-10-01 owner answer Q1: CI proofs use the private repo jimzord12/ai-foundations-scratch (decision of that date). Push one branch per stack and proof; delete only branches you created; never create or delete repositories or force push.
+
+2026-10-02: record 0040 (stack-agnostic core with packs picked by detection): "every stack" in this task now means every Phase 1 pack (Next.js, bare React Native, Express) plus the generic fallback; more frameworks are TASK-2.6. Decide at pickup whether an existing Express project's .gitignore gets .env added if missing, as the RN one does, because 0040 leaves an existing project's own files untouched. The ready label was removed because its dependencies (TASK-13, TASK-27) changed what the plan relies on; plan and challenge again before unattended work, or the owner waives it.
 <!-- SECTION:NOTES:END -->

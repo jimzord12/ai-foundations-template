@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:07'
-updated_date: '2026-10-02 16:24'
+updated_date: '2026-10-02 16:45'
 labels:
   - stack
   - packs
@@ -29,7 +29,7 @@ Owner 2026-10-02: the template targets any modern TypeScript project in an app e
 - [ ] #1 A pack exists and is detected for each of Astro, SvelteKit, SolidStart, Expo, Hono, Fastify, Nest.js and Elysia (or the owner names a subset; the owner wrote "Solid", so confirm whether plain Solid with Vite is meant too); the precedence list in copier.yml is updated and the check from TASK-2.5 passes
 - [ ] #2 Each pack is verified on a project freshly scaffolded with that framework's own tool: copy picks the pack, and npm run check passes (typecheck through the foundations config, lint, format:check, test)
 - [ ] #3 Expo is its own pack; the "No Expo packages" rule stays in the bare React Native pack, and the bare-versus-Expo precedence is recorded in docs/decisions/
-- [ ] #4 Where tsc does not cover the framework's files (Astro, SvelteKit, SolidStart), the pack names the framework's own checker and check runs it, or a decision records why not
+- [ ] #4 Where tsc does not cover the framework's files (Astro, SvelteKit), the pack names the framework's own checker and check runs it, or a decision records why not
 - [ ] #5 Each pack's tool choices and verified versions are recorded in docs/decisions/
 <!-- AC:END -->
 
