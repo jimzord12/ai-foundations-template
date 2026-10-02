@@ -1,4 +1,4 @@
-"""Check that this repo's dogfooded copies match their template sources (dogfood.json).
+"""Check that the copies listed in dogfood.json (in this repo, or inside template/) match their template sources.
 
 Usage: python scripts/dogfood_check.py [--sync]
 Drift means a missing, differing or extra file under a mapped copy. A source that does not exist yet passes

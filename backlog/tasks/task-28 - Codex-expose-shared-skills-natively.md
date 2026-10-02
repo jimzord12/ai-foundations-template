@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:15'
+updated_date: '2026-10-02 03:22'
 labels:
   - codex
   - skills
@@ -199,4 +199,23 @@ Run through the gate's fallback (code-reviewer applying the ready skill), becaus
 ## Readiness challenge, task level, round 3 (2026-10-02): READY
 
 Fallback challenger (code-reviewer + ready skill). One Minor folded in: step 6b files added to Files touched and the context-reviewer list. Notes: 6b is a lesson from planning (kept); if 0037 is taken before merge, rename and fix the index row and links.
+
+## Evidence (2026-10-02)
+
+- dogfood: `python scripts/dogfood_check.py --sync` created both `.agents/skills/` trees (12 files). `python scripts/dogfood_check.py` then reported 0 problem(s).
+- Smoke test express / next / rn: each exited 0. In each render, the comparison one-liner printed "6 files identical" for `.claude/skills` against `.agents/skills`.
+- Live Codex proof (AC #3), codex-cli 0.159.3, on a fresh express render in the session scratchpad (outside any repo, after `git init`):
+  - `codex exec --sandbox read-only --ephemeral --json -C <dir> -o <dir>-list.txt "<list prompt>" > <dir>-list.jsonl`
+    - Answer: context-lenses, docs-lenses, ready, review-core, review-lenses, scan-lenses, each at `r9/<name>/SKILL.md`.
+    - Event log: thread.started, turn.started, 1 agent_message, turn.completed, and 2 error items. Both errors are a user-config warning (an unrecognized `mcp_servers` setting in `~/.codex/config.toml`), not the template.
+    - No command_execution events.
+  - `codex exec ... "Use $review-core: open its SKILL.md and quote its first Markdown heading line exactly. Do not modify any file."`
+    - Answer: `# Review core`.
+    - One command_execution: `Get-Content -LiteralPath '.agents/skills/review-core/SKILL.md'`.
+  - The proof folder was deleted afterwards.
+- Independent check by the round-1 docs-reviewer (no model call):
+  - In a never-trusted render, `codex debug prompt-input` listed all six skills.
+  - From a subfolder, the walk-up to `.git` still found them.
+  - Without `.git`, a copy one level up was not found.
+  - The six skills take 1,302 characters of the list.
 <!-- SECTION:NOTES:END -->
