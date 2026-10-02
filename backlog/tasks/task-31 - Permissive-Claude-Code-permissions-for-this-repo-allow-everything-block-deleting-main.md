@@ -3,11 +3,11 @@ id: TASK-31
 title: >-
   Permissive Claude Code permissions for this repo: allow everything, block
   deleting main
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 23:01'
-updated_date: '2026-10-01 23:56'
+updated_date: '2026-10-02 00:03'
 labels:
   - agents
   - claude
@@ -26,21 +26,21 @@ On 2026-10-02 an unattended run stopped because the Claude Code auto-mode classi
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Root .claude/settings.json lets an agent run the listed commands here without prompts or classifier review in both manual (default) mode and auto mode: blanket allow entries cover default mode, and narrow per-command rules (git subcommands including git -C forms, backlog, copier, pushover, gh run and workflow, npm check scripts, .tmp cleanup, mkdir, cp, mv) survive auto mode. Four documented limits remain: writes to protected paths (any .claude/ folder, .git/) are never pre-approved; unlisted commands and subagent spawns in auto mode still go to the classifier; the owner's user-level ask rules still apply; an untrusted workspace (any clone or worktree outside this repo's root checkout) ignores the allow list
-- [ ] #2 Deleting main, locally or on the remote, is denied in its common spellings for Bash and PowerShell (whole-flag -d, -D, --delete forms in any order, multi-branch, quoted, git -C forms, option before or after the remote or branch, refs/heads/main, push :main, --mirror, --prune, update-ref -d or --stdin, gh api ref deletion and deleteRef, gh repo delete); read-only branch queries such as git branch --merged main stay allowed. The ask list holds only force pushes, tag pushes, reset --hard, git clean -<flags>, and branch -D, -f or --force, written so plain commit messages from the repo folder and ordinary branch names do not trigger them (recorded exceptions in 0027). Known residue (wrappers like bash -c, env prefixes) is listed in the decision record
-- [ ] #3 A matcher script checks the generated file against a must-allow / must-deny / must-ask command list (including commit messages naming these commands and git branch --merged main) with zero mismatches
-- [ ] #4 Proof with headless claude -p, stream-json, no permission-skipping flags, evidence kept in the task notes: (a) auto mode with the project file in an untrusted clone outside any repo: allow entries ignored, every delete-main spelling tried (including a compound PowerShell one) in permission_denials, git reset --hard held; (b) dontAsk mode with --settings set to the allow list minus blanket entries: branch create, commit, merge into main, push, git branch --merged main, deleting a merged branch locally and remotely all run, deletes and reset refused; (c) default mode with the real file in this trusted repo: branch create, switch and delete and git -C status run without a prompt, git branch -D main denied
-- [ ] #5 TASK-24 no longer asks for a narrow allowlist in this repo: AC #1 points here and keeps the generated-project allowlist as its open owner question; AC #4 reads permission_denials from stream-json output. doc-1's owner-answers line points to the new record and its order table lists TASK-31, 32 and 33
-- [ ] #6 Owner decision recorded as product record 0027 (links 0021 answer 5 under More Information), stating the four limits, the known residue, and recommending a GitHub ruleset on main that blocks deletion and force push
+- [x] #1 Root .claude/settings.json lets an agent run the listed commands here without prompts or classifier review in both manual (default) mode and auto mode: blanket allow entries cover default mode, and narrow per-command rules (git subcommands including git -C forms, backlog, copier, pushover, gh run and workflow, npm check scripts, .tmp cleanup, mkdir, cp, mv) survive auto mode. Four documented limits remain: writes to protected paths (any .claude/ folder, .git/) are never pre-approved; unlisted commands, PowerShell && or || chains and subagent spawns in auto mode still go to the classifier; the owner's user-level ask rules still apply; an untrusted workspace (any clone or worktree outside this repo's root checkout) ignores the allow list
+- [x] #2 Deleting main, locally or on the remote, is denied in its common spellings for Bash and PowerShell (whole-flag -d, -D, --delete forms in any order, multi-branch, quoted, git -C forms, option before or after the remote or branch, refs/heads/main, push :main, --mirror, --prune, update-ref -d or --stdin, gh api ref deletion and deleteRef, gh repo delete); read-only branch queries such as git branch --merged main stay allowed. The ask list holds only force pushes, tag pushes, reset --hard, git clean -<flags>, and branch -D, -f or --force, written so plain commit messages from the repo folder and ordinary branch names do not trigger them (recorded exceptions in 0027). Known residue (wrappers like bash -c, env prefixes) is listed in the decision record
+- [x] #3 A matcher script checks the generated file against a must-allow / must-deny / must-ask command list (including commit messages naming these commands and git branch --merged main) with zero mismatches
+- [x] #4 Proof with headless claude -p, stream-json, no permission-skipping flags, evidence kept in the task notes: (a) auto mode with the project file in an untrusted clone outside any repo: allow entries ignored, every delete-main spelling tried (including a compound PowerShell one) in permission_denials, git reset --hard held; (b) dontAsk mode with --settings set to the allow list minus blanket entries: branch create, commit, merge into main, push, git branch --merged main, deleting a merged branch locally and remotely all run, deletes and reset refused; (c) default mode with the real file in this trusted repo: branch create, switch and delete and git -C status run without a prompt, git branch -D main denied
+- [x] #5 TASK-24 no longer asks for a narrow allowlist in this repo: AC #1 points here and keeps the generated-project allowlist as its open owner question; AC #4 reads permission_denials from stream-json output. doc-1's owner-answers line points to the new record and its order table lists TASK-31, 32 and 33
+- [x] #6 Owner decision recorded as product record 0027 (links 0021 answer 5 under More Information), stating the four limits, the known residue, and recommending a GitHub ruleset on main that blocks deletion and force push
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -63,4 +63,14 @@ Plan v3 amendments after readiness round 3: (a) after git clone --bare, run git 
 2026-10-02 proof evidence (stream-json transcripts in the session scratchpad proof-evidence/): (a) auto, untrusted clone: CLI warned 'Ignoring 209 permissions.allow entries'; steps 1-10 ran via the classifier; denied: git branch -D main, git push origin --delete main, git push --delete origin main, git push origin :main, git -C <clone> branch -d -f main, PowerShell 'Set-Location <clone>; git branch -D main'; git reset --hard HEAD~1 held; afterwards git branch --list main in clone and bare remote both showed main. (b) dontAsk with narrow-only --settings: steps 1-10 ran (switch -c, commit with a message naming push --delete main and reset --hard, switch main, merge --ff-only, push main, push -u, branch --merged main, branch -d, push --delete branch, switch -c tmp); same denials; reset refused; main present in clone and remote. (c) default mode, real file, this repo: switch -c, switch back, branch -d, git -C status ran; git branch -D main denied. Live side effect: this session's own deny rules blocked a PowerShell command whose here-string named git branch -D main (recorded as a false positive in 0027). Review round 1 FINDINGS: M1 AC #4 over-claimed (fixed: AC reworded, proof (c) added, record lists what ran and what was not observed); m1 trust limit (fixed, now four limits); m2 git -C commit messages hit ask (recorded with the commit -F hint); m3 push v* (recorded); N1 residue (recorded); N2 git reset soft not allowed (left to the classifier); N4 checker docstring (fixed).
 
 Review round 2 FINDINGS: M1 PowerShell matches deny rules against the whole line, so pushing main and deleting a branch on one line is denied (fixed: recorded in 0027 with the workaround; root AGENTS.md Git section tells agents to run each push and branch deletion as its own command); m1 record over-claimed --no-pager/-c allow rules (fixed wording); N1 trust warning not in run (a) transcript (wording softened, cites sibling runs); N2 AC #2 wording aligned with recorded exceptions.
+
+Review round 3 FINDINGS: M1 PowerShell checks an && / || chain as one unit (narrow allows never pre-approve it; deny matches across it), while ; splits statements (verified by the reviewer's echo probes in dontAsk mode). Fixed: AGENTS.md bullet now says run each git command as its own PowerShell call, no && or || chains; 0027 states the accurate mechanism and lists chains under the classifier limit. N1 mechanism of the proof's PowerShell denial noted.
+
+Review round 4 PASS (0 Blocking/Material); reviewer's live probes confirmed: PowerShell ; splits statements, && chains are never pre-approved by narrow rules and deny matches across them. Notes N1 ('narrow' added to the AGENTS.md bullet) and N2 (AC #1 lists chains) applied; N3 committed with this change.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+This repo now has .claude/settings.json (placed by the owner; agents cannot write it): every tool allowed in manual mode plus about 200 narrow per-command rules that survive auto mode, deleting or renaming main denied in its common spellings, and only force pushes, tag pushes, reset --hard, git clean and forced branch moves asking. scripts/permissions/ regenerates and checks it (64/64 for Bash and PowerShell). Decision 0027 records the policy, four limits, residue, false positives and a GitHub-ruleset recommendation; root AGENTS.md tells agents to run PowerShell git commands one per call. Proof: headless claude -p in auto, dontAsk and manual modes (delete-main spellings denied, reset held, workflow ran from the narrow rules alone). Review: 4 rounds, PASS. Also folded in: Ready-gate fixes to TASK-15/24/32/33, TASK-16 dependencies, doc-1 order.
+<!-- SECTION:FINAL_SUMMARY:END -->
