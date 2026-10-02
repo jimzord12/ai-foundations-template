@@ -27,4 +27,4 @@ Unattended runs can merge and clean up without prompts in generated projects; in
 ## More Information
 
 - Refines [0023](0023-branch-model-feature-branches-no-pull-requests-delete-when-merged.md).
-- The "unmerged branch whose commits exist nowhere else" approval is narrowed to branches the agent did not create by [0039](0039-delete-what-is-safely-deletable-without-asking.md).
+- The "unmerged branch whose commits exist nowhere else" approval is narrowed to branches that are not the agent's own (as 0039 defines it) by [0039](0039-delete-what-is-safely-deletable-without-asking.md).

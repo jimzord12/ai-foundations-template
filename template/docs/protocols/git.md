@@ -21,16 +21,18 @@ Keep the repository clean: when you can delete something safely, delete it, and 
 
 Delete without asking:
 
-- any branch that is fully merged into its base, locally and on the remote (core branches are never deleted after a merge);
-- any branch or worktree that is yours (below), merged or not, once you are done with it or it was a dead end; remove a worktree with plain `git worktree remove`, which still refuses while it has uncommitted changes (do not add `--force` unless they are yours to discard);
+- any branch whose work has landed on its base (it has commits and all of them are on the base; not an empty branch someone just opened), locally and on the remote; core branches are never deleted after a merge;
+- any branch that is yours (below), merged or not, once you are done with it or it was a dead end, locally and on the remote;
+- a worktree you created in this session or task, once you are done with it (plain `git worktree remove`, which refuses while it has uncommitted changes; add `--force` only for changes that are yours to discard);
+- another session's worktree only when all of these hold: it is not locked (`git worktree list` shows `locked`; Claude Code locks the worktree of a live session), its branch has landed on its base, and `git status --ignored` there shows only regenerable files (no `.env`, no `.local/`, nothing you cannot name). Otherwise leave it and mention it in your end-of-task summary: plain removal also deletes ignored files;
 - stale remote-tracking refs (`git fetch --prune`) and worktree entries whose folder is already gone (`git worktree prune`);
 - temporary files and scratch output you created.
 
-**Yours** means you created it in this session or task (a task note says so), or it sits under an agent-only name: a branch under `lab/`, or a worktree under `.claude/worktrees/`. Git does not record who made a branch and agent commits carry the owner's name, so if you cannot tell, it is not yours. Another worktree is not yours to remove (plain removal also deletes its ignored files, such as `.env`, and another session may be working in it): mention it in your end-of-task summary instead.
+**Yours** means you created it in this session or task (a task note says so). Git does not record who made a branch and agent commits carry the owner's name, so if you cannot tell, it is not yours; a name or folder such as `.claude/worktrees/` proves nothing, because other sessions and people use it too.
 
 "Whose commits exist nowhere else" means no other branch, remote branch or tag holds them; a remote-tracking ref (`origin/x`) of the branch you are deleting does not count.
 
-Still ask (full list in AGENTS.md "Git and safety"): deleting a core branch, deleting an unmerged branch that is not yours whose commits exist nowhere else, merging into a core branch other than `main`, force pushes, `reset --hard`, `git clean`.
+Still ask: the list in AGENTS.md "Git and safety" (it is not repeated here).
 
 Never:
 
