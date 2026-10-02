@@ -84,6 +84,8 @@ if PROFILE == "template":
 if PROFILE == "repo":
     must["allow"] += ["git branch -D feature/old"]  # decision 0042: nothing asks in this repo
 bad = 0
+if PROFILE == "repo" and p.get("ask"):  # decision 0042: this repo asks nothing
+    bad += 1; print(f"MISMATCH: the repo profile must have no ask rules, found {len(p['ask'])}")
 for want, cs in must.items():
     for c in cs:
         v = verdict(c)
