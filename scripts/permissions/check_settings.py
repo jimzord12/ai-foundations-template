@@ -29,7 +29,11 @@ must = {
    "git branch --no-merged main", "git branch --contains main", 'git commit -m "Clean up docs"',
    'git commit -m "Allow push to main via settings"', 'git commit -m "clean up; deny push --delete main and branch -D main via settings; reset --hard"',
    f"git -C {P} commit -m update", "backlog task edit 7 -s Done", "uvx copier copy --trust . .tmp/smoke", "rm -rf .tmp/smoke-express",
-   f"git -C {P} branch -d feature/x", f"git -C {P} push origin feature/x", "git reflog", "git cherry-pick abc"],
+   f"git -C {P} branch -d feature/x", f"git -C {P} push origin feature/x", "git reflog", "git cherry-pick abc",
+   # Formerly asked; allowed since decision 0042 (this repo asks nothing).
+   "git push --force origin feature/x", "git push -f origin x", "git push origin x -f", "git push origin +feature/x",
+   "git push origin v0.1.0", "git push --tags", "git push --follow-tags origin main", "git reset --hard HEAD~1", "git reset -q --hard",
+   "git clean -fd", "git branch -f feature/x main"],
  "deny": ["git branch -D main", "git branch -d main", "git branch -d -f main", "git branch -f -d main", "git branch --delete --force main",
    "git branch --force --delete main", "git branch -d feature/x main", 'git branch -D "main"', "git push origin --delete main",
    "git push --delete origin main", "git push -d origin main", "git push origin -d main", "git push origin :main", 'git push origin ":main"',
@@ -37,9 +41,7 @@ must = {
    f"git -C {P} branch -D main", f"git -C {P} branch -d -f main", f"git -C {P} push origin --delete main", "git push --mirror origin",
    "git update-ref -d refs/heads/main", "gh api -X DELETE repos/a/b/git/refs/heads/main", "gh repo delete a/b --yes",
    "git --no-pager branch -D main", "git -c core.x=y branch -D main", "git push origin refs/heads/main --delete", "git branch -m main old"],
- "ask": ["git push --force origin feature/x", "git push -f origin x", "git push origin x -f", "git push origin +feature/x",
-   "git push origin v0.1.0", "git push --tags", "git push --follow-tags origin main", "git reset --hard HEAD~1", "git reset -q --hard",
-   "git clean -fd", "git branch -f feature/x main"],
+ "ask": [],
 }
 if PROFILE == "template":
     must = {
@@ -80,8 +82,7 @@ if PROFILE == "template":
     if TOOL == "Bash":
         must["ask"] += ["git branch -D feature/old", "git switch -C feature/x", "git worktree add -B feature/x ../x HEAD~1"]
 if PROFILE == "repo":
-    # Decision 0042: this repo asks nothing, so the commands that used to ask must now be allowed.
-    must["allow"] += must.pop("ask") + ["git branch -D feature/old"]
+    must["allow"] += ["git branch -D feature/old"]  # decision 0042: nothing asks in this repo
 bad = 0
 for want, cs in must.items():
     for c in cs:

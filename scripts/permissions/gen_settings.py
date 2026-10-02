@@ -1,7 +1,7 @@
 """Generate Claude Code permission settings.
 
 Profiles:
-  repo      .claude/settings.json for this repo (decision 0027): everything allowed, deleting main denied.
+  repo      .claude/settings.json for this repo (decisions 0027, 0042): everything allowed, deleting main denied, nothing asked.
   template  template/.claude/settings.json for generated projects (decisions 0021, 0024, 0029, 0031):
             a narrow allowlist, and the AGENTS.md ask-first list as ask rules.
 
@@ -52,6 +52,7 @@ for t in TOOLS:
                  f"{t}({g} update-ref -d refs/heads/main*)", f"{t}({g} update-ref --stdin*)"]
     deny += [f"{t}(gh api *refs/heads/main*)", f"{t}(gh api graphql*deleteRef*)", f"{t}(gh repo delete*)"]
 
+# Built as asks, but the repo profile moves them to allow at the end (decision 0042); the template rebuilds its own list.
 ask = []
 for t in TOOLS:
     for g in GIT:

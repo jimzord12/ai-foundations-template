@@ -4,7 +4,7 @@ title: Drop the non-core git branch -D ask rule from the template permission pro
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:01'
-updated_date: '2026-10-02 16:07'
+updated_date: '2026-10-02 21:21'
 labels:
   - permissions agents
 dependencies: []
@@ -38,3 +38,9 @@ Decision 0039 lets agents delete their own unmerged branches without asking, but
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Decision 0042 (2026-10-03) answers part of AC #1 for this repo own profile: it no longer asks for git branch -D (or anything else); the owner moved the ask list to allow and agents double-check by instruction. Still open here: the template profile (generated projects) and the owner user settings, where a user ask still beats a project allow in Bash.
+<!-- SECTION:NOTES:END -->
