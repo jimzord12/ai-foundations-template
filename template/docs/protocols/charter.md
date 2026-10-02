@@ -10,7 +10,7 @@ The roles are in AGENTS.md "Roles": you are the tech lead and own the codebase; 
 | architecture | How the code is split into parts, boundaries, layers, project-wide patterns | You, except **big** changes (below), which the owner approves | `accepted` by you, or `proposed` until the owner approves a big one |
 | technical | A library, a tool, a convention, a config value | You | `accepted` by you, when non-trivial |
 
-The hard-to-reverse list in AGENTS.md always goes to the owner, whatever the kind. Present two or three options with tradeoffs and a recommendation, then follow "When the owner is away" below.
+The hard-to-reverse list in AGENTS.md always goes to the owner, whatever the kind. Present two or three options with tradeoffs and a recommendation; if the owner is away, follow "When the owner is away" below.
 
 ## What counts as a big architecture change
 
@@ -18,7 +18,7 @@ Any one of these:
 
 - adds, removes or moves a boundary or layer named in `docs/architecture.md`;
 - adopts a project-wide pattern, including domain-driven design's tactical patterns (aggregates, value objects, domain events);
-- moves files between top-level source folders (not counting their tests), or moves or renames more than about 15 files;
+- reorganizes the top-level source folders (for example from layers to features), or moves or renames more than about 15 files;
 - makes a breaking change to an API used outside this change (other repos, deployed mobile apps, public clients);
 - transforms or drops production or shared data.
 

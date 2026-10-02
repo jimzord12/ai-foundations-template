@@ -1,11 +1,11 @@
 ---
 id: TASK-7
 title: 'Tech-lead charter: authority tiers and architecture-evolution triggers'
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-02 00:09'
+updated_date: '2026-10-02 00:13'
 labels:
   - instructions
   - charter
@@ -26,19 +26,19 @@ The main agent acts as tech lead and senior engineer and owns the codebase; the 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Authority tiers moved from the AGENTS.md section Who decides what into docs/protocols/charter.md with the mapping per decision kind (product: owner; architecture: agent proposes, owner approves big ones; technical: agent decides and logs); AGENTS.md keeps a short pointer
-- [ ] #2 Design evolution protocol in docs/protocols/evolution.md: measurable signals, procedure (architecture decision record, owner approval for big changes, pure-move commit then reference commit, update architecture.md and glossary in the same change, tests and review pass), step-down rule
-- [ ] #3 Decision named Design evolution protocol and authority tiers recorded; smoke test passes
-- [ ] #4 Interim rules stated where Phase 2 is not built yet: friction signals come from the end-of-task summary until a findings pipeline exists; the full safe-move protocol arrives in a later template version. Shipped text never names this repo's task IDs
+- [x] #1 Authority tiers moved from the AGENTS.md section Who decides what into docs/protocols/charter.md with the mapping per decision kind (product: owner; architecture: agent proposes, owner approves big ones; technical: agent decides and logs); AGENTS.md keeps a short pointer
+- [x] #2 Design evolution protocol in docs/protocols/evolution.md: measurable signals, procedure (architecture decision record, owner approval for big changes, pure-move commit then reference commit, update architecture.md and glossary in the same change, tests and review pass), step-down rule
+- [x] #3 Decision named Design evolution protocol and authority tiers recorded; smoke test passes
+- [x] #4 Interim rules stated where Phase 2 is not built yet: friction signals come from the end-of-task summary until a findings pipeline exists; the full safe-move protocol arrives in a later template version. Shipped text never names this repo's task IDs
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -60,4 +60,14 @@ The main agent acts as tech lead and senior engineer and owns the codebase; the 
 2026-10-01 owner of authority tiers (who decides what). TASK-25 references these tiers for who decides each decision kind instead of restating them.
 
 Moved-rule table (old template AGENTS.md line -> new home): 23 'You decide' -> stays in AGENTS.md; 24 kind mapping -> stays (one line) plus pointer to charter.md for 'big'; 25 hard-to-reverse list -> stays in AGENTS.md only (charter.md references it); 26 supersede wording -> removed from AGENTS.md, owned by docs/decisions/README.md line 8; 27 end-of-task decision summary -> stays (done.md will own detail, TASK-15 note); 30 Evolve paragraph -> one ladder line plus rule of three in AGENTS.md, signals/bands/move/step-down in evolution.md, interim proposal-pipeline wording dropped (roadmap moved to record 0028). Verification: smoke express/next/rn exit 0, AGENTS.md 57/58/57 lines (was 55/56/55), no Jinja leftovers, all router paths exist except the docs/adr/ brownfield example; reference grep shows only valid 'Who decides what' / 'Evolve the codebase' references; leak grep (TASK-, task-, Phase N, findings pipeline, 0008, 0018) finds nothing in template/.
+
+Review round 1 FINDINGS (3 Material, 6 Minor, 3 Notes), all fixed: M1 owner-away covers big changes, hard-to-reverse items and open product questions; product row lets the agent fill details inside agreed scope; M2 a new project's first structure and a single port are structural, not big; M3 plan v2 restored (multi-line args through the Windows backlog shim lose everything after the first newline; pass them from bash); m1 AGENTS.md architecture wording aligned ('you decide, except big changes'); m2 rule of three owned by AGENTS.md; m3 big-list items narrowed (source folders, external API consumers, production or shared data); m4 router rows reach evolution.md for structure changes and external services; m5 step-down record only if one exists; m6 'any review step the project uses'; n1 0028/0008 link wording; n3 port trigger 'has or has a planned second provider'. AC2 note: the move procedure is move plus reference updates in one commit, then behaviour commits (moving without updating references would break the checks). AC4 note: the interim friction rule ships as a current rule; roadmap wording lives only in 0028.
+
+Review round 2 PASS (0 Blocking/Material). Minors applied after PASS: big-list item 3 now 'reorganizes the top-level source folders'; options sentence follows owner-away only when the owner is away; step-down follows the normal bands; duplicate DDD line removed from evolution.md; decisions README says accepted architecture decisions update architecture.md. Smoke re-run: 57/58/57 lines, exit 0.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Generated projects get docs/protocols/charter.md (authority per decision kind, a concrete test for big architecture changes that need the owner, and what to do when the owner is away) and docs/protocols/evolution.md (ladder, signals that apply only to code being changed, port trigger, routine/structural/big ceremony bands, safe-move commits, step-down rule). AGENTS.md keeps the always-loaded gates (kind mapping, hard-to-reverse list), protects charter.md from personal overrides, and routes to both files by signal; rendered AGENTS.md grew 2 lines (57/58/57). Record 0028 with 0008/0018 links. Verified by smoke test on all three stacks, router-path, reference and leak greps. Review: round 1 FINDINGS (3 Material, 6 Minor) fixed, round 2 PASS.
+<!-- SECTION:FINAL_SUMMARY:END -->

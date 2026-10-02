@@ -34,7 +34,6 @@ These are signals to consider a change in code you are already working on. They 
 | Structural | Changes what `docs/architecture.md` describes | Architecture record, `accepted` by you; update `docs/architecture.md` and the glossary in the same change | Mention it in the end-of-task summary |
 | Big | Anything on the list in `docs/protocols/charter.md` | Architecture record, `proposed` | Approves before you build it |
 
-Domain-driven design's tactical patterns (glossary level 3) are always big.
 
 ## Moving code safely
 
@@ -44,7 +43,7 @@ Domain-driven design's tactical patterns (glossary level 3) are always big.
 
 ## Stepping down
 
-Structure has a cost. Remove an abstraction that has one implementation and no second in sight, or indirection nobody uses. Do it through a new record that supersedes the record that added it, if there is one; otherwise it is routine. A port at a true external boundary is never stepped down: it is what lets tests replace the provider.
+Structure has a cost. Remove an abstraction that has one implementation and no second in sight, or indirection nobody uses. Treat it like any other change, in whichever band it falls into, and supersede the record that added it if there is one. A port at a true external boundary is never stepped down: it is what lets tests replace the provider.
 
 ## Signals you did not act on
 
