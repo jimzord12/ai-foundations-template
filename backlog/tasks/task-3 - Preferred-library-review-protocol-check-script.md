@@ -4,7 +4,7 @@ title: Preferred-library review protocol + check script
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-02 18:27'
 labels:
   - libraries
   - tooling
@@ -26,3 +26,9 @@ Keep the preferred-library list from going stale (e.g. date-fns vs native Tempor
 - [ ] #2 Check script runs and flags stale/risky packages
 - [ ] #3 Review protocol documented
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Overlap found 2026-10-02: doc-6 (dependencies protocol text from experiment TASK-36) covers vetting a new library. Reconcile the two before planning this task.
+<!-- SECTION:NOTES:END -->

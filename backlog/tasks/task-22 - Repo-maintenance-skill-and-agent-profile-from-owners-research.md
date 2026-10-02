@@ -4,7 +4,7 @@ title: Repo maintenance skill and agent profile (from owner's research)
 status: To Do
 assignee: []
 created_date: '2026-09-29 22:09'
-updated_date: '2026-10-01 21:33'
+updated_date: '2026-10-02 18:27'
 labels:
   - maintenance
   - skill
@@ -37,4 +37,6 @@ Source (outside the repo, owner's research for another repo): C:\Users\jimzord12
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-09-30 owner decisions (recorded in docs/decisions/0016-repo-maintenance-capability-ships-in-this-repo-and-in-generated-projects.md): ships in both this repo and generated projects with the same generic core; Python accepted as a dependency; template/ is the source of truth and CI checks this repo's copy is identical.
+
+Overlap found 2026-10-02: decision 0039 (delete what is safely deletable without asking) and the cleanup rule in docs/protocols/git.md now cover branch and worktree cleanup. Re-scope before planning this task.
 <!-- SECTION:NOTES:END -->

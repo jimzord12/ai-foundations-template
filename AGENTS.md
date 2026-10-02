@@ -21,7 +21,7 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 - Branch levels: `main` → `feature/x` (level 1) → `feature/x-part` (2) → `feature/x-part-step` (3); never deeper. No pull requests.
 - Every change goes on a feature branch. Merge into `main` without asking once the checks that apply pass (smoke test when `template/` or `copier.yml` changed) and, for a non-trivial change, the review loop reached PASS; merges between feature levels need only the checks. Then delete the branch locally and on the remote. Work is finished only when merged.
 - In PowerShell, run each git command as its own call; do not chain with `&&` or `||`. The narrow permission rules never pre-approve a chain (auto mode sends it to the classifier), and deny rules match the whole chain, so pushing main and deleting a branch in one chain is refused (decision 0027).
-- Keep the repository clean: whatever you can delete safely, delete without asking (what counts as safe: `template/docs/protocols/git.md` "Cleaning up"). Leftovers go stale and mislead; lost work can be regenerated. Never delete untracked or ignored files you did not create.
+- **Clean up after yourself.** Keep the repository clean: whatever you can delete safely, delete without asking (what counts as safe: `template/docs/protocols/git.md` "Clean up after yourself"). Leftovers go stale and mislead; lost work can be regenerated. Never delete untracked or ignored files you did not create.
 - Ask first, with the exact command, only for: deleting `main`; deleting an unmerged branch that is not yours (`template/docs/protocols/git.md`) whose commits exist nowhere else; any force push; `reset --hard`; `git clean`. Release tags are pushed only with the owner's approval.
 
 ## Checks
