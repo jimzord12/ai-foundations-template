@@ -27,6 +27,7 @@ Chosen option: "Ship it with definitions … protected from being loosened", bec
 - Until a project has its own: checks mean the project's check script or CI, otherwise the tests and type check; review means a fresh-context reviewer finds no Blocking or Material issue; non-trivial means behaviour changes, more than one file, or a test or instruction file changes.
 - The secrets rule (never in code, logs, commits, messages or task notes; the `.env` rule; what to do after a leak) lives in `git.md`; scanning and the ignore and example files belong to the security baseline.
 - This repo's release-tag approval is not shipped.
+- Agent's call, for the owner to confirm: merging into a core branch other than `main` joined the ask-first list during review, because such branches are usually deploy targets. Merging into `main` stays free.
 
 ### Consequences
 

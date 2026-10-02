@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:52'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 00:18'
 labels:
   - review
   - agents
@@ -43,3 +43,9 @@ Most of this template is agent context (AGENTS.md, protocols, agent profiles, sk
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02 idea from TASK-14 review: context-lenses should include a literal-reader check that every 'only for' list in an always-loaded file states its tighten/loosen direction wherever an override clause touches it.
+<!-- SECTION:NOTES:END -->
