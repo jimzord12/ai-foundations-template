@@ -6,3 +6,5 @@ Thumbs.db
 .env.*
 # Local smoke-test output from `copier copy`
 /.tmp/
+# Claude Code worktrees (nested git checkouts; break `copier copy --vcs-ref HEAD` from a dirty tree)
+/.claude/worktrees/

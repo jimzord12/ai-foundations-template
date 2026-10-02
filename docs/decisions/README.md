@@ -39,3 +39,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0031](0031-agent-layout-template-permissions-and-dogfood-manifest.md) | technical | accepted | Agent layout, template permissions and dogfood manifest |
 | [0032](0032-review-loop-protocol-code-reviewer-and-review-skills.md) | technical | accepted | Review loop protocol, code-reviewer and review skills |
 | [0033](0033-context-review-pair-context-reviewer-context-maintainer-and-context-lenses.md) | technical | accepted | Context review pair: context-reviewer, context-maintainer and context-lenses |
+| [0034](0034-docs-reviewer-scannability-reviewer-and-their-lenses.md) | technical | accepted | Docs reviewer, scannability reviewer and their lenses |
