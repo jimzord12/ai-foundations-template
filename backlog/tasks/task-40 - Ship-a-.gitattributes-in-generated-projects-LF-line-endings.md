@@ -1,12 +1,16 @@
 ---
-id: DRAFT-3
+id: TASK-40
 title: Ship a .gitattributes in generated projects (LF line endings)
-status: Draft
+status: To Do
 assignee: []
 created_date: '2026-10-02 03:22'
+updated_date: '2026-10-02 18:27'
 labels:
   - template
+milestone: m-0
 dependencies: []
+priority: medium
+ordinal: 960
 ---
 
 ## Description
@@ -23,3 +27,9 @@ Found in TASK-28 review round 1 (pre-existing, Minor): the root .gitattributes c
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Promoted from DRAFT-3 and sequenced into phase 1 on 2026-10-02 (owner asked to fix priorities): small, and CRLF warnings showed up in this repo the same day. Needs its own ready challenge at pickup.
+<!-- SECTION:NOTES:END -->

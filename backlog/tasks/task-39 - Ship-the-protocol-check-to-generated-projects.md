@@ -4,11 +4,14 @@ title: Ship the protocol check to generated projects
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
+updated_date: '2026-10-02 18:27'
 labels:
   - feature
-dependencies: []
-priority: medium
-ordinal: 28000
+milestone: m-0
+dependencies:
+  - TASK-27
+priority: high
+ordinal: 1520
 ---
 
 ## Description
@@ -32,3 +35,9 @@ scripts/protocol_check.py runs only in this repo, on template/ (decision 0040). 
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Sequenced 2026-10-02: phase 1, right after TASK-27 (generated-project CI), which is where the check runs. Needs its own ready challenge at pickup.
+<!-- SECTION:NOTES:END -->

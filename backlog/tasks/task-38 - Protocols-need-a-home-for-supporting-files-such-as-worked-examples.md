@@ -4,11 +4,13 @@ title: Protocols need a home for supporting files such as worked examples
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
+updated_date: '2026-10-02 18:27'
 labels:
   - feature
+milestone: m-1
 dependencies: []
 priority: medium
-ordinal: 27000
+ordinal: 9500
 ---
 
 ## Description
@@ -32,3 +34,9 @@ scripts/protocol_check.py (decision 0040) requires a card and a router row for e
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Sequenced 2026-10-02: phase 2, needed when the lab protocol (DRAFT-2) is adopted.
+<!-- SECTION:NOTES:END -->
