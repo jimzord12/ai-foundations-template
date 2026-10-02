@@ -3,16 +3,15 @@ id: TASK-30
 title: >-
   Project-docs review: docs-reviewer, docs-lenses, optional
   scannability-reviewer
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 20:52'
-updated_date: '2026-10-02 02:15'
+updated_date: '2026-10-02 02:38'
 labels:
   - review
   - docs
   - knowledge
-  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -30,20 +29,20 @@ No project-docs reviewer exists in any of the owner's repos; doc correctness was
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 docs-lenses skill ships with: code outranks docs, symbol anchors, decision-record completeness and supersede chain, accepted architecture decisions reflected in architecture.md, folder map matches the real tree, glossary terms used in code and UI, README quickstart actually runs, numbers recomputed, unverified claims reported as unverified, cold-reader completeness; items for architecture.md and the glossary apply only when the file exists
-- [ ] #2 docs-reviewer profile (Read, Grep, Glob, plus Bash only for read-only git in the project and for checks that run or write in a scratch copy outside the working tree, such as running the quickstart; no Edit, Write or Agent; Opus, high) preloads review-core and docs-lenses; the profile notes that a quickstart run may be denied by the permission allowlist and is then reported NOT_CHECKED
-- [ ] #3 scannability-reviewer (Read, Grep, Glob; Sonnet, high effort) preloads review-core and scan-lenses; it ships like any profile, with no Copier question, and is opt-in: its description says to run it only when review.md or the owner asks, and review.md lists it as an add-on for human-facing docs
-- [ ] #4 docs-lenses, scan-lenses, docs-reviewer and scannability-reviewer ship in template/ and in this repo (pairs in dogfood.json)
-- [ ] #5 Proof: docs-reviewer catches a planted stale claim (a path in architecture.md that no longer exists) in a generated project, report saved in the task notes; shipped files carry no source-repo names (same grep as TASK-29)
+- [x] #1 docs-lenses skill ships with: code outranks docs, symbol anchors, decision-record completeness and supersede chain, accepted architecture decisions reflected in architecture.md, folder map matches the real tree, glossary terms used in code and UI, README quickstart actually runs, numbers recomputed, unverified claims reported as unverified, cold-reader completeness; items for architecture.md and the glossary apply only when the file exists
+- [x] #2 docs-reviewer profile (Read, Grep, Glob, plus Bash only for read-only git in the project and for checks that run or write in a scratch copy outside the working tree, such as running the quickstart; no Edit, Write or Agent; Opus, high) preloads review-core and docs-lenses; the profile notes that a quickstart run may be denied by the permission allowlist and is then reported NOT_CHECKED
+- [x] #3 scannability-reviewer (Read, Grep, Glob; Sonnet, high effort) preloads review-core and scan-lenses; it ships like any profile, with no Copier question, and is opt-in: its description says to run it only when review.md or the owner asks, and review.md lists it as an add-on for human-facing docs
+- [x] #4 docs-lenses, scan-lenses, docs-reviewer and scannability-reviewer ship in template/ and in this repo (pairs in dogfood.json)
+- [x] #5 Proof: docs-reviewer catches a planted stale claim (a path in architecture.md that no longer exists) in a generated project, report saved in the task notes; shipped files carry no source-repo names (same grep as TASK-29)
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -116,4 +115,29 @@ Repo: `C:\Users\jimzord12\Documents\GitHub\ai-foundations-template` (`R` below).
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-02 readiness round 1 owner-type questions decided by the agent (ordinary choices): scannability-reviewer is opt-in through its description, no Copier question; docs-reviewer is dogfooded in this repo.
+
+## Evidence (2026-10-02)
+
+- Ready challenge: NOT READY with 2 Material (proof could pass without docs-lenses; loop could stall on untouched problems) -> fixed: probe-based proof, review-core "Pre-existing" rule (landed with TASK-29), shape mismatch moved to Minor; Minors applied (no `git ls-files`, uncommitted-change and side-effect fences, decision-record checks point to the decisions README, record number 0034); AC #2 reworded.
+- dogfood: `python scripts/dogfood_check.py` -> 0 problem(s).
+- Smoke test express / next / rn: exit 0; `diff -r --strip-trailing-cr template/.claude <render>/.claude` empty; each render has the 5 agents and 5 skills and review.md names scannability-reviewer; no template syntax in the shipped files; skills have `user-invocable: false`, no `disable-model-invocation`.
+- Source-name grep (`\bICS\b|\bVCR\b|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number`, case-insensitive) over template/.claude, .claude/agents, .claude/skills and both review.md copies -> no output.
+- Proof (option A, true end to end): rendered express project in the session scratchpad, outside any repo; `main` holds src/orders/place-order.ts, an architecture.md folder-map row `src/orders/` and a README quickstart; branch feature/rename moves the folder to src/checkout and updates only the Key flows line. `claude -p` in that folder with `--allowedTools` git diff/log/show only. Init listed docs-reviewer and scannability-reviewer (an untrusted folder still loads project agents). One Agent call (docs-reviewer), brief named no lenses and did not contain the probe answer. Subagent transcript: review-core and docs-lenses injected; first message, before any tool call, named both and quoted the Minor row of the docs severity table verbatim. Report: Material 1 at `docs/architecture.md:13` "the folder map still lists the old folder" (`src/orders/`); verdict FINDINGS; the scratch-clone quickstart run was denied by the allowlist, not retried, and reported NOT_CHECKED with the exact commands; "Pains and ideas" section present; no Edit or Write anywhere. It also raised a real Material (structural move without an architecture record, per evolution.md) and a Minor on the return-value wording. Proof folder deleted.
+- Proof pain: inside the generated project the subagent's `cd "<path>" && git ...` calls sometimes printed nothing (the same Bash-tool `cd` quirk seen in this repo).
+
+## Review loop (mixed change: context-reviewer for instruction files, docs-reviewer for record 0034, README rows and the decisions README)
+
+- Round 1: context-reviewer FINDINGS (Material: orchestrator never told what to do with NOT_CHECKED; uncommitted change looped on INCOMPLETE); code-reviewer standing in for docs-reviewer FINDINGS (Material: fallback not told to apply docs-lenses). Fixed.
+- Round 2: context-reviewer FINDINGS (Material: denied clone looped on INCOMPLETE; new review-core line asked no-shell reviewers to run git); docs-reviewer (the real profile from here on) PASS. Fixed.
+- Round 3: context-reviewer FINDINGS (Material: docs-lenses restated the record-rewrite rule with a narrower scope than its owner; the owner, template/docs/decisions/README.md, now says "once it is merged into the main branch"); docs-reviewer PASS. Fixed.
+- Round 4: context-reviewer PASS (1 Minor, 1 Note); docs-reviewer PASS (3 Minor, 3 Notes). Minors applied: quickstart outcome rules moved into docs-lenses, docs-lenses description and 0034 name guides and runbooks, context-lenses points to the decisions README, scannability brief lists style.
+- Full reports and dispositions per round were kept in the session scratchpad (task30-rounds.md) and passed to each next round.
+- Pain: Claude Code loads agent profiles and skills at session start, so the round-3/4 reviewers ran on older copies of the profiles they reviewed; they reviewed the files on disk.
+- Final checks at 37fa3d6: dogfood 0 problems; source-name grep empty; smoke test express/next/rn exit 0 from a clean clone (the working tree holds an untracked `.claude/worktrees/lab-protocol` git worktree, not created by this task, which makes `copier copy --vcs-ref HEAD` from the working tree fail on a submodule path), `.claude/` identical to template in each render, AGENTS.md 68/69/68 lines.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Added the docs reviewer family to the template and dogfooded it: docs-lenses (13 lenses: code outranks docs, claims trace to files, symbol anchors, numbers recomputed, decision records against the decisions README, supersede chain, architecture vs accepted records, folder map, glossary, quickstart runs in a scratch copy, NOT_CHECKED, one home per fact, cold reader), docs-reviewer (Read/Grep/Glob/Bash; read-only git in the project, anything that runs only in a scratch copy) and the opt-in scannability-reviewer (Sonnet, no shell) with scan-lenses. review.md: runbooks route to docs-reviewer; the add-on runs when the owner asks or a change rewrites human steps; the orchestrator commits before a scratch-copy review, runs or reports NOT_CHECKED items, feeds its own runs into the next brief; INCOMPLETE at the cap is unresolved; the code-reviewer fallback applies docs-lenses. review-core: working-tree check. Decisions README: accepted records are frozen once merged into main. README repo layout completed. Decision 0034. Proof in a real generated project caught a planted stale path. Review loop: 4 rounds, PASS on both reviewers.
+<!-- SECTION:FINAL_SUMMARY:END -->
