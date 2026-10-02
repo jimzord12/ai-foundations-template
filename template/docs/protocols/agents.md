@@ -31,10 +31,11 @@ skills: [review-core, review-lenses]
 
 ## Permissions
 
-`.claude/settings.json` decides what runs without a prompt. The template ships a narrow list: read-only tools, git status, log, diff, show, add, commit, push, switch, branch, merge, fetch and pull, the npm check scripts, `npm ci`, `npm install` (no package names) and the Backlog CLI. The ask-first list in AGENTS.md is mirrored as ask rules, with `main`, `production`, `stage` and `dev` treated as core branches, and nothing is denied outright. A project that widens or narrows this records why in `docs/decisions/`; check there for this project's policy.
+`.claude/settings.json` decides what runs without a prompt. The template ships a narrow list: read-only tools, git status, log, diff, show, add, commit, push, switch, branch, merge, fetch, pull, worktree and tag, the npm check scripts, `npm ci`, `npm install` (no package names) and the Backlog CLI. The ask-first list in AGENTS.md is mirrored as ask rules, with `main`, `production`, `stage` and `dev` treated as core branches, and nothing is denied outright. A project that widens or narrows this records why in `docs/decisions/`; check there for this project's policy.
 
 - The allowlist reduces friction; it is not a sandbox. Anything not listed (installing a new dependency, other commands, file edits in manual mode) prompts, or in auto mode goes to Claude Code's classifier.
 - Auto mode ignores blanket rules such as `Bash` or `PowerShell`, which is why the list is per command.
+- Forced worktree removal (`git worktree remove --force`) and deleting or moving a tag (`git tag -d`, `-f`) ask: the first discards uncommitted work, the second leaves no trace.
 - Merging into a core branch other than `main` cannot be detected from the command alone; that rule stays in AGENTS.md.
 - In PowerShell, run each git command as its own call. PowerShell rules match case-insensitively, so force-deleting a feature branch (`branch -D`) is not asked there; follow the ask-first list by instruction.
 - Commit from the project folder with plain `git commit`: with `git -C <path>`, a message that names a risky command (for example `reset --hard`) can trigger an ask rule.

@@ -68,7 +68,9 @@ if PROFILE == "template":
     # Owner answer 5 (0021) amended by 0024: read-only tools, package scripts, backlog, git add/commit/push and
     # the branch commands; nothing broader. No blanket entries (auto mode drops them) and no bare "git -C *".
     allow = ["Read", "Glob", "Grep"]
-    tsubs = ["status", "log", "diff", "show", "add", "commit", "push", "switch", "branch", "merge", "fetch", "pull"]
+    # worktree and tag (decision 0038) serve the lab protocol; forced and destructive forms ask, see below.
+    tsubs = ["status", "log", "diff", "show", "add", "commit", "push", "switch", "branch", "merge", "fetch", "pull",
+             "worktree", "tag"]
     tcmds = []
     for s_ in tsubs:
         tcmds += [f"git {s_}", f"git {s_} *", f"git -C * {s_}", f"git -C * {s_} *"]
@@ -110,7 +112,9 @@ if PROFILE == "template":
                     f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
                     f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                     f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)",
-                    f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)"]
+                    f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)",
+                    f"{t}({g} worktree remove *--force*)", f"{t}({g} worktree remove -f *)", f"{t}({g} worktree remove * -f*)",
+                    f"{t}({g} tag -d *)", f"{t}({g} tag --delete *)", f"{t}({g} tag -f *)", f"{t}({g} tag --force *)"]
             if t == "Bash":  # PowerShell matches case-insensitively: -D would catch -d, -C would catch -c
                 ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)"]
 
