@@ -52,7 +52,7 @@ All in one change:
 2. Write `docs/protocols/<name>.md`: the card, then the body. Use `status: active`, or `draft` if it lands before it is in force.
 3. Add its row to the AGENTS.md "When to read what" table.
 4. Put a new profile in `.claude/agents/` and a new shared skill in `.claude/skills/` with its copy in `.agents/skills/` (see "Layout"); list them on the card.
-5. Record the decision in `docs/decisions/` and link it from the body.
+5. Record the decision in `docs/decisions/` (or reuse the one step 1 found) and link it from the body.
 6. Run the review loop in `docs/protocols/review.md`; it names the reviewers, one for each kind of file the change touches.
 
 ## Profile frontmatter
