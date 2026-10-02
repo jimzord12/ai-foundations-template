@@ -4,11 +4,10 @@ title: 'Integration mechanism: Copier post-copy tasks and Express skeleton'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 03:01'
+updated_date: '2026-10-02 03:09'
 labels:
   - stack
   - copier
-  - ready
 milestone: m-0
 dependencies: []
 parent_task_id: TASK-2
@@ -41,3 +40,9 @@ Next.js and React Native projects are scaffolded first, and their scaffolders al
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: ready label removed: criterion 1 changed after the challenge (record 0036, ready.md); plan and challenge again before unattended work, or the owner waives it.
+<!-- SECTION:NOTES:END -->
