@@ -4,7 +4,7 @@ title: Ship the protocol check to generated projects
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
-updated_date: '2026-10-02 18:27'
+updated_date: '2026-10-02 21:30'
 labels:
   - feature
 milestone: m-0
@@ -23,7 +23,7 @@ scripts/protocol_check.py runs only in this repo, on template/ (decision 0040). 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 A generated project can run a protocol check against its own docs/protocols/, .claude/agents/, .claude/skills/ and AGENTS.md
-- [ ] #2 The check is part of the project's documented checks, so agents run it after changing a protocol
+- [ ] #2 The check runs as its own step in the generated project's CI workflow (TASK-27), outside npm run check, so it also runs on a project on the generic pack, which has no check script; AGENTS.md lists it with the project's checks so agents run it after changing a protocol
 - [ ] #3 The smoke render of all three stacks passes and the check passes on a fresh render
 <!-- AC:END -->
 
@@ -40,4 +40,6 @@ scripts/protocol_check.py runs only in this repo, on template/ (decision 0040). 
 
 <!-- SECTION:NOTES:BEGIN -->
 Sequenced 2026-10-02: phase 1, right after TASK-27 (generated-project CI), which is where the check runs. Needs its own ready challenge at pickup.
+
+2026-10-03 (owner review of the backlog): criterion 2 now says where the check runs, because a project on the generic pack has no check script. GitHub's Ubuntu runners ship Python, so the step needs no setup.
 <!-- SECTION:NOTES:END -->

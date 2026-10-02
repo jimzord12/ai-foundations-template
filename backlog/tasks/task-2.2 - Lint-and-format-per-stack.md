@@ -4,13 +4,15 @@ title: Lint and format per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 18:26'
+updated_date: '2026-10-02 21:29'
 labels:
   - stack
   - lint
 milestone: m-0
 dependencies:
   - TASK-2.5
+  - TASK-2.7
+  - TASK-2.8
 parent_task_id: TASK-2
 priority: high
 type: feature
@@ -27,7 +29,7 @@ One standard linter and formatter per supported framework (its pack), behind one
 <!-- AC:BEGIN -->
 - [ ] #1 Linter and formatter chosen for each Phase 1 pack (Next.js, bare React Native, Express), extending the framework shipped config where one exists (Next.js ESLint, RN ESLint and Prettier); the choice is written in the pack and the reason recorded in docs/decisions/
 - [ ] #2 lint and format:check scripts exit 0 on a freshly scaffolded project for each Phase 1 pack, and lint exits non-zero on a planted violation
-- [ ] #3 2.2 adds the lint and format:check scripts through the post-copy task for each pack that defines them, unless the project already has one of that name (TASK-2.5 criterion 6), and any per-pack config file in the home TASK-2.5 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
+- [ ] #3 2.2 adds the lint and format:check scripts through the post-copy task for each pack that defines them, unless the project already has one of that name (TASK-2.7 criterion 2), and any per-pack config file in the home TASK-2.7 criterion 1 decides (rendered by Copier, not written by a task); the generic pack defines none
 <!-- AC:END -->
 
 ## Definition of Done
@@ -47,4 +49,6 @@ One standard linter and formatter per supported framework (its pack), behind one
 2026-10-02: ready label removed: its dependency 2.5 changed what the plan relies on (record 0036, ready.md); plan and challenge again, or the owner waives it.
 
 2026-10-02: record 0041: the contract (lint, format:check) is the same for every framework and each pack says how it is met; frameworks beyond Phase 1 are TASK-2.6.
+
+2026-10-03: TASK-2.5 was split into 2.5 (detection and packs), 2.7 (post-copy tasks) and 2.8 (Express skeleton); dependencies and criterion references updated (old 2.5 criterion 1 is 2.7 criterion 1, old 2.5 criterion 6 is 2.7 criterion 2).
 <!-- SECTION:NOTES:END -->

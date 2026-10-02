@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-02 18:26'
+updated_date: '2026-10-02 21:29'
 labels:
   - stack
   - instructions
@@ -14,6 +14,7 @@ dependencies:
   - TASK-2.2
   - TASK-2.3
   - TASK-2.5
+  - TASK-2.7
 parent_task_id: TASK-2
 priority: high
 type: feature
@@ -23,12 +24,12 @@ ordinal: 1400
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). The contract is the same for every pack; the scripts come from 2.1 to 2.3 (where they live: TASK-2.5 criterion 1) and each pack names them.
+Agents must know the exact fast commands to run (typecheck, lint, test, one combined check). The contract is the same for every pack; the scripts come from 2.1 to 2.3 (where they live: TASK-2.7 criterion 1) and each pack names them.
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Post-copy task adds only the combined check script (runs typecheck, lint, format:check and test, which 2.1-2.3 add) for each pack that defines them (the generic pack defines none, so a project on it has no check script), unless the project already has a check script (TASK-2.5 criterion 6)
+- [ ] #1 Post-copy task adds only the combined check script (runs typecheck, lint, format:check and test, which 2.1-2.3 add) for each pack that defines them (the generic pack defines none, so a project on it has no check script), unless the project already has a check script (TASK-2.7 criterion 2)
 - [ ] #2 npm run check passes on a freshly scaffolded project for each Phase 1 pack, and fails when any one of the four fails
 - [ ] #3 The packs and AGENTS.md name the exact commands, within the line budget of the phase plan
 <!-- AC:END -->
@@ -48,4 +49,6 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 2026-10-02 (TASK-15): template done.md and its Backlog definition_of_done line name the combined script npm run check; keep that name.
 
 2026-10-02: ready label removed: criteria changed after the challenge (record 0041, ready.md); plan and challenge again before unattended work, or the owner waives it.
+
+2026-10-03: TASK-2.5 was split into 2.5 (detection and packs), 2.7 (post-copy tasks) and 2.8 (Express skeleton); dependencies and criterion references updated (old 2.5 criterion 1 is 2.7 criterion 1, old 2.5 criterion 6 is 2.7 criterion 2).
 <!-- SECTION:NOTES:END -->

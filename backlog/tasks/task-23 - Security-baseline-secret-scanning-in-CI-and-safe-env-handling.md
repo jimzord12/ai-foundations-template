@@ -4,7 +4,7 @@ title: 'Security baseline: secret scanning in CI and safe env handling'
 status: To Do
 assignee: []
 created_date: '2026-10-01 16:40'
-updated_date: '2026-10-02 18:39'
+updated_date: '2026-10-02 21:27'
 labels:
   - security
   - ci
@@ -12,6 +12,7 @@ milestone: m-0
 dependencies:
   - TASK-13
   - TASK-27
+  - TASK-40
 priority: high
 type: feature
 ordinal: 1800
@@ -51,4 +52,6 @@ Repos are public and agents commit often, so a leaked secret is a real risk. The
 2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "every stack" in this task now means every Phase 1 pack (Next.js, bare React Native, Express) plus the generic fallback; more frameworks are TASK-2.6. The post-copy task appends .env to an ignore file when it is missing (record 0041 allows appended ignore-file lines and nothing else in the project's own files); decide at pickup whether an existing Express project's .gitignore gets the line like an RN one does. The ready label was removed because its dependencies (TASK-13, TASK-27) changed what the plan relies on; plan and challenge again before unattended work, or the owner waives it.
 
 2026-10-02 (records 0036 and 0041): .env.example is rendered by Copier, so a copy with --overwrite over an existing project would replace the project's own. Decide at pickup how it ships so an existing file is never overwritten (only when missing, or appended lines); this also makes the 0041 rule that only instruction and documentation files may overwrite scaffolded ones true.
+
+2026-10-03: how .env.example ships is decided: it is listed in _skip_if_exists (rule recorded by TASK-40), so an existing project's file is never overwritten. This replaces the open 'decide at pickup' point above for .env.example.
 <!-- SECTION:NOTES:END -->

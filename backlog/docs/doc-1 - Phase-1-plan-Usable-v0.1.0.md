@@ -3,7 +3,7 @@ id: doc-1
 title: 'Phase 1 plan: Usable v0.1.0'
 type: specification
 created_date: '2026-10-01 19:52'
-updated_date: '2026-10-02 18:33'
+updated_date: '2026-10-02 21:33'
 ---
 # Phase 1 plan: Usable v0.1.0
 
@@ -38,9 +38,11 @@ updated_date: '2026-10-02 18:33'
 | 8 | TASK-28 Codex skills | Shared skills visible to Codex from one source | 24 |
 | 8a | TASK-37 decision numbering | Decision records from parallel branches merge without renumbering (added 2026-10-02) | none |
 | 8b | TASK-40 `.gitattributes` | LF line endings in generated projects (added 2026-10-02, was DRAFT-3) | none |
-| 9 | TASK-2.5 integration mechanism | Stack detection in the stack question default, packs (Next.js, bare React Native, Express, generic) rendered into docs/stack.md, Copier post-copy tasks for scripts, Express skeleton | none |
-| 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5 |
-| 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5 |
+| 9 | TASK-2.5 detection and packs | Stack detection in the stack question default, packs (Next.js, bare React Native, Express, generic) rendered into docs/stack.md | none |
+| 9a | TASK-2.7 post-copy tasks | Copier post-copy tasks that add scripts, dev dependencies and ignore lines (split from 2.5 on 2026-10-03) | 2.5 |
+| 9b | TASK-2.8 Express skeleton | Minimal Express skeleton for an empty folder (split from 2.5 on 2026-10-03) | 2.5, 2.7 |
+| 10 | TASK-2.1, 2.2, 2.3 | Strict TS and ts-reset (+ `typecheck`); lint and format (+ `lint`, `format:check`); test runner with proven red-green examples (+ `test`) | 2.5, 2.7, 2.8 |
+| 11 | TASK-2.4 check commands | Combined `check` script and AGENTS.md command lines | 2.1, 2.2, 2.3, 2.5, 2.7 |
 | 12 | TASK-27 generated-project CI | `.github/workflows/check.yml` in the template | 2.4 |
 | 12a | TASK-39 protocol check in projects | The protocol-card check runs in generated projects (added 2026-10-02) | 27 |
 | 13 | TASK-17 automated tests | Render, update and collision tests that fail when broken | 2.4 |

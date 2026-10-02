@@ -4,13 +4,14 @@ title: 'CI workflow for generated projects: check'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 18:39'
+updated_date: '2026-10-02 21:34'
 labels:
   - ci
   - stack
 milestone: m-0
 dependencies:
   - TASK-2.4
+  - TASK-40
 priority: high
 type: feature
 ordinal: 1500
@@ -24,9 +25,10 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Template ships .github/workflows/check.yml for every Phase 1 pack that runs npm ci and npm run check where the project has a package-lock.json and a check script (a project on the generic pack has no check script and still gets the workflow for secret scanning, unless this task decides otherwise at pickup), triggered on push to any branch and on pull requests
+- [ ] #1 Template ships .github/workflows/check.yml for every Phase 1 pack that runs npm ci and npm run check where the project has a package-lock.json and a check script (a project on the generic pack has no check script and still gets the workflow, because the secret-scanning (TASK-23) and protocol-check (TASK-39) steps run on every project), triggered on push to any branch and on pull requests
 - [ ] #2 Workflow is green on a freshly generated project per stack pushed as a branch to jimzord12/ai-foundations-scratch, and red when a check fails; the agent deletes only branches it created, never repositories
 - [ ] #3 Action versions verified against current docs and recorded
+- [ ] #4 check.yml is listed in _skip_if_exists (rule recorded by TASK-40), and a project on the generic pack is green with the npm ci and npm run check steps skipped
 <!-- AC:END -->
 
 ## Definition of Done
@@ -46,4 +48,8 @@ Owner decision 2026-10-01: generated projects get one minimal CI workflow in v0.
 2026-10-02: record 0041 (stack-agnostic core with packs picked by detection): "per stack" in this task now means per Phase 1 pack (Next.js, bare React Native, Express); more frameworks are TASK-2.6. The generated workflow runs npm ci and npm run check only where the project has a check script (a project on the generic pack, including a framework with no pack yet, gets no scripts under record 0041); it must not hard-code a stack list. Projects without a check script still get the workflow for secret scanning (TASK-23) unless this task decides otherwise at pickup. The ready label was removed because this changes what the task must do; plan and challenge again before unattended work, or the owner waives it.
 
 2026-10-02 (records 0036 and 0041): .github/workflows/check.yml is rendered by Copier, so a copy with --overwrite over an existing project would replace a workflow of the same name. Decide at pickup how it ships so an existing workflow is never overwritten (for example only when missing).
+
+2026-10-03: how check.yml ships is decided: .github/workflows/check.yml is listed in _skip_if_exists (rule recorded by TASK-40), so an existing workflow of the same name is never overwritten. This replaces the open 'decide at pickup' point above.
+
+2026-10-03: decided: check.yml ships for every project, including one on the generic pack with no check script (the npm ci and npm run check steps are skipped there), because TASK-23 (secret scanning) and TASK-39 (protocol check) add steps that must run on every project. This closes the 'unless this task decides otherwise at pickup' point above.
 <!-- SECTION:NOTES:END -->
