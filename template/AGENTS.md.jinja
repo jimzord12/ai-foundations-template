@@ -10,7 +10,7 @@ Stack: **{{ stack }}**. This file is a short router: rules that always apply are
 ## Talking to the owner
 - Lead with the answer. Plain language, structured, visual (short sections, tables). No text walls.
 - Restate the context needed to follow the answer; never assume they remember earlier details.
-- Show evidence (command and result, screenshot, log excerpt), not claims. Keep verified facts apart from assumptions.
+- Keep verified facts apart from assumptions; evidence rules: `docs/protocols/done.md`.
 - End substantive replies with a short recap and exactly one "Your next move" (or say nothing is needed).
 
 ## Philosophy: standard over custom
@@ -24,7 +24,7 @@ Prefer widely adopted conventions and libraries over inventing our own, even whe
 - By decision kind: **product** (what users see and do) the owner decides; **architecture** (how the code is shaped) you decide, except big changes, which the owner approves (what counts as big: `docs/protocols/charter.md`); **technical** (tools, libraries, conventions) you decide and record, except the hard-to-reverse list below.
 - **The owner decides** anything hard to reverse: database, auth provider, hosting/infrastructure, paid services, core framework changes, and anything that contradicts these instructions. Present options with tradeoffs and a recommendation; don't pick for them.
 - Don't re-argue a recorded decision without new facts.
-- End every task with a one-line-per-decision summary of what you decided.
+- End every task with the end-of-task summary in `docs/protocols/done.md` (decisions one line each).
 
 ## Evolve the codebase as it grows
 Start simple and climb only as far as friction demands: inline code, function, module, pattern or interface, folder restructure, ports and adapters at a boundary. Second copy of the same code: note it. Third: extract it. Signals, when a change needs a record, and how to move code safely: `docs/protocols/evolution.md`.
@@ -35,12 +35,16 @@ Start simple and climb only as far as friction demands: inline code, function, m
 - Use the words in `docs/domain/glossary.md` in code, UI and replies; add new terms and flag synonyms there.
 
 ## Work tracking
-Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backlog.md <command>` if it is not installed), never edit task files by hand. If `backlog/` is missing, run `npx backlog.md init "{{ project_name }}" --defaults --agent-instructions none` first. At the start of a session run `backlog instructions overview` (or `npx backlog.md instructions overview`).
+Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backlog.md <command>` if it is not installed), never edit task files by hand. If `backlog/` is missing, run `npx backlog.md init "{{ project_name }}" --defaults --agent-instructions none` first. If `backlog/config.yml` has no `definition_of_done`, add the line from `docs/protocols/done.md`. At the start of a session run `backlog instructions overview` (or `npx backlog.md instructions overview`).
 
 ## Git and safety
 - Every change goes on a feature branch; no pull requests. Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS; then delete the branch. Detail: `docs/protocols/git.md`.
 - Ask first, with the exact command, targets and consequence, only for: deleting `main` or another core branch; merging into a core branch other than `main`, unless the project's rules allow it; deleting an unmerged branch whose commits exist nowhere else (except level-3 branches you created); any force push; `reset --hard`; `git clean`. A project may add to this list; removing an item needs an owner decision record.
 - Never put secrets in code, logs, commits or task notes.
+
+## Done
+- Done means proven by running the real thing, checks green, merged and pushed. Report committed, pushed, merged and checks as separate facts.
+- Tests exercise the real code; mock only at true external boundaries. Detail, evidence and the end-of-task summary: `docs/protocols/done.md`.
 
 ## When to read what
 | Situation | Read |

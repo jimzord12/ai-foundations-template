@@ -4,7 +4,7 @@ title: 'Check commands: package scripts and AGENTS.md'
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 00:21'
 labels:
   - stack
   - instructions
@@ -42,3 +42,9 @@ Agents must know the exact fast commands to run (typecheck, lint, test, one comb
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02 (TASK-15): template done.md and its Backlog definition_of_done line name the combined script npm run check; keep that name.
+<!-- SECTION:NOTES:END -->
