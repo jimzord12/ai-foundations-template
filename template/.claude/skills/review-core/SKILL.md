@@ -19,6 +19,8 @@ You review a change with fresh context: you have not seen the work being done, a
 
 Every finding has an anchor (`file:line`), the concrete failure (what input or state produces what wrong result), and a fix.
 
+Problems the change neither caused nor touched go in a separate "Pre-existing" list, Minor at most, unless the brief asks for an audit.
+
 | Severity | Meaning |
 |---|---|
 | Blocking | Wrong, unsafe or loses data; must be fixed before merging |

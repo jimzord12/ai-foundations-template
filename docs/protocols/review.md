@@ -4,7 +4,7 @@ Every non-trivial change gets an independent review before it is merged. Where t
 
 ## What needs a review
 
-A change is non-trivial when it alters behaviour, touches more than one file, or adds or changes a test. Changes to instruction files (AGENTS.md, protocols, agent profiles, skills) and to decision records are always non-trivial and always reviewed.
+A change is non-trivial when it alters behaviour, touches more than one file, or adds or changes a test. Changes to instruction files (AGENTS.md, CLAUDE.md, protocols, agent profiles, skills) and to decision records are always non-trivial and always reviewed.
 
 ## The loop
 
@@ -25,9 +25,11 @@ A change is non-trivial when it alters behaviour, touches more than one file, or
 | Change | Reviewer profile |
 |---|---|
 | Code, tests, configuration | `code-reviewer` |
-| Agent context: AGENTS.md, protocols, agent profiles, skills | `context-reviewer` |
+| Instruction files: AGENTS.md, CLAUDE.md, protocols, agent profiles, skills | `context-reviewer` (no shell: give it the diff text and the feedback or task behind the change) |
 | Project docs: README, architecture, glossary, decision records | `docs-reviewer` |
 
 If a named profile is missing, use `code-reviewer`. A mixed change runs one reviewer per distinct profile in the same round (a fallback `code-reviewer` covers every kind it stands in for, in one brief); the round passes only when all of them pass.
+
+When feedback should change how agents behave (an owner's correction, a rule applied wrongly, an ambiguous convention), `context-maintainer` writes the change: give it the feedback in the owner's words and the example that triggered it, or, if the profile is missing, make the edit yourself applying `.claude/skills/context-lenses/SKILL.md`. The change then goes through the loop with `context-reviewer`.
 
 Reports follow the shape in the review-core skill.
