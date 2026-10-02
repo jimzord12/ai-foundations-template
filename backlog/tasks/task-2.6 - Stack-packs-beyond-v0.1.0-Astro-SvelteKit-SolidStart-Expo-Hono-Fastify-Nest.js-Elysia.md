@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:07'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-02 18:33'
 labels:
   - stack
   - packs
@@ -31,6 +31,7 @@ Owner 2026-10-02: the template targets any modern TypeScript project in an app e
 - [ ] #3 Expo is its own pack; the "No Expo packages" rule stays in the bare React Native pack, and any change to the Expo-before-React-Native precedence of record 0041 is recorded in docs/decisions/
 - [ ] #4 Where tsc does not cover the framework's files (Astro, SvelteKit), the pack names the framework's own checker and check runs it, or a decision records why not
 - [ ] #5 Each pack's tool choices and verified versions are recorded in docs/decisions/
+- [ ] #6 Package-manager support is decided and recorded before the Elysia and SvelteKit packs (their scaffolders can produce pnpm, Yarn or Bun projects): a project's manager, read from its lock file, is either used by the tasks and by the TASK-27 workflow, or the pack documents that the tasks write nothing and report (record 0041, Post-copy tasks)
 <!-- AC:END -->
 
 ## Definition of Done
