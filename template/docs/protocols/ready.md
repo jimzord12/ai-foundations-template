@@ -5,7 +5,7 @@ Work runs unattended only after it has been planned and challenged, so gaps surf
 ## When it applies
 
 - Unattended work starts only on tasks labelled `ready`, or waived by the owner.
-- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, the phase READY of a task not marked "plan at pickup", the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
+- At pickup, check that every dependency is Done and that the task notes record one of: a task-level READY, a phase pass recorded for this task (not marked "plan at pickup"), the trivial self-check, or the owner's waiver. If none is there, write the plan and challenge it first; a label alone is not enough.
 - In an attended run, the owner may waive the gate for a task: note "ready gate waived by the owner" in the task notes; it then counts as ready.
 - Depth scales with the task:
 
@@ -21,7 +21,7 @@ A task is ready when:
 
 1. **Why:** the description says what problem it solves and for whom.
 2. **Acceptance criteria** are testable: each names a result an agent can observe.
-3. **Dependencies** are done, or ordered before it in the same phase (and Done by the time it is picked up).
+3. **Dependencies:** every task the plan needs first is declared as a dependency, and each is Done (the Backlog status), or ordered before it in the same phase and Done by the time it is picked up.
 4. **Size:** one change that merges through one review loop. Bigger: split it.
 5. **Decisions:** every open question is answered, and the owner's questions (as AGENTS.md and, where present, `docs/protocols/charter.md` define them) by the owner.
 6. **Verification:** the checks and the evidence for each criterion are named.
@@ -59,4 +59,4 @@ A phase is a milestone, or any set of tasks run unattended together. Before the 
 1. Write the phase plan as a Backlog document (`backlog doc create`): goal, exit criteria, task order with dependencies, the tasks planned at pickup, which tasks touch the same files, and rules for the run (for example one runner, or which tasks may run in parallel).
 2. Plan every task. One whose plan depends on code an earlier task in the phase will change is checked here on checklist items 1 to 6 only; its plan is written at pickup, traced against the code as it is then, and challenged at task level before work starts (on NOT READY, remove its label).
 3. Run the challenge at level "phase": order and dependencies, shared files, decision-record numbers (two tasks must not claim the same number; a plan names a new record by title and takes the next free number when it writes it), and the owner questions of every task, batched up front.
-4. Label the tasks that pass (no open Blocking or Material finding in the last round, and no dependency on a task that has one) and append the phase verdict to each labelled task's notes, adding "plan at pickup" for the tasks planned at pickup. The phase challenge stands in for a separate challenge of each fully planned task; tasks planned at pickup still get their own. The run takes only labelled tasks, in the planned order, with the pickup check above.
+4. Label the tasks that pass (no open Blocking or Material finding in the last round, and no dependency on a task that has one) and append to each labelled task's notes "passed the phase check, round N", adding "plan at pickup" for the tasks planned at pickup. The phase verdict itself goes in the phase plan. The phase challenge stands in for a separate challenge of each fully planned task; tasks planned at pickup still get their own. The run takes only labelled tasks, in the planned order, with the pickup check above.

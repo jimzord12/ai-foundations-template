@@ -4,15 +4,15 @@ title: 'Codex: expose shared skills natively'
 status: To Do
 assignee: []
 created_date: '2026-10-01 20:13'
-updated_date: '2026-10-02 02:56'
+updated_date: '2026-10-02 03:02'
 labels:
   - codex
   - skills
-  - ready
 milestone: m-0
 dependencies:
   - TASK-11
   - TASK-24
+  - TASK-26
 priority: medium
 type: feature
 ordinal: 800
@@ -123,3 +123,20 @@ Tell every reviewer the `.agents/skills/` trees and `.claude/skills` copy are pr
 
 `dogfood.json`, `template/.agents/skills/**` (new, synced), `.agents/skills/**` (new, synced), `template/docs/protocols/agents.md` (+ synced copy), `template/.claude/skills/context-lenses/SKILL.md` (+ synced copies), `AGENTS.md`, `README.md`, `docs/decisions/<nnnn>-codex-reads-the-shared-skills-from-a-checked-copy-in-agents-skills.md`, `docs/decisions/README.md`.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+## Readiness challenge, task level, round 1 (2026-10-02): NOT READY
+
+Run by the shipped readiness-challenger (TASK-26 proof, headless claude -p from the template repo; transcript in the session scratchpad, proof-evidence/task26-*).
+
+- Material 1: TASK-26 is a real dependency but not declared. Disposed: dependency added; start after TASK-26 merges.
+- Material 2: the plan relies on research.md and ac-rewording.md, which are not in the repo. To fix at pickup: paste the options table (a, b1, b2, c, d, one line each) and the Codex doc and source links into the plan; drop the ac-rewording step (already applied in 1e63576).
+- Minor 1: the ready label stayed after the plan and criteria changed. Disposed: label removed; re-added on READY.
+- Minor 2: step 7 writes proof output into the decision record before the proof exists. To fix: write the record after the proof.
+- Minor 3: "no exec lines in the log" cannot be checked with -o only. To fix: add --json > <file>.jsonl and check it has no command-execution events.
+- Minor 4: writes under template/.claude/ may need the owner. Note: in this repo Claude Code wrote template/.claude/ files without refusal during TASK-29/30/26; keep the fallback line.
+- Note: no drift check in generated projects (agent's call, reported in the end-of-task summary).
+- Pre-existing claim "decisions README has no rows for 0023-0030" was checked by the orchestrator and is false (all rows present).
+<!-- SECTION:NOTES:END -->

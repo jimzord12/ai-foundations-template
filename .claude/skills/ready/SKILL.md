@@ -20,10 +20,10 @@ From the task's description and acceptance criteria alone, write down what done 
 - **Criteria:** each acceptance criterion maps to a step and to evidence an agent can produce; one only a person can check is named as waiting on the owner.
 - **Checks:** every command exists (package scripts, CLIs) and runs with the permissions the run will have; evidence comes from the real local stack, not a mock of something that can run locally.
 - **Owner decisions:** every choice in the plan is either the agent's (recorded when non-trivial) or the owner's under the project's charter. An owner's choice buried in a step is an owner question.
-- **Dependencies:** the tasks it depends on are done, and what the plan relies on from them is what was merged (`git log`, the files), not what their descriptions promised.
+- **Dependencies:** every task the plan needs first is a declared dependency; each is Done, or ordered before it in the same phase; for a Done one, what the plan relies on from them is what was merged (`git log`, the files), not what their descriptions promised.
 - **External facts:** a version, API or tool behaviour the plan relies on is checked (`npm view`, the installed manifest) or cites its source; one you cannot check is NOT_CHECKED.
 - **Size and scope:** one change for one review loop; nothing beyond the task, no speculative structure.
-- **Cold executor:** a fresh agent with only the task and the files it names could start step 1 now.
+- **Cold executor:** a fresh agent with only the task and the files it names could start step 1 once its dependencies are Done.
 
 ## Phase lenses
 

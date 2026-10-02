@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@claude'
 created_date: '2026-10-01 19:50'
-updated_date: '2026-10-02 02:48'
+updated_date: '2026-10-02 03:02'
 labels:
   - process
   - ready
@@ -88,3 +88,24 @@ Ready gate: `docs/protocols/ready.md`, `ready` skill, `readiness-challenger` pro
 - AC #3: the saved verdict in the task notes plus the transcript checks of step 10.
 - AC #4: headings of `ready.md` (checklist, plan, challenge, owner questions, label, phase level).
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+## Proof (AC #3), 2026-10-02
+
+Headless `claude -p` from this repo (default permission mode, stream-json; transcripts in the session scratchpad, proof-evidence/task26-*). The main session made exactly one Agent call (subagent_type readiness-challenger) and no Skill call. The brief named no phase lens and did not contain "Pains" (grep-checked).
+
+The subagent's own transcript shows review-core and ready injected at startup. Its first message, before any tool call:
+- named both skills;
+- listed the phase-lens row of the ready skill correctly, in order;
+- named review-core's closing report section correctly.
+
+It ran no Edit or Write and no writing Backlog command. It did run read-only probes, including `codex debug prompt-input` in a scratch git repo outside the project, which it deleted.
+
+Verdict on TASK-28's plan: NOT READY (2 Material, 4 Minor). The full dispositions are in TASK-28's notes. Material 1: TASK-26 was an undeclared dependency. Material 2: the plan relied on scratch files that are not in the repo.
+
+One false claim: "decisions README missing rows 0023-0030" was wrong. All rows are present.
+
+Lesson adopted into ready.md: every task the plan needs first is a declared dependency.
+<!-- SECTION:NOTES:END -->
