@@ -1,9 +1,15 @@
-"""Generate .claude/settings.json for this repo (decision 0027).
+"""Generate Claude Code permission settings.
 
-Usage: python scripts/permissions/gen_settings.py <out.json>
+Profiles:
+  repo      .claude/settings.json for this repo (decision 0027): everything allowed, deleting main denied.
+  template  template/.claude/settings.json for generated projects (decisions 0021, 0024, 0029, 0031):
+            a narrow allowlist, and the AGENTS.md ask-first list as ask rules.
+
+Usage: python scripts/permissions/gen_settings.py <out.json> [repo|template]
 Agents cannot write .claude/settings.json themselves (protected path); write to a temp file and let the owner copy it.
 """
 import json, sys
+PROFILE = sys.argv[2] if len(sys.argv) > 2 else "repo"
 TOOLS = ["Bash", "PowerShell"]
 # "git -C *" covers git -C <path> forms; a bare "git *" prefix would also match words inside commit messages.
 GIT = ["git", "git -C *", "git --no-pager", "git -c *"]
@@ -55,6 +61,45 @@ for t in TOOLS:
                 f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
                 f"{t}({g} branch -D *)", f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
                 f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)"]
+
+if PROFILE == "template":
+    # Owner answer 5 (0021) amended by 0024: read-only tools, package scripts, backlog, git add/commit/push and
+    # the branch commands; nothing broader. No blanket entries (auto mode drops them) and no bare "git -C *".
+    allow = ["Read", "Glob", "Grep"]
+    tsubs = ["status", "log", "diff", "show", "add", "commit", "push", "switch", "branch", "merge", "fetch", "pull"]
+    tcmds = []
+    for s_ in tsubs:
+        tcmds += [f"git {s_}", f"git {s_} *", f"git -C * {s_}", f"git -C * {s_} *"]
+    tcmds += ["npm ci", "npm install", "npm test", "npm run check", "npm run typecheck", "npm run lint",
+              "npm run format", "npm run format:check", "npm run test", "npm run build",
+              "backlog *", "npx backlog.md *"]
+    for t in TOOLS:
+        allow += [f"{t}({c})" for c in tcmds]
+    # The ask-first list of template AGENTS.md "Git and safety"; nothing is denied outright.
+    CORES = ["main", "production", "stage", "dev"]
+    deny = []
+    ask = []
+    for t in TOOLS:
+        for g in ["git", "git -C *"]:
+            for core in CORES:
+                for m in ([core, f'"{core}"', f"'{core}'"] if core == "main" else [core]):
+                    for tail in ["", " *"]:
+                        for f in ["-d", "-D", "--delete"]:
+                            ask += [f"{t}({g} branch {f}* {m}{tail})", f"{t}({g} branch * {f}* {m}{tail})"]
+                        ask += [f"{t}({g} push *-d* {m}{tail})", f"{t}({g} push * :{m}{tail})"]
+                    ask += [f"{t}({g} push * {m} *-d*)"]
+                ask += [f"{t}({g} push * refs/heads/{core} *-d*)", f"{t}({g} push *-d* refs/heads/{core}*)",
+                        f"{t}({g} push * :refs/heads/{core}*)", f"{t}({g} push * HEAD:{core}*)",
+                        f"{t}({g} branch -m {core}*)", f"{t}({g} branch -M {core}*)", f"{t}({g} branch --move {core}*)"]
+            for core in CORES[1:]:
+                ask += [f"{t}({g} push * *:{core})", f"{t}({g} push * *:{core} *)"]
+            ask += [f"{t}({g} push *--force*)", f"{t}({g} push -f *)", f"{t}({g} push * -f)", f"{t}({g} push * -f *)",
+                    f"{t}({g} push * +*)", f"{t}({g} push *--mirror*)", f"{t}({g} push *--prune*)",
+                    f"{t}({g} reset *--hard*)", f"{t}({g} clean -*)",
+                    f"{t}({g} branch -D *)", f"{t}({g} branch *--force*)", f"{t}({g} branch -f *)",
+                    f"{t}({g} branch * -f *)", f"{t}({g} branch * -f)",
+                    f"{t}({g} switch *--discard-changes*)", f"{t}({g} switch -f*)", f"{t}({g} switch --force*)",
+                    f"{t}({g} switch -C *)"]
 
 out = {"$schema": "https://json.schemastore.org/claude-code-settings.json",
        "permissions": {"allow": allow, "deny": deny, "ask": ask}}

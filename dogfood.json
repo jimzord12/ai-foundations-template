@@ -1,0 +1,8 @@
+{
+  "description": "Template files this repo also uses. Each source (file, or folder copied recursively) must match its copy exactly. Check: python scripts/dogfood_check.py; fix: python scripts/dogfood_check.py --sync.",
+  "pairs": [
+    {"source": "template/docs/protocols/agents.md", "copy": "docs/protocols/agents.md"},
+    {"source": "template/.claude/agents", "copy": ".claude/agents"},
+    {"source": "template/.claude/skills", "copy": ".claude/skills"}
+  ]
+}

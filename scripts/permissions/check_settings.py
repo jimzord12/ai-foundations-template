@@ -1,15 +1,16 @@
 """Simulate permission-rule matching against must-allow / must-deny / must-ask commands.
 
-Usage: python scripts/permissions/check_settings.py .claude/settings.json [Bash|PowerShell]
+Usage: python scripts/permissions/check_settings.py <settings.json> [Bash|PowerShell] [repo|template]
 Prints the mismatch count and exits 1 when there is any; 0 mismatches is the bar.
 Does not split compound commands; the real matcher checks each subcommand.
 """
 import json, re, sys
 p = json.load(open(sys.argv[1]))["permissions"]
 TOOL = sys.argv[2] if len(sys.argv) > 2 else "Bash"
+PROFILE = sys.argv[3] if len(sys.argv) > 3 else "repo"
 def rules(kind):
     out = []
-    for r in p[kind]:
+    for r in p.get(kind, []):
         m = re.fullmatch(TOOL + r"\((.*)\)", r)
         if m: out.append(re.compile("^" + ".*".join(re.escape(x) for x in m.group(1).split("*")) + "$", re.S))
     return out
@@ -39,6 +40,21 @@ must = {
    "git push origin v0.1.0", "git push --tags", "git push --follow-tags origin main", "git reset --hard HEAD~1", "git reset -q --hard",
    "git clean -fd", "git branch -D feature/old", "git branch -f feature/x main"],
 }
+if PROFILE == "template":
+    must = {
+     "allow": ["git switch -c feature/x", "git add -A", 'git commit -m "Clean up docs; reset --hard is just words"', "git push origin main",
+       "git push -u origin feature/x", "git push origin feature/x-fix", "git merge --ff-only feature/x", "git branch -d feature/x",
+       "git push origin --delete feature/x", "git branch --merged main", f"git -C {P} status", f"git -C {P} commit -m x",
+       "npm run check", "npm test", "npm ci", "npm install", "backlog task list", "npx backlog.md task list", "git fetch", "git pull"],
+     "ask": ["git branch -D main", "git branch -d production", "git branch -d -f stage", "git push origin --delete main",
+       "git push --delete origin dev", "git push origin :production", "git push origin HEAD:production", "git push origin feature/x:stage",
+       'git branch -D "main"', f"git -C {P} branch -D main", "git branch -m main old", "git push --force origin feature/x",
+       "git push -f origin x", "git push origin +feature/x", "git push --mirror origin", "git reset --hard HEAD~1", "git clean -fd",
+       "git branch -D feature/old", "git branch -f feature/x main", "git switch --discard-changes main", "git switch -f main",
+       "git switch -C feature/x"],
+     "classifier": ["npm install lodash", "npm run dev", "git -C {P} reflog", "git restore .", "git checkout -- a.ts", "curl https://x",
+       "node -e 1", "git rebase main", "git tag v1"],
+    }
 bad = 0
 for want, cs in must.items():
     for c in cs:
