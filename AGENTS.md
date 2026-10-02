@@ -11,7 +11,7 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
   The CLI is `backlog` (install once: `npm i -g backlog.md`) or `npx backlog.md <command>` without installing.
 
 ## Rules
-- Review every non-trivial change with the loop in `docs/protocols/review.md`.
+- Review every non-trivial change with the loop in `docs/protocols/review.md`; it also names who writes feedback-driven instruction changes (`context-maintainer`).
 - Standard over custom: use established conventions and widely adopted tools; justify custom work in a decision record.
 - Verify current versions and docs of tools before relying on them.
 - Ask before major or hard-to-reverse choices; say clearly what is decided vs. suggested.

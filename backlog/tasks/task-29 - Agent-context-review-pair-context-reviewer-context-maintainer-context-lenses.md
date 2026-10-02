@@ -3,16 +3,15 @@ id: TASK-29
 title: >-
   Agent-context review pair: context-reviewer, context-maintainer,
   context-lenses
-status: In Progress
+status: Done
 assignee:
   - '@claude'
 created_date: '2026-10-01 20:52'
-updated_date: '2026-10-02 01:17'
+updated_date: '2026-10-02 01:22'
 labels:
   - review
   - agents
   - docs
-  - ready
 milestone: m-0
 dependencies:
   - TASK-11
@@ -29,20 +28,20 @@ Most of this template is agent context (AGENTS.md, protocols, agent profiles, sk
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 context-lenses skill ships with: principle written before reading the diff, placement and owning file, integrate not append, principle vs example (overfit and over-general), terminology against glossary and code, timeless files carry no dates, literal-reader safety (an agent following the text exactly must not cause harm or stall), frontmatter checks, router reachability, line budgets, Claude/Codex parity, anti-overcorrection guards, and a lead-lens rotation table
-- [ ] #2 context-reviewer profile (Read, Grep, Glob only; no Agent; Opus, high; the caller passes the diff text because the profile has no shell) preloads review-core and context-lenses; context-maintainer profile (adds Edit and Write, instruction and documentation files only, never deletes or renames, never edits dated records; Opus, high) preloads context-lenses
-- [ ] #3 Both ship in template/ and in this repo (pairs in dogfood.json); grep -riE '\bICS\b|\bVCR\b|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number' over the shipped files returns nothing
-- [ ] #4 docs/protocols/review.md names context-maintainer as the writer for feedback-driven instruction changes and context-reviewer as the reviewer of instruction changes
-- [ ] #5 Proof via headless claude -p (same method as TASK-11): context-reviewer reviews one real instruction change in this repo, names the skills injected at startup and answers one content probe from context-lenses (the round-4 row of the lead-lens table) with no Read, Grep or Glob before the answer and a brief that never contains the skill body; context-maintainer applies one small instruction edit in a throwaway clone with the same probe; both reports saved in the task notes
+- [x] #1 context-lenses skill ships with: principle written before reading the diff, placement and owning file, integrate not append, principle vs example (overfit and over-general), terminology against glossary and code, timeless files carry no dates, literal-reader safety (an agent following the text exactly must not cause harm or stall), frontmatter checks, router reachability, line budgets, Claude/Codex parity, anti-overcorrection guards, and a lead-lens rotation table
+- [x] #2 context-reviewer profile (Read, Grep, Glob only; no Agent; Opus, high; the caller passes the diff text because the profile has no shell) preloads review-core and context-lenses; context-maintainer profile (adds Edit and Write, instruction and documentation files only, never deletes or renames, never edits dated records; Opus, high) preloads context-lenses
+- [x] #3 Both ship in template/ and in this repo (pairs in dogfood.json); grep -riE '\bICS\b|\bVCR\b|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number' over the shipped files returns nothing
+- [x] #4 docs/protocols/review.md names context-maintainer as the writer for feedback-driven instruction changes and context-reviewer as the reviewer of instruction changes
+- [x] #5 Proof via headless claude -p (same method as TASK-11): context-reviewer reviews one real instruction change in this repo, names the skills injected at startup and answers one content probe from context-lenses (the round-4 row of the lead-lens table) with no Read, Grep or Glob before the answer and a brief that never contains the skill body; context-maintainer applies one small instruction edit in a throwaway clone with the same probe; both reports saved in the task notes
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
-- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
-- [ ] #3 Independent review loop reached PASS for non-trivial changes
-- [ ] #4 Non-trivial decisions recorded in docs/decisions/
-- [ ] #5 Committed and pushed
+- [x] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [x] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [x] #3 Independent review loop reached PASS for non-trivial changes
+- [x] #4 Non-trivial decisions recorded in docs/decisions/
+- [x] #5 Committed and pushed
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -116,4 +115,25 @@ Context pair for agent-context changes: `context-lenses` skill, `context-reviewe
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-02 idea from TASK-14 review: context-lenses should include a literal-reader check that every 'only for' list in an always-loaded file states its tighten/loosen direction wherever an override clause touches it.
+
+## Evidence (2026-10-02)
+
+- Ready challenge: NOT READY with 3 Material (proof brief leaked the skill body; expected answer would sit in committed notes; Timeless lens contradicted agents.md's verified-date note) -> all fixed in plan v2 and the drafts; ACs #2, #3, #5 reworded as the challenger accepted.
+- dogfood: `python scripts/dogfood_check.py` -> 0 problem(s) after `--sync`.
+- Smoke test express / next / rn: exit 0; `diff -r --strip-trailing-cr template/.claude <render>/.claude` empty for all three; rendered AGENTS.md 68 / 69 / 68 lines (unchanged; router row edited in place); review.md in each render names context-maintainer.
+- AC #3 grep (`\bICS\b|\bVCR\b|Night Shift|night-shift|cvgen|greek-essence|\.agents/|licence|tax number`, case-insensitive) over the new and changed shipped files and their copies -> no output.
+- Proof, reviewer (claude -p in this repo, default mode, stream-json; transcripts in the session scratchpad proof-evidence/task29-reviewer-*): init lists context-reviewer and context-maintainer; one Agent call (subagent_type context-reviewer), no Skill call; the brief carried only the review.md diff and did not contain the round-4 answer; the subagent transcript shows review-core and context-lenses injected at startup, and its first message, before any tool call, named both skills and gave the round-4 row of the lead-lens table correctly. Its review counted as round 1 (PASS).
+- Proof, maintainer (claude -p --permission-mode acceptEdits in a throwaway clone with review.md reverted to main): one Agent call (context-maintainer); context-lenses injected; first message, before any tool call, named the skill and gave the round-4 row correctly; it then edited only template/docs/protocols/review.md (routing row + a maintainer paragraph, same substance as the hand-made change, plus "send each round's open findings back to it", which was adopted). Clone deleted afterwards.
+
+## Review loop
+
+- Round 1, mixed change: context-reviewer (instruction files) PASS with 3 Minor + 2 Notes; code-reviewer standing in for docs-reviewer (record 0033 + index) PASS with 3 Minor + 3 Notes.
+- Minors applied: this repo's AGENTS.md review bullet now names context-maintainer; review.md fallback tells code-reviewer to apply context-lenses for instruction files; "missing or your tool cannot run it" covers Codex; maintainer gets each round's open findings back; 0033 states why no Bash, points the chosen option at 0025, says "without context-maintainer", uses "Instruction files".
+- Left as Notes: two places say what to give the reviewer (they agree); "syncs" in 0033 applies to this repo only.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Added the instruction-file review pair to the template and dogfooded it into this repo: context-lenses (ten lenses, overcorrection guards, severity mapping, lead-lens rotation), context-reviewer (Read/Grep/Glob, preloads review-core + context-lenses) and context-maintainer (adds Edit/Write, instruction and documentation files only). review.md routes instruction files (now incl. CLAUDE.md) to context-reviewer and names context-maintainer as the writer of feedback-driven changes; review-core gained the shared "Pre-existing" findings rule; the template AGENTS.md router row points to review.md. Decision 0033. Both profiles proven via headless claude -p (skills injected, probe answered before any tool call); review round 1 PASS on both reviewers, minors applied.
+<!-- SECTION:FINAL_SUMMARY:END -->
