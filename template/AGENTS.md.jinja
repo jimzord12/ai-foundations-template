@@ -21,7 +21,7 @@ Prefer widely adopted conventions and libraries over inventing our own, even whe
 
 ## Who decides what
 - **You decide** libraries, patterns, folder structure and tooling on your own, but only within this file, the linked protocols and the decision records. Record every non-trivial decision.
-- By decision kind: **product** (what users see and do) the owner decides; **architecture** (how the code is shaped) you propose and the owner approves big changes (what counts as big: `docs/protocols/charter.md`); **technical** (tools, libraries, conventions) you decide and record, except the hard-to-reverse list below.
+- By decision kind: **product** (what users see and do) the owner decides; **architecture** (how the code is shaped) you decide, except big changes, which the owner approves (what counts as big: `docs/protocols/charter.md`); **technical** (tools, libraries, conventions) you decide and record, except the hard-to-reverse list below.
 - **The owner decides** anything hard to reverse: database, auth provider, hosting/infrastructure, paid services, core framework changes, and anything that contradicts these instructions. Present options with tradeoffs and a recommendation; don't pick for them.
 - Don't re-argue a recorded decision without new facts.
 - End every task with a one-line-per-decision summary of what you decided.
@@ -40,11 +40,11 @@ Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backl
 ## When to read what
 | Situation | Read |
 |---|---|
-| Writing TypeScript, adding a helper or dependency | `docs/protocols/typescript.md` |
+| Writing TypeScript, adding a helper or dependency, integrating an external service | `docs/protocols/typescript.md`, `docs/protocols/evolution.md` (ports) |
 | Making a decision | `docs/decisions/README.md` |
 | Deciding who approves (product, architecture, technical) | `docs/protocols/charter.md` |
 | Copied code, a long file or function, a repeat bug, a change scattered across places, painful test setup | `docs/protocols/evolution.md` |
-| Changing structure or naming a concept | `docs/architecture.md`, `docs/domain/glossary.md` |
+| Changing structure or naming a concept | `docs/architecture.md`, `docs/domain/glossary.md`, `docs/protocols/evolution.md` |
 | Picking up or changing work | `backlog instructions overview` |
 {% if stack == 'express' %}
 ## Stack: Express 5 + Zod (backend)
