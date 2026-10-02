@@ -41,3 +41,4 @@ One file per decision, in [MADR 4](https://adr.github.io/madr/) format. Check he
 | [0033](0033-context-review-pair-context-reviewer-context-maintainer-and-context-lenses.md) | technical | accepted | Context review pair: context-reviewer, context-maintainer and context-lenses |
 | [0034](0034-docs-reviewer-scannability-reviewer-and-their-lenses.md) | technical | accepted | Docs reviewer, scannability reviewer and their lenses |
 | [0035](0035-ready-gate-protocol-readiness-challenger-and-ready-skill.md) | technical | accepted | Ready gate protocol, readiness-challenger and ready skill |
+| [0036](0036-config-files-extend-the-projects-own-instead-of-overwriting-it.md) | technical | accepted | Config files extend the project's own instead of overwriting it |

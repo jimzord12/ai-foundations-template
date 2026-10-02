@@ -27,3 +27,4 @@ Post-copy tasks run commands on the user's machine (hence `--trust`); CI for gen
 ## More Information
 
 - Answer 5 (the allowlist) is replaced for this repo by [0027](0027-this-repo-allows-everything-except-deleting-main.md); generated projects are decided in TASK-24.
+- The "overwrite them on purpose" part of answer 3 is refined by [0036](0036-config-files-extend-the-projects-own-instead-of-overwriting-it.md): config files are extended, not overwritten.

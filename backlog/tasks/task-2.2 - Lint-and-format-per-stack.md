@@ -4,11 +4,10 @@ title: Lint and format per stack
 status: To Do
 assignee: []
 created_date: '2026-10-01 19:51'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-02 03:09'
 labels:
   - stack
   - lint
-  - ready
 milestone: m-0
 dependencies:
   - TASK-2.5
@@ -39,3 +38,11 @@ One standard linter and formatter per stack so agents get fast, consistent feedb
 - [ ] #4 Non-trivial decisions recorded in docs/decisions/
 - [ ] #5 Committed and pushed
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-02: record 0036 applies: never overwrite the project's own config; ship a new file that extends or imports it, and verify that per tool before relying on it.
+
+2026-10-02: ready label removed: its dependency 2.5 changed what the plan relies on (record 0036, ready.md); plan and challenge again, or the owner waives it.
+<!-- SECTION:NOTES:END -->

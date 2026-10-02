@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:05'
-updated_date: '2026-10-01 23:18'
+updated_date: '2026-10-02 03:05'
 labels:
   - agents
   - typescript
@@ -23,7 +23,7 @@ ordinal: 1560
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Owner request 2026-10-02. Every generated project is TypeScript. TASK-2.1 ships a strict baseline tsconfig per stack, but projects evolve: a codebase that has grown may be ready for a stricter flag it could not afford on day one, or a flag may cause more noise than value. Agents are therefore recommended to look for tsconfig settings that catch real bugs for this codebase and propose or apply them, without overdoing it: a flag earns its place only if the errors it raises are mostly real problems and fixing them is cheap. The owner wants to see these: the end-of-task report lists them in a 'TypeScript settings' subsection of its Findings section, next to the 'Lint and CI rules' subsection from TASK-32. The report shape comes from TASK-15 (docs/protocols/done.md).
+Owner request 2026-10-02. Every generated project is TypeScript. TASK-2.1 ships a strict baseline in tsconfig.foundations.json (record 0036), which is also where a stricter flag goes, but projects evolve: a codebase that has grown may be ready for a stricter flag it could not afford on day one, or a flag may cause more noise than value. Agents are therefore recommended to look for tsconfig settings that catch real bugs for this codebase and propose or apply them, without overdoing it: a flag earns its place only if the errors it raises are mostly real problems and fixing them is cheap. The owner wants to see these: the end-of-task report lists them in a 'TypeScript settings' subsection of its Findings section, next to the 'Lint and CI rules' subsection from TASK-32. The report shape comes from TASK-15 (docs/protocols/done.md).
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
