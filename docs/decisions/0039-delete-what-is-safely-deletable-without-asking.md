@@ -46,5 +46,6 @@ Chosen option: "Narrow the item to branches that are not the agent's, and state 
 
 ## More Information
 
+- This repo's own settings later stopped asking altogether, and its force push, `reset --hard` and `git clean` asks became a double-check instruction: [0042](0042-this-repo-asks-nothing-agents-double-check-destructive-commands.md).
 - Narrows the ask-first list of [0029](0029-git-and-safety-rules-for-generated-projects.md) and widens the cleanup rules of [0023](0023-branch-model-feature-branches-no-pull-requests-delete-when-merged.md) and [0024](0024-branch-model-refinements-after-the-first-instruction-review.md) (which allowed deleting only merged feature branches, the agent's own level-3 branches and temporary files the agent created).
 - The planned lab protocol (DRAFT-2) keeps a pushed tag per lab before deleting the lab branch; with this decision that tag has to justify itself, tracked in DRAFT-2.
