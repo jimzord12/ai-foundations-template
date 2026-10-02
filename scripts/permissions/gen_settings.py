@@ -119,9 +119,12 @@ if PROFILE == "template":
                     f"{t}({g} tag -f*)", f"{t}({g} tag * -f*)", f"{t}({g} tag *--force*)"]
             for core in CORES:  # worktree add -B resets an existing branch, like switch -C
                 for m in [core, f'"{core}"', f"'{core}'"]:
-                    ask += [f"{t}({g} worktree add *-B {m})", f"{t}({g} worktree add *-B {m} *)"]
+                    # The space before -B keeps a path or branch name ending in -b or -B (PowerShell ignores case) from matching.
+                    ask += [f"{t}({g} worktree add -B {m})", f"{t}({g} worktree add -B {m} *)",
+                            f"{t}({g} worktree add * -B {m})", f"{t}({g} worktree add * -B {m} *)"]
             if t == "Bash":  # PowerShell matches case-insensitively: -D would catch -d, -C would catch -c, -B would catch -b
-                ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)", f"{t}({g} worktree add *-B *)"]
+                ask += [f"{t}({g} branch -D *)", f"{t}({g} switch -C *)",
+                        f"{t}({g} worktree add -B *)", f"{t}({g} worktree add * -B *)"]
 
 out = {"$schema": "https://json.schemastore.org/claude-code-settings.json",
        "permissions": {"allow": allow, "deny": deny, "ask": ask}}

@@ -26,9 +26,9 @@ Chosen option: "Allow both, and ask for the forms that discard work, move a tag 
 - Ask:
   - `git worktree remove` with `-f`, `-ff` or `--force` (it deletes uncommitted work);
   - `git tag` with `-d`, `--delete`, `-f` or `--force`, as the first option, a later option or a combined `-fa` (the tag disappears or moves, and git keeps no reflog for tags);
-  - `git worktree add -B <core branch>` for `main`, `production`, `stage` and `dev` in both shells, and `-B` with any branch in Bash (it resets an existing branch, as `git switch -C` does). PowerShell matches rules case-insensitively, so there `-B <other branch>` is not asked: it would also catch the lab's `-b`.
-- Not caught: combined short flags with the force flag last (`git tag -af`). Remote tag deletion (`git push origin --delete <tag>`) and `git push --tags` stay allowed, as all non-core pushes were before this change; if the pushed tag is the only archive of a lab, a pushed-tag guard is a follow-up for the lab protocol's record.
-- `git push` was already allowed, so pushing a tag adds no new permission. `git branch -D` keeps its ask rule in Bash only; in PowerShell it stays instruction-only (0031).
+  - `git worktree add -B <core branch>` for `main`, `production`, `stage` and `dev` in both shells, and `-B` with any branch in Bash (it resets an existing branch, as `git switch -C` does). PowerShell matches rules case-insensitively, so there `-B <other branch>` is not asked: it would also catch the lab's `-b`. The rules put a space before `-B`, so a path or branch name that merely ends in `-b` or `-B` (for example `LAB-...-variant-b`) does not ask.
+- Not caught: a force or delete flag that is not first in a combined group (`git tag -af`, `-afm`, `git worktree add -fB main`), a value attached to its flag (`-Bmain`), and abbreviated long options (`--del`, `--forc`). False positives: a flag-like word in a tag message (`git tag -a x -m "drop -d"`) asks, and in PowerShell so does `git tag -F <file>`. Remote tag deletion (`git push origin --delete <tag>`) and `git push --tags` stay allowed, as all non-core pushes were before this change; if the pushed tag is the only archive of a lab, a pushed-tag guard is a follow-up for the lab protocol's record.
+- `git push` was already allowed, so pushing a tag adds no new permission. `git branch -D` keeps its ask rule in Bash only; in PowerShell it asks for core branches and is otherwise instruction-only (0031).
 - The rules come from `scripts/permissions/gen_settings.py` (template profile); `scripts/permissions/check_settings.py` has the cases. `docs/protocols/agents.md` names the two commands in its list and the forced forms in a bullet.
 
 ### Consequences
@@ -36,7 +36,7 @@ Chosen option: "Allow both, and ask for the forms that discard work, move a tag 
 - Good, because lab worktrees can be created, removed and tagged unattended in generated projects.
 - Good, because the common destructive spellings still stop for confirmation.
 - Bad, because the ask-first list in AGENTS.md does not name these forms; the permission rule is the only guard on them, and agents without Claude Code's rules get no prompt.
-- Bad, because the guard is pattern matching on spelling, so an unusual spelling (`git tag -af`) slips through.
+- Bad, because the guard is pattern matching on spelling, so an unusual spelling (`git tag -af`, `--del`) slips through and a flag-like word in a tag message asks needlessly.
 - Not proven yet: a headless Claude Code run that exercises the rules for real (0031 did one for the first allowlist) and whether writes under `.claude/worktrees/` prompt; both stay open in DRAFT-2.
 
 ## More Information
