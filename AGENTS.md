@@ -12,7 +12,7 @@ This repo is a **Copier template**, not an app. Files under `template/` are rend
 
 ## Rules
 - Review every non-trivial change with the loop in `docs/protocols/review.md`; it also names who writes feedback-driven instruction changes (`context-maintainer`).
-- Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md`; the owner may waive it when attended; depth scales with task size.
+- Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md`, or waived by the owner in an attended run; depth scales with task size.
 - Standard over custom: use established conventions and widely adopted tools; justify custom work in a decision record.
 - Verify current versions and docs of tools before relying on them.
 - Ask before major or hard-to-reverse choices; say clearly what is decided vs. suggested.

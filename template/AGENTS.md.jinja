@@ -37,7 +37,7 @@ Start simple and climb only as far as friction demands: inline code, function, m
 ## Work tracking
 Open work lives in Backlog.md (`backlog/`). Use the `backlog` CLI (or `npx backlog.md <command>` if it is not installed), never edit task files by hand. If `backlog/` is missing, run `npx backlog.md init "{{ project_name }}" --defaults --agent-instructions none` first. If `backlog/config.yml` has no `definition_of_done`, add the line from `docs/protocols/done.md`. At the start of a session run `backlog instructions overview` (or `npx backlog.md instructions overview`).
 
-Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md` (plan, then an independent challenge); the owner may waive it when attended; depth scales with task size.
+Unattended work starts only on tasks labelled `ready` by the gate in `docs/protocols/ready.md` (plan, then an independent challenge), or waived by the owner in an attended run; depth scales with task size.
 
 ## Git and safety
 - Every change goes on a feature branch; no pull requests. Merge into `main` without asking once the checks pass and, for a non-trivial change, review reached PASS; then delete the branch. Detail: `docs/protocols/git.md`.
