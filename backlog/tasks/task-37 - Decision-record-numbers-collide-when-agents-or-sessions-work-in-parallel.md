@@ -4,7 +4,7 @@ title: Decision record numbers collide when agents or sessions work in parallel
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
-updated_date: '2026-10-02 21:30'
+updated_date: '2026-10-02 21:36'
 labels:
   - feature
 milestone: m-0
@@ -24,7 +24,7 @@ Decision records take the next free number. On 2026-10-02 a parallel session lan
 - [ ] #1 Two branches that each add a decision record from the same base can both merge without renaming a record by hand
 - [ ] #2 The rule is documented in template/docs/decisions/README.md and this repo's docs/decisions/README.md
 - [ ] #3 Existing records and links keep working
-- [ ] #4 New records are named by UTC timestamp and slug (for example 2026-10-03-1415-stack-packs.md) instead of the next free number; records 0001 to 0041 keep their names
+- [ ] #4 New records are named by UTC timestamp and slug (for example 2026-10-03-1415-stack-packs.md) instead of the next free number; every record numbered before this task lands (0001 to 0042 at the time of writing) keeps its name
 <!-- AC:END -->
 
 ## Definition of Done
