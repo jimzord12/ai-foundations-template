@@ -4,7 +4,7 @@ title: A/B comparison and regression gate for template versions
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-03 20:11'
 labels:
   - testing
   - evals
@@ -28,3 +28,12 @@ Answer 'does this template do more good than harm': run the same eval tasks with
 - [ ] #2 Rule for what counts as a regression, and the tag process (TASK-16) checks it
 - [ ] #3 Instruction size and per-session token cost recorded for each version
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->

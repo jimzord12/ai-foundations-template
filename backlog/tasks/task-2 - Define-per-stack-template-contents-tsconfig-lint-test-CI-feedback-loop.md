@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:27'
-updated_date: '2026-10-02 21:30'
+updated_date: '2026-10-03 20:11'
 labels:
   - template
   - tooling
@@ -20,6 +20,7 @@ dependencies:
   - TASK-2.7
   - TASK-2.8
 priority: high
+type: feature
 ordinal: 1450
 ---
 

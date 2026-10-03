@@ -4,12 +4,13 @@ title: Protocols need a home for supporting files such as worked examples
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
-updated_date: '2026-10-02 18:27'
+updated_date: '2026-10-03 20:11'
 labels:
-  - feature
+  - protocols
 milestone: m-1
 dependencies: []
 priority: medium
+type: feature
 ordinal: 9500
 ---
 

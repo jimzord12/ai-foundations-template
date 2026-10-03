@@ -4,7 +4,7 @@ title: 'Fixture projects: 3-5 greenfield and 3-5 brownfield variations'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-02 17:05'
+updated_date: '2026-10-03 20:11'
 labels:
   - testing
   - fixtures
@@ -28,6 +28,15 @@ The template must be tried on realistic projects. Greenfield: freshly scaffolded
 - [ ] #3 Each fixture can be rebuilt from scratch with one command and pinned tool versions
 - [ ] #4 Adoption guide for brownfield projects written from what the fixtures reveal (dry run first, clean branch, never blind overwrite, how to handle an existing AGENTS.md); tested on the brownfield fixtures
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
 
 ## Implementation Notes
 

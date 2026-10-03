@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:17'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-03 20:11'
 labels:
   - night-shift
   - viewer
@@ -35,3 +35,12 @@ Owner decision (2026-09-29): the shared owner-facing viewer is Night Shift evolv
 - [ ] #4 Migration path from Night Shift's night-specific types to the generic model agreed
 - [ ] #5 This template only links to it: schemas from TASK-8 plus a register-this-project step, no viewer code copied here
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->

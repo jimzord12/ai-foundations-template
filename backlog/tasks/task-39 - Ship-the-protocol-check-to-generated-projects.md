@@ -4,13 +4,14 @@ title: Ship the protocol check to generated projects
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
-updated_date: '2026-10-02 21:30'
+updated_date: '2026-10-03 20:11'
 labels:
-  - feature
+  - protocols
 milestone: m-0
 dependencies:
   - TASK-27
 priority: high
+type: feature
 ordinal: 1520
 ---
 

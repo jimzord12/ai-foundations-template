@@ -4,7 +4,7 @@ title: Optional personalization skill for new installations (.local preferences)
 status: To Do
 assignee: []
 created_date: '2026-09-29 11:39'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-03 20:11'
 labels:
   - skill
   - onboarding
@@ -27,3 +27,12 @@ The template default is a neutral technical-product-owner profile. On a new inst
 - [ ] #2 Interview covers communication, tone, rigor, speed, conventions, standards, stack
 - [ ] #3 Answers written under .local/preferences (git-ignored) and referenced from AGENTS.md with precedence rules
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
