@@ -4,7 +4,7 @@ title: 'Agents turn repeatable rules into lint and CI checks, reported under Fin
 status: To Do
 assignee: []
 created_date: '2026-10-01 23:02'
-updated_date: '2026-10-02 18:29'
+updated_date: '2026-10-03 20:11'
 labels:
   - agents
   - lint
@@ -16,6 +16,7 @@ dependencies:
   - TASK-2.2
   - TASK-27
 priority: medium
+type: feature
 ordinal: 11000
 ---
 

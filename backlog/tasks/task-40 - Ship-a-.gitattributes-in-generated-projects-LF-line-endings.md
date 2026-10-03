@@ -4,12 +4,13 @@ title: Ship a .gitattributes in generated projects (LF line endings)
 status: To Do
 assignee: []
 created_date: '2026-10-02 03:22'
-updated_date: '2026-10-02 21:33'
+updated_date: '2026-10-03 20:11'
 labels:
   - template
 milestone: m-0
 dependencies: []
 priority: medium
+type: chore
 ordinal: 960
 ---
 

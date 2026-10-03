@@ -4,7 +4,7 @@ title: Repo maintenance skill and agent profile (from owner's research)
 status: To Do
 assignee: []
 created_date: '2026-09-29 22:09'
-updated_date: '2026-10-02 18:27'
+updated_date: '2026-10-03 20:11'
 labels:
   - maintenance
   - skill
@@ -29,9 +29,18 @@ Source (outside the repo, owner's research for another repo): C:\Users\jimzord12
 - [ ] #2 Generic skill, checklist, audit script and lite auditor adapted and working on this repo, with a template-specific adapter (smoke test as declared check, decision-log and backlog hygiene, stale preferred libraries)
 - [x] #3 Decisions made and recorded: where it ships (this repo only vs generated projects, full or lighter), Python dependency for TypeScript projects, how the dogfooded copy in this repo stays in sync with template/
 - [ ] #4 Verified in a live Claude Code session on a throwaway branch (skill discovery, auditor spawn, apply protocol), plus the script self-test on this machine; noise from the first run triaged
-- [ ] #5 Independent review rounds pass; overlap with TASK-11 (context-maintainer) and TASK-3 (library review) resolved
+- [ ] #5 Independent review rounds pass; overlap with TASK-29 (context-maintainer) and TASK-3 (library review) resolved
 - [ ] #6 Repo-maintenance files are listed in the dogfood manifest and covered by the CI identical-check of TASK-13
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
 
 ## Implementation Notes
 
@@ -39,4 +48,6 @@ Source (outside the repo, owner's research for another repo): C:\Users\jimzord12
 2026-09-30 owner decisions (recorded in docs/decisions/0016-repo-maintenance-capability-ships-in-this-repo-and-in-generated-projects.md): ships in both this repo and generated projects with the same generic core; Python accepted as a dependency; template/ is the source of truth and CI checks this repo's copy is identical.
 
 Overlap found 2026-10-02: decision 0039 (delete what is safely deletable without asking) and the cleanup rule in docs/protocols/git.md now cover branch and worktree cleanup. Re-scope before planning this task.
+
+2026-10-03: criterion 5 named TASK-11 for the context-maintainer; that is TASK-29 (fixed). The source bundle exists only on the owner's machine (C:\Users\jimzord12\Downloads\cvgen-repo-maintenance-bundle, present on 2026-10-03); do not copy it into this public repository, because it holds the source repo's specific names and paths that criterion 1 keeps out. If it is missing at pickup, ask the owner.
 <!-- SECTION:NOTES:END -->

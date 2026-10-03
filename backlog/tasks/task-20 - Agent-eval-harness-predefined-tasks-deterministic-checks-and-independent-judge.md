@@ -6,7 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 19:29'
+updated_date: '2026-10-03 20:11'
 labels:
   - testing
   - evals
@@ -33,3 +33,12 @@ Check that the instructions are loaded and followed and do more good than harm. 
 - [ ] #4 Each eval verified to fail on a baseline without the instructions (an eval that passes without the rule tests nothing)
 - [ ] #5 DDD effect measured: with and without the glossary, do agents use glossary terms in names and flag synonyms
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->

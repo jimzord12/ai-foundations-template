@@ -4,9 +4,10 @@ title: Drop the non-core git branch -D ask rule from the template permission pro
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:01'
-updated_date: '2026-10-02 21:26'
+updated_date: '2026-10-03 20:11'
 labels:
-  - permissions agents
+  - permissions
+  - agents
 dependencies: []
 references:
   - docs/decisions/0039-delete-what-is-safely-deletable-without-asking.md
@@ -45,4 +46,6 @@ Decision 0039 lets agents delete their own unmerged branches without asking, but
 Decision 0042 (2026-10-03) answers part of AC #1 for this repo own profile: it no longer asks for git branch -D (or anything else); the owner moved the ask list to allow and agents double-check by instruction. Still open here: the template profile (generated projects) and the owner user settings, where a user ask still beats a project allow in Bash.
 
 Also covers AC #4 for this repo own profile: gen_settings.py repo profile and .claude/settings.json were updated together under decision 0042.
+
+2026-10-03 owner answer to criterion 1: drop the Bash git branch -D ask rule for non-core branches in the template profile (the owner wants less friction in generated projects too); keep it in the owner user settings, where it is an intentional gate. This repo's profile is settled by decision 0042. Whether the template should follow 0042 further (ask nothing, agents double-check by instruction) is a separate question for the owner, not part of this task.
 <!-- SECTION:NOTES:END -->

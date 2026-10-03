@@ -4,7 +4,7 @@ title: 'Docker environment for reproducible, isolated test runs'
 status: To Do
 assignee: []
 created_date: '2026-09-29 19:52'
-updated_date: '2026-10-01 16:40'
+updated_date: '2026-10-03 20:11'
 labels:
   - testing
   - docker
@@ -29,6 +29,15 @@ Test and eval runs must be reproducible and isolated: pinned tool versions, thro
 - [ ] #3 Agent authentication approach decided by the owner and recorded; RN limits documented
 - [ ] #4 Spike: install sbx and prove one scripted, headless agent run on a fixture (prompt in, transcript and exit code out); fall back to plain Docker if not possible
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
 
 ## Implementation Notes
 

@@ -1,16 +1,17 @@
 ---
 id: TASK-4
-title: 'Rule: every CLI tool ships structured, agent-oriented docs'
+title: 'Spike: design for agent-oriented docs in CLI tools'
 status: To Do
 assignee: []
 created_date: '2026-09-29 10:28'
-updated_date: '2026-10-01 21:26'
+updated_date: '2026-10-03 20:13'
 labels:
   - instructions
   - cli
 milestone: m-1
 dependencies: []
 priority: medium
+type: spike
 ordinal: 4000
 ---
 
@@ -22,7 +23,24 @@ Agents build and use many CLI tools; they should learn why/how/what a command do
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Design points resolved and recorded in docs/decisions/
-- [ ] #2 Rule text added to agent instructions
-- [ ] #3 Shared helper or reference implementation + test available
+- [ ] #1 Every open design point in the description is answered and recorded in docs/decisions/ (docs subcommand vs --docs flag, fetching one section by id, whether a parent's docs include its children, source format, CI enforcement and size budgets, token estimate vs character or word counts)
+- [ ] #2 Existing standards, libraries and CLI-framework support are checked and either adopted or rejected with a reason in the record
+- [ ] #3 The owner's earlier tool that used this pattern is the starting point: the owner names where it is, and the record says what it kept and what it changed
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 Every acceptance criterion verified with evidence (command and result, render output, or screenshot)
+- [ ] #2 Smoke test passes for all three stacks when template/ or copier.yml changed
+- [ ] #3 Independent review loop reached PASS for non-trivial changes
+- [ ] #4 Non-trivial decisions recorded in docs/decisions/
+- [ ] #5 Committed and pushed
+<!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-10-03 owner: the pattern is already proven: the owner used it in an earlier tool and it was very useful to agents. So this spike decides how, not whether. The rule text and the shared helper or reference implementation (old criteria 2 and 3) moved to a follow-up task that depends on this one.
+
+2026-10-03: the follow-up task named above is TASK-41.
+<!-- SECTION:NOTES:END -->

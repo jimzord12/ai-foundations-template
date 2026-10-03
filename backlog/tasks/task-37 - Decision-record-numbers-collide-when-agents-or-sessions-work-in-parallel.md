@@ -4,12 +4,13 @@ title: Decision record numbers collide when agents or sessions work in parallel
 status: To Do
 assignee: []
 created_date: '2026-10-02 16:45'
-updated_date: '2026-10-02 21:36'
+updated_date: '2026-10-03 20:11'
 labels:
-  - feature
+  - decisions
 milestone: m-0
 dependencies: []
 priority: high
+type: bug
 ordinal: 950
 ---
 
